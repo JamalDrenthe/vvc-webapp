@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Zap, X, Menu, Linkedin, DollarSign, Briefcase, Users, CheckCircle, BarChart3, 
-  ShieldCheck, Search, TrendingUp, ArrowRight, Target, Globe
+  Zap, X, Menu, Linkedin, Euro, Briefcase, Users, CheckCircle, BarChart3, 
+  ShieldCheck, Search, TrendingUp, ArrowRight, Target, Globe, Facebook, Instagram, Youtube,
+  Heart, Crown, Quote, Monitor, MapPin, Phone, FileText, CheckSquare, Clock, ChevronDown, ChevronUp
 } from 'lucide-react';
 
 export const Ticker = () => (
-  <div className="w-full relative bg-yellow-400 text-black py-3 overflow-hidden border-y-4 border-black rotate-1 hover:rotate-0 transition-transform duration-300 z-20">
+  <div className="w-full relative bg-yellow-400 text-black py-3 overflow-hidden border-y-4 border-black rotate-1 hover:rotate-0 transition-transform duration-300 z-20 my-24">
     <div className="absolute inset-0 bg-yellow-500 opacity-50 bg-[size:4px_4px] bg-[linear-gradient(45deg,transparent_25%,#000_25%,#000_50%,transparent_50%,transparent_75%,#000_75%,#000_100%)] bg-[length:20px_20px] opacity-10"></div>
     <div className="flex whitespace-nowrap overflow-hidden">
       <div className="animate-marqueeYZ flex items-center space-x-8 text-lg font-black tracking-widest uppercase">
@@ -77,9 +78,9 @@ export const MarketingNavbar = ({ currentPage, onNavigate, onLogin }: any) => {
                 <span className={`absolute -bottom-2 left-0 w-full h-0.5 bg-pink-500 transform transition-transform duration-300 ${currentPage === link.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
               </button>
             ))}
-            <button onClick={onLogin} className="text-xs font-bold text-slate-400 hover:text-white uppercase tracking-widest transition-colors">Inloggen</button>
+            <a href="https://login.verdienendevrienden.club/" className="text-xs font-bold text-slate-400 hover:text-white uppercase tracking-widest transition-colors">Inloggen</a>
             <button 
-              onClick={() => onNavigate('careers')}
+              onClick={() => onNavigate('register')}
               className="px-6 py-2 bg-white text-black font-black text-[10px] uppercase tracking-[0.2em] rounded-full hover:bg-pink-500 hover:text-white transition-all shadow-lg hover:shadow-pink-500/20"
             >
               Vrienden Worden?
@@ -113,14 +114,14 @@ export const MarketingNavbar = ({ currentPage, onNavigate, onLogin }: any) => {
           ))}
           
           <div className="pt-8 mt-8 border-t border-white/10 space-y-6">
-            <button 
-              onClick={() => { onLogin(); setIsMobileMenuOpen(false); }}
+            <a 
+              href="https://login.verdienendevrienden.club/"
               className="text-2xl font-black text-white uppercase tracking-tight hover:text-pink-500 transition-colors block w-full text-left"
             >
               INLOGGEN
-            </button>
+            </a>
             <button 
-              onClick={() => { onNavigate('careers'); setIsMobileMenuOpen(false); }}
+              onClick={() => { onNavigate('register'); setIsMobileMenuOpen(false); }}
               className="w-full bg-pink-500 text-white font-black uppercase tracking-widest py-5 rounded-2xl text-center shadow-2xl shadow-pink-500/20 active:scale-95 transition-transform"
             >
               VRIENDEN WORDEN?
@@ -149,9 +150,17 @@ export const MarketingFooter = ({ onNavigate, onLogin }: any) => {
             Wij optimaliseren bedrijfsprocessen en klantcontact met unieke strategie, technologie en uitvoering.
           </p>
           <div className="flex space-x-4">
-            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors text-white">
-                <Linkedin size={20} />
-            </a>
+            {[
+                { icon: <Linkedin size={20} />, href: "#" },
+                { icon: <Facebook size={20} />, href: "#" },
+                { icon: <Instagram size={20} />, href: "#" },
+                { icon: <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>, href: "#" },
+                { icon: <Youtube size={20} />, href: "#" }
+            ].map((social, i) => (
+                <a key={i} href={social.href} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors text-white">
+                    {social.icon}
+                </a>
+            ))}
           </div>
         </div>
 
@@ -161,7 +170,7 @@ export const MarketingFooter = ({ onNavigate, onLogin }: any) => {
             <li><button onClick={() => onNavigate('about')} className="hover:text-pink-500 transition-colors text-left text-sm font-medium">Over VVC</button></li>
             <li><button onClick={() => onNavigate('process')} className="hover:text-pink-500 transition-colors text-left text-sm font-medium">Hoe het werkt</button></li>
             <li><button onClick={() => onNavigate('careers')} className="hover:text-pink-500 transition-colors text-left text-sm font-medium">Vacatures</button></li>
-            <li><button onClick={onLogin} className="hover:text-pink-500 transition-colors text-left text-sm font-bold text-white">Inloggen</button></li>
+            <li><a href="https://login.verdienendevrienden.club/" className="hover:text-pink-500 transition-colors text-left text-sm font-bold text-white">Inloggen</a></li>
           </ul>
         </div>
 
@@ -169,8 +178,7 @@ export const MarketingFooter = ({ onNavigate, onLogin }: any) => {
           <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Contact</h4>
           <ul className="space-y-2 text-slate-400 text-sm">
             <li>Amsterdam, Nederland</li>
-            <li>info@vvc-club.nl</li>
-            <li>Ma-Vr: 9:00 - 17:00</li>
+            <li>info@verdienendevrienden.club</li>
           </ul>
         </div>
       </div>
@@ -246,7 +254,7 @@ export const MarketingCalculator = ({ onNavigate }: any) => {
 
 export const HeroSection = ({ onNavigate }: any) => {
   return (
-    <div className="w-full pt-28 pb-12 px-4 md:px-8 max-w-[1400px] mx-auto">
+    <div className="w-full pt-28 pb-24 px-4 md:px-8 max-w-[1400px] mx-auto">
       <div className="w-full relative overflow-hidden rounded-3xl border border-white/10 group">
         <div className="absolute inset-0 bg-gradient-to-r from-[#240046] via-[#1a0b2e] to-[#000000]"></div>
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
@@ -260,11 +268,11 @@ export const HeroSection = ({ onNavigate }: any) => {
               <span>Now Recruiting</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none mb-6 text-white">
-              JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-400">MONEY MOVEMENT</span>
+              JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-400 pr-14 pb-2">MONEY MOVEMENT</span>
             </h1>
             <p className="text-slate-400 text-lg mb-8 max-w-lg">
               Stop met werken voor een baas. Begin met bouwen aan je imperium. 
-              Verdien <span className="text-white font-bold">€50k - €95k</span> OTE + Passief inkomen.
+              Verdien <span className="text-white font-bold">€50k - €100k</span> OTE + Passief inkomen.
             </p>
             <button onClick={() => onNavigate('process')} className="group bg-white text-black px-8 py-4 rounded-full font-black text-sm tracking-wider uppercase hover:bg-pink-500 hover:text-white transition-all transform hover:scale-105 flex items-center">
               Start Onboarding <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -313,6 +321,311 @@ export const Process = () => {
             </div>
           ))}
         </div>
+        <div className="mt-16 relative rounded-3xl overflow-hidden aspect-[21/9] border border-white/10 shadow-2xl group">
+            <div className="absolute inset-0 bg-purple-900/20 mix-blend-overlay group-hover:bg-purple-900/0 transition-colors duration-500"></div>
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80" alt="VVC Process" className="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 'talent' | 'business' }) => {
+  const [activeTab, setActiveTab] = useState<'talent' | 'business'>(defaultTab);
+  const [isFormExpanded, setIsFormExpanded] = useState(true);
+
+  return (
+    <section id="register" className="py-24 bg-[#0a0a0a] border-t border-white/10">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="text-center mb-12">
+            <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 text-xs font-bold uppercase tracking-widest mb-4">Start Hier</div>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-6 italic">WORD ONDERDEEL VAN DE CLUB</h2>
+            <p className="text-slate-400 text-lg">Kies je route: Talent of Partner.</p>
+        </div>
+
+        <div className="flex justify-center mb-12">
+            <div className="bg-white/5 p-1.5 rounded-full inline-flex border border-white/10">
+                <button
+                    onClick={() => setActiveTab('talent')}
+                    className={`px-8 py-3 rounded-full text-sm font-black uppercase tracking-wider transition-all ${activeTab === 'talent' ? 'bg-pink-600 text-white shadow-lg shadow-pink-500/20' : 'text-slate-400 hover:text-white'}`}
+                >
+                    Talent
+                </button>
+                <button
+                    onClick={() => setActiveTab('business')}
+                    className={`px-8 py-3 rounded-full text-sm font-black uppercase tracking-wider transition-all ${activeTab === 'business' ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/20' : 'text-slate-400 hover:text-white'}`}
+                >
+                    Bedrijven
+                </button>
+            </div>
+        </div>
+
+        <div className="bg-[#0f0f0f] border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-500">
+            <button 
+                onClick={() => setIsFormExpanded(!isFormExpanded)}
+                className="absolute top-6 right-6 p-2 bg-white/5 hover:bg-white/10 rounded-full text-slate-400 hover:text-white transition-colors z-20"
+            >
+                {isFormExpanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+            </button>
+
+            {activeTab === 'talent' ? (
+                <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
+                    <div className="mb-8 pr-12">
+                        <h3 className="text-2xl font-bold text-white mb-2">Word Lid (Talent)</h3>
+                        <p className="text-slate-400 text-sm">Geen motivatiebrieven. Wij selecteren op professionaliteit en executie.</p>
+                    </div>
+                    <div className={`grid transition-[grid-template-rows] duration-500 ease-out ${isFormExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                        <div className="overflow-hidden">
+                            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Volledige Naam</label>
+                                        <input type="text" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors" placeholder="Jouw naam" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">E-mailadres</label>
+                                        <input type="email" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors" placeholder="jouw@email.nl" />
+                                    </div>
+                                </div>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Telefoonnummer</label>
+                                        <input type="tel" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors" placeholder="06 12345678" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Woonplaats</label>
+                                        <input type="text" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors" placeholder="Amsterdam" />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">LinkedIn Profiel</label>
+                                    <input type="url" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors" placeholder="https://linkedin.com/in/..." />
+                                </div>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Interesse in functie</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                                <option>Trainee Senior Consultant</option>
+                                                <option>Trainee Senior Resourser</option>
+                                                <option>Trainee Senior Closer</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Ervaring in Sales</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                                <option>Geen ervaring (Starter)</option>
+                                                <option>1-2 jaar</option>
+                                                <option>3-5 jaar</option>
+                                                <option>5+ jaar (Expert)</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Huidige Situatie</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                                <option>Loondienst (Fulltime)</option>
+                                                <option>Loondienst (Parttime)</option>
+                                                <option>Ondernemer / ZZP</option>
+                                                <option>Student</option>
+                                                <option>Werkzoekend</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Inkomensdoel (p/m)</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                                <option>€3.000 - €5.000</option>
+                                                <option>€5.000 - €10.000</option>
+                                                <option>€10.000+</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Beschikbaarheid (uren p/w)</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                                <option>10-20 uur</option>
+                                                <option>20-30 uur</option>
+                                                <option>30-40 uur</option>
+                                                <option>40+ uur (Fulltime)</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Hoe ken je ons?</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                                <option>Instagram</option>
+                                                <option>LinkedIn</option>
+                                                <option>TikTok</option>
+                                                <option>Via via</option>
+                                                <option>Anders</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Motivatie</label>
+                                    <textarea className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors min-h-[100px]" placeholder="Waarom ben jij de juiste persoon voor VVC?"></textarea>
+                                </div>
+                                <button type="submit" className="w-full bg-gradient-to-r from-pink-600 to-pink-500 text-white font-black uppercase tracking-wider py-4 rounded-xl hover:shadow-lg hover:shadow-pink-500/20 transition-all transform hover:scale-[1.02] flex items-center justify-center">
+                                    Start Onboarding <ArrowRight className="ml-2 w-4 h-4" />
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
+                    <div className="mb-8 pr-12">
+                        <h3 className="text-2xl font-bold text-white mb-2">Word Partner (Bedrijven)</h3>
+                        <p className="text-slate-400 text-sm">Vraag een offerte aan voor kwaliteitscontrole, workflowtesten of mystery shopping.</p>
+                    </div>
+                    <div className={`grid transition-[grid-template-rows] duration-500 ease-out ${isFormExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                        <div className="overflow-hidden">
+                            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Bedrijfsnaam</label>
+                                        <input type="text" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="Bedrijfsnaam B.V." />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Contactpersoon</label>
+                                        <input type="text" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="Naam contactpersoon" />
+                                    </div>
+                                </div>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">E-mailadres</label>
+                                        <input type="email" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="naam@bedrijf.nl" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Telefoonnummer</label>
+                                        <input type="tel" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="020 1234567" />
+                                    </div>
+                                </div>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Website</label>
+                                        <input type="url" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="https://www.bedrijf.nl" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Bedrijfsgrootte (FTE)</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
+                                                <option>1-10 medewerkers</option>
+                                                <option>11-50 medewerkers</option>
+                                                <option>51-200 medewerkers</option>
+                                                <option>200+ medewerkers</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                     <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Sector</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
+                                                <option>Financiële Dienstverlening</option>
+                                                <option>Vastgoed & Makelaardij</option>
+                                                <option>Automotive</option>
+                                                <option>High-End Retail</option>
+                                                <option>Overig</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Omvang Sales Team</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
+                                                <option>Geen (Startend)</option>
+                                                <option>1-5 verkopers</option>
+                                                <option>5-15 verkopers</option>
+                                                <option>15+ verkopers</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Gewenste Startdatum</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
+                                                <option>Zo snel mogelijk</option>
+                                                <option>Binnen 1 maand</option>
+                                                <option>Binnen 3 maanden</option>
+                                                <option>Oriënterend</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Primaire Dienst</label>
+                                        <div className="relative">
+                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
+                                                <option>Kwaliteitscontrole</option>
+                                                <option>Workflowtesten</option>
+                                                <option>Mystery Shopping</option>
+                                                <option>Anders</option>
+                                            </select>
+                                            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                                <ArrowRight size={16} className="rotate-90" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Wat is uw grootste uitdaging?</label>
+                                    <textarea className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors min-h-[100px]" placeholder="Bijv. lage conversie, onduidelijke processen, kwaliteit van leads..."></textarea>
+                                </div>
+                                <button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-purple-500 text-white font-black uppercase tracking-wider py-4 rounded-xl hover:shadow-lg hover:shadow-purple-500/20 transition-all transform hover:scale-[1.02] flex items-center justify-center">
+                                    Offerte Aanvragen <ArrowRight className="ml-2 w-4 h-4" />
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
       </div>
     </section>
   );
@@ -332,9 +645,9 @@ export const RecruitmentCTA = ({ onNavigate }: any) => {
             </div>
           </div>
           <div className="col-span-2 p-8 md:p-10 flex flex-col justify-center relative">
-            <div className="absolute top-0 right-0 p-4 opacity-10"><DollarSign size={120} className="text-white" /></div>
+            <div className="absolute top-0 right-0 p-4 opacity-10"><Euro size={120} className="text-white" /></div>
             <h3 className="text-2xl font-bold mb-2 text-white">Wil jij <span className="text-yellow-400">€8.000+</span> per maand verdienen?</h3>
-            <p className="text-slate-400 text-sm mb-6 leading-relaxed">Wij zoeken Senior Consultants en Sales Duo's. Geen koud bellen, alleen warme leads en oneindige bonussen.</p>
+            <p className="text-slate-400 text-sm mb-6 leading-relaxed">Wij zoeken Junior Consultants en Sales Duo's.</p>
             <div className="flex items-center gap-4">
               <button onClick={() => onNavigate('careers')} className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white px-6 py-3 rounded-lg font-bold text-sm transition-all shadow-lg hover:shadow-pink-500/25">BEKIJK VACATURES</button>
             </div>
@@ -356,10 +669,10 @@ export const Services = () => {
        <div className="max-w-7xl mx-auto px-6 mb-24">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-                { value: "€50k+", label: "Gemiddeld OTE", icon: <DollarSign className="w-5 h-5" /> },
-                { value: "9.8", label: "Klanttevredenheid", icon: <TrendingUp className="w-5 h-5" /> },
+                { value: "€50k+", label: "Gemiddeld OTE", icon: <Euro className="w-5 h-5" /> },
+                { value: "9.8", label: "klanten", icon: <TrendingUp className="w-5 h-5" /> },
                 { value: "Elite", label: "Focus Sectoren", icon: <ShieldCheck className="w-5 h-5" /> },
-                { value: "500+", label: "Vrienden Netwerk", icon: <Users className="w-5 h-5" /> },
+                { value: "500+", label: "klanten", icon: <Users className="w-5 h-5" /> },
             ].map((stat, idx) => (
                 <div key={idx} className="bg-slate-900/50 border border-white/10 p-6 rounded-2xl text-center group hover:border-white/30 transition-all">
                     <div className="flex justify-center mb-3 text-slate-400 group-hover:text-white transition-colors">{stat.icon}</div>
@@ -372,7 +685,12 @@ export const Services = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 md:text-center max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6 italic">WAT WIJ DOEN</h2>
-          <p className="text-slate-400 text-lg">Wij bieden diepgaande kwaliteitscontroles, variërend van digitale audits tot fysieke inspecties. Onze focus ligt op absolute perfectie.</p>
+          <p className="text-slate-400 text-lg mb-12">Wij bieden diepgaande kwaliteitscontroles, variërend van digitale audits tot fysieke inspecties. Onze focus ligt op absolute perfectie.</p>
+          <div className="relative rounded-3xl overflow-hidden aspect-video border border-white/10 shadow-2xl group">
+            <div className="absolute inset-0 bg-purple-500/10 mix-blend-overlay group-hover:bg-purple-500/0 transition-colors duration-500"></div>
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="VVC Services Visualization" className="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+          </div>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
@@ -388,17 +706,6 @@ export const Services = () => {
   );
 };
 
-export const Testimonial = () => {
-  return (
-    <section className="py-20 bg-[#050505] border-t border-white/5">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <div className="mb-8"><span className="text-6xl text-purple-600 font-serif">"</span></div>
-        <h3 className="text-2xl md:text-4xl font-semibold text-white leading-normal italic mb-8">Dankzij VVC kregen we eindelijk helder inzicht in waar het misging. De verbeterpunten waren concreet en direct toepasbaar - onze klantbeleving is zichtbaar gestegen.</h3>
-        <div><div className="font-bold text-white text-lg">Jan de Vries</div><div className="text-pink-500 text-sm font-bold uppercase tracking-wider">Samenwerking sinds 2023</div></div>
-      </div>
-    </section>
-  );
-};
 
 export const HomePage = ({ onNavigate }: any) => (
   <>
@@ -406,74 +713,525 @@ export const HomePage = ({ onNavigate }: any) => (
     <Ticker />
     <Services />
     <Process />
-    <MarketingCalculator onNavigate={onNavigate} />
     <RecruitmentCTA onNavigate={onNavigate} />
-    <Testimonial />
   </>
 );
 
-export const AboutPage = () => (
-    <div className="bg-black min-h-screen pt-24">
-      <div className="relative py-20 px-6 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-600/20 rounded-full blur-[100px]"></div>
+export const AboutPage = ({ onNavigate }: any) => (
+    <div className="bg-[#050505] min-h-screen pt-24 selection:bg-pink-500 selection:text-white relative">
+      {/* Header Section */}
+      <div className="relative py-24 px-6 overflow-hidden">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-600/20 rounded-full blur-[120px] mix-blend-screen"></div>
+        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-pink-600/10 rounded-full blur-[120px] mix-blend-screen"></div>
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
+        
         <div className="max-w-5xl mx-auto relative z-10 text-center">
-          <div className="inline-block mb-4 text-pink-500 font-black tracking-[0.3em] text-xs uppercase border border-pink-500/30 px-4 py-2 rounded-full">The Story</div>
-          <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-6">MEER DAN EEN <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">BUREAU</span></h1>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">VVC is ontstaan uit de frustratie van middelmaat. Wij zijn een ecosysteem van ondernemers, closers en strategen die weigeren concessies te doen aan kwaliteit.</p>
+          <div className="inline-block mb-6 text-pink-400 font-black tracking-[0.3em] text-xs uppercase border border-pink-500/30 bg-pink-500/10 px-4 py-2 rounded-full animate-in fade-in slide-in-from-bottom-4 duration-700 backdrop-blur-sm">The Story</div>
+          <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-8 leading-tight animate-in fade-in slide-in-from-bottom-5 duration-700 delay-100">
+            HET SNIJVLAK TUSSEN <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 pr-14 pb-2">VRIENDSCHAP</span> EN ONGEKENDE GROEI
+          </h1>
+          <p className="text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
+            Welkom bij de Verdienende Vrienden Club. Wij zijn geen traditioneel bedrijf. <span className="text-white font-bold">Wij zijn een ecosysteem.</span>
+          </p>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative"><div className="absolute -inset-4 bg-gradient-to-r from-pink-600 to-purple-600 opacity-30 blur-xl rounded-2xl"></div><img src="https://picsum.photos/800/600" alt="Team Meeting" className="relative rounded-2xl shadow-2xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-500" /></div>
+      <Ticker />
+      {/* Intro & Identity Split */}
+      <div className="max-w-7xl mx-auto px-6 mb-32 mt-24 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
-            <div><h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-3"><Target className="text-pink-500" /> Pure Focus</h3><p className="text-slate-400">Wij doen niet alles. Wij doen waar we de beste in zijn: high-ticket sales support, mystery shopping en kwaliteitscontroles.</p></div>
-            <div><h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-3"><Users className="text-purple-500" /> Een Echte Club</h3><p className="text-slate-400">Bij VVC ben je geen nummer. Ons netwerk is exclusief. We selecteren streng, maar belonen royaal. Eerlijkheid en transparantie staan op 1.</p></div>
-            <div><h3 className="text-2xl font-bold text-white mb-2 flex items-center gap-3"><Globe className="text-yellow-400" /> Grenzeloze Ambitie</h3><p className="text-slate-400">Onze leden werken remote, bouwen imperiums vanuit elke hoek van de wereld en delen kennis om collectief te groeien.</p></div>
+            <h3 className="text-3xl md:text-4xl font-black text-white italic">GEEN BAZEN,<br/><span className="text-purple-400">MAAR PARTNERS.</span></h3>
+            <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
+              <p>
+                Bij VVC geloven we dat het oude werkmodel kapot is. De tijd van uurtje-factuurtje voor een baas, kantoorpolitiek en een vast plafond aan je inkomen is voorbij. Wij herschrijven de regels van succes.
+              </p>
+              <p>
+                VVC is opgericht met één duidelijk doel: het creëren van een omgeving waar <strong className="text-white">kwaliteit</strong> de hoogste valuta is en waar <strong className="text-white">expertise</strong> direct wordt beloond met exponentiële groei.
+              </p>
+              <p>
+                Wij bieden de rugdekking van een gevestigde club, met de vrijheid van het ondernemerschap.
+              </p>
+            </div>
+          </div>
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 opacity-30 blur-xl rounded-3xl group-hover:opacity-50 transition-opacity duration-500"></div>
+            <div className="bg-[#111] border border-white/10 p-10 rounded-3xl relative shadow-2xl backdrop-blur-sm">
+              <Quote className="w-12 h-12 text-pink-500 mb-6 opacity-80" />
+              <p className="text-2xl font-bold text-white italic leading-relaxed mb-6">
+                "Voor onze klanten zijn wij de strategische partner die ruis elimineert. Maar voor jou, ons talent, zijn wij een lanceerplatform."
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-1 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full"></div>
+                <span className="text-sm font-bold text-slate-400 uppercase tracking-wider">De VVC Filosofie</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* DNA Pillars */}
+      <div className="bg-[#0a0a0a] py-32 border-y border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent"></div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-6 italic">HET DNA VAN DE CLUB</h2>
+            <p className="text-slate-300 text-lg">Onze cultuur is niet voor iedereen. Het is een omgeving voor winnaars.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="group bg-gradient-to-b from-white/10 to-white/5 p-[1px] rounded-3xl hover:from-pink-500/50 hover:to-purple-500/50 transition-all duration-500 hover:scale-[1.02]">
+              <div className="bg-[#111] p-8 h-full rounded-[22px] relative overflow-hidden backdrop-blur-xl">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-pink-500/10 rounded-full blur-[40px] -mr-16 -mt-16 transition-opacity group-hover:opacity-100"></div>
+                <div className="bg-pink-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 border border-pink-500/20">
+                  <Heart className="w-8 h-8 text-pink-400" />
+                </div>
+                <h4 className="text-xl font-bold text-white mb-4 group-hover:text-pink-400 transition-colors">1. Loyaliteit</h4>
+                <p className="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">Vriendschap is onze basis. Wij geloven in eerlijke, gedreven samenwerking gericht op gedeeld succes. Geen ellebogenwerk, maar loyaliteit aan het resultaat.</p>
+              </div>
+            </div>
+
+            <div className="group bg-gradient-to-b from-white/10 to-white/5 p-[1px] rounded-3xl hover:from-purple-500/50 hover:to-blue-500/50 transition-all duration-500 hover:scale-[1.02]">
+              <div className="bg-[#111] p-8 h-full rounded-[22px] relative overflow-hidden backdrop-blur-xl">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-[40px] -mr-16 -mt-16 transition-opacity group-hover:opacity-100"></div>
+                <div className="bg-purple-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 border border-purple-500/20">
+                  <Zap className="w-8 h-8 text-purple-400" />
+                </div>
+                <h4 className="text-xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors">2. Executie</h4>
+                <p className="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">Wij zijn doeners. "Resultaat is de enige waarheid." Plannen zijn mooi, maar impact is wat telt. Wij meten succes niet in uren, maar in output.</p>
+              </div>
+            </div>
+
+            <div className="group bg-gradient-to-b from-white/10 to-white/5 p-[1px] rounded-3xl hover:from-yellow-400/50 hover:to-orange-500/50 transition-all duration-500 hover:scale-[1.02]">
+              <div className="bg-[#111] p-8 h-full rounded-[22px] relative overflow-hidden backdrop-blur-xl">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/10 rounded-full blur-[40px] -mr-16 -mt-16 transition-opacity group-hover:opacity-100"></div>
+                <div className="bg-yellow-400/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 border border-yellow-400/20">
+                  <Crown className="w-8 h-8 text-yellow-400" />
+                </div>
+                <h4 className="text-xl font-bold text-white mb-4 group-hover:text-yellow-400 transition-colors">3. Eigenaarschap</h4>
+                <p className="text-slate-400 leading-relaxed group-hover:text-slate-300 transition-colors">Jij bent de "CEO van je eigen route". Wij faciliteren met leads en systemen, maar jij bepaalt je strategie, je inzet en je plafond.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mission & Vision */}
+      <div className="max-w-7xl mx-auto px-6 py-32 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/5 via-transparent to-pink-900/5"></div>
+        <div className="grid md:grid-cols-2 gap-8 mb-24 relative z-10">
+            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] border border-white/10 p-10 rounded-3xl flex flex-col justify-center text-center md:text-left hover:border-pink-500/30 transition-all duration-500 group shadow-2xl">
+                <div className="absolute inset-0 bg-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl"></div>
+                <span className="text-pink-400 font-bold uppercase tracking-widest text-xs mb-4 flex items-center gap-2 md:justify-start justify-center"><Target size={14} /> Onze Missie</span>
+                <h3 className="text-3xl md:text-4xl font-black text-white italic relative z-10">"Kwaliteit transformeren tot de hoogste valuta."</h3>
+            </div>
+            <div className="bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] border border-white/10 p-10 rounded-3xl flex flex-col justify-center text-center md:text-left hover:border-purple-500/30 transition-all duration-500 group shadow-2xl">
+                <div className="absolute inset-0 bg-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl"></div>
+                <span className="text-purple-400 font-bold uppercase tracking-widest text-xs mb-4 flex items-center gap-2 md:justify-start justify-center"><Globe size={14} /> Onze Visie</span>
+                <h3 className="text-3xl md:text-4xl font-black text-white italic relative z-10">"Een netwerk waar expertise wordt beloond met groei."</h3>
+            </div>
+        </div>
+
+        {/* Why VVC */}
+        <div className="max-w-5xl mx-auto relative z-10">
+            <h3 className="text-3xl font-black text-white mb-12 text-center italic">WAAROM TALENT VOOR VVC KIEST</h3>
+            <div className="space-y-6">
+                <div className="bg-[#111] p-8 rounded-2xl border border-white/10 flex flex-col md:flex-row gap-6 items-start hover:bg-[#161616] hover:border-white/20 transition-all duration-300 shadow-xl group">
+                    <div className="bg-pink-500/10 p-4 rounded-xl shrink-0 border border-pink-500/20 group-hover:scale-110 transition-transform"><TrendingUp className="w-6 h-6 text-pink-400" /></div>
+                    <div>
+                        <h4 className="text-xl font-bold text-white mb-2 group-hover:text-pink-400 transition-colors">Het Sneeuwbaleffect</h4>
+                        <p className="text-slate-400 group-hover:text-slate-300 transition-colors">Wij geloven niet in eenmalige beloningen. Bij VVC bouw je aan <strong className="text-white">passief inkomen</strong>. Elke succesvolle plaatsing levert je een maandelijkse fee op zolang de match bestaat.</p>
+                    </div>
+                </div>
+                <div className="bg-[#111] p-8 rounded-2xl border border-white/10 flex flex-col md:flex-row gap-6 items-start hover:bg-[#161616] hover:border-white/20 transition-all duration-300 shadow-xl group">
+                    <div className="bg-purple-500/10 p-4 rounded-xl shrink-0 border border-purple-500/20 group-hover:scale-110 transition-transform"><Target className="w-6 h-6 text-purple-400" /></div>
+                    <div>
+                        <h4 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Focus op Winnen</h4>
+                        <p className="text-slate-400 group-hover:text-slate-300 transition-colors">Je verspilt geen tijd aan koud bellen of admin. Je werkt met warme leads en focust 100% op scoren.</p>
+                    </div>
+                </div>
+                <div className="bg-[#111] p-8 rounded-2xl border border-white/10 flex flex-col md:flex-row gap-6 items-start hover:bg-[#161616] hover:border-white/20 transition-all duration-300 shadow-xl group">
+                    <div className="bg-yellow-400/10 p-4 rounded-xl shrink-0 border border-yellow-400/20 group-hover:scale-110 transition-transform"><Euro className="w-6 h-6 text-yellow-400" /></div>
+                    <div>
+                        <h4 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Ongekende Groei</h4>
+                        <p className="text-slate-400 group-hover:text-slate-300 transition-colors">Onze 'vrienden' realiseren inkomsten die ver boven het marktgemiddelde liggen (OTE €50k - €95k), simpelweg omdat wij prestatie belonen zonder plafond.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      {/* Footer Promise */}
+      <div className="py-24 px-6 text-center border-t border-white/10 bg-gradient-to-b from-[#050505] to-pink-900/20">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-4xl md:text-5xl font-black text-white mb-8 italic drop-shadow-lg">ONZE BELOFTE AAN JOU</h3>
+            <p className="text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 font-black mb-12 drop-shadow-md">"GEGARANDEERDE GROEI VOOR ONZE VRIENDEN."</p>
+            <p className="text-xl text-white mb-12 font-medium">Wij verliezen nooit. Win jij met ons mee?</p>
+            
+            <button onClick={() => onNavigate && onNavigate('careers')} className="group bg-white text-black px-10 py-5 rounded-full font-black text-sm tracking-widest uppercase hover:bg-pink-500 hover:text-white transition-all transform hover:scale-105 shadow-2xl hover:shadow-pink-500/50 flex items-center mx-auto ring-4 ring-white/10">
+                Start Jouw Route <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+      </div>
     </div>
 );
 
-export const ProcessPage = () => (
-    <div className="bg-black min-h-screen pt-24">
-      <div className="text-center py-20 px-6"><h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-6">HOE WERKT <span className="text-purple-500">HET?</span></h1><p className="text-xl text-slate-400 max-w-2xl mx-auto">Eenvoud is de ultieme vorm van perfectie. Geen onnodige lagen, maar een rechte lijn naar resultaat.</p></div>
-      <Process />
-      <div className="max-w-4xl mx-auto px-6 py-24"><h2 className="text-3xl font-black text-white mb-12 text-center">VEELGESTELDE VRAGEN</h2><div className="bg-[#0a0a0a] rounded-3xl border border-white/10 p-2 md:p-8">
-          {[{q:"Hoe lang duurt een gemiddeld traject?", a:"Dit hangt af van de scope. Een Mystery Shopping audit kan binnen 48 uur afgerond zijn."}, {q:"Werken jullie ook op basis van No Cure, No Pay?", a:"Voor specifieke sales-functies werken we met een prestatiegericht model."}, {q:"Kan ik als freelancer toetreden tot VVC?", a:"Absoluut. Ga naar de Vacatures pagina."}].map((faq, i) => (
-             <div key={i} className="border-b border-white/10 py-6 px-4"><span className="font-bold text-white text-lg block mb-2 text-left">{faq.q}</span><span className="text-slate-400 text-left block">{faq.a}</span></div>
-          ))}
-      </div></div>
+export const ProcessPage = ({ onNavigate }: any) => {
+  const scrollToRegister = () => {
+    const element = document.getElementById('register');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className="bg-black min-h-screen pt-24 relative">
+      {/* Header */}
+      <div className="relative py-24 px-6 overflow-hidden">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-purple-600/20 rounded-full blur-[100px]"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px]"></div>
+        
+        <div className="max-w-5xl mx-auto relative z-10 text-center">
+          <div className="inline-block mb-6 text-purple-500 font-black tracking-[0.3em] text-xs uppercase border border-purple-500/30 px-4 py-2 rounded-full animate-in fade-in slide-in-from-bottom-4 duration-700">How We Work</div>
+          <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-8 leading-tight animate-in fade-in slide-in-from-bottom-5 duration-700 delay-100">
+            UW KWALITEIT, <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 pr-14 pb-2">ONZE ZORG</span>
+          </h1>
+          <p className="text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
+            Van analyse tot optimalisatie. Wij helpen organisaties hun processen naar het hoogste niveau te tillen.
+          </p>
+        </div>
+      </div>
+      <Ticker />
+      {/* Intro Text */}
+      <div className="max-w-4xl mx-auto px-6 mb-32 mt-24 text-center">
+        <p className="text-lg text-slate-400 leading-relaxed mb-6">
+          Bij de Verdienende Vrienden Club (VVC) geloven we dat duurzaam succes wordt gebouwd op een fundament van <strong className="text-white">onberispelijke kwaliteit</strong>. Wij helpen organisaties hun processen, producten en klantcontact naar het hoogste niveau te tillen door ruis te elimineren en workflows te valideren.
+        </p>
+        <p className="text-lg text-slate-400 leading-relaxed">
+          Onze aanpak is grondig, discreet en direct toepasbaar. Hieronder leest u hoe wij uw organisatie transformeren.
+        </p>
+      </div>
+
+      {/* Methodology - 360 Degree */}
+      <div className="bg-[#050505] py-32 border-y border-white/5 relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-6 italic">ONZE METHODOLOGIE</h2>
+            <p className="text-xl text-purple-500 font-bold tracking-wider uppercase">De 360-graden Aanpak</p>
+            <p className="text-slate-400 mt-6 max-w-2xl mx-auto">Het analyseren van geïsoleerde processen geeft vaak een misleidend beeld. Daarom hanteren wij een compleet overzicht op drie niveaus.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+             <div className="bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl hover:border-purple-500/50 transition-all duration-500 group">
+                <div className="bg-blue-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <Monitor className="w-8 h-8 text-blue-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">1. Digitaal</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">Een grondige evaluatie van uw digitale infrastructuur. Wij voeren online audits en systeemchecks uit om de robuustheid en efficiëntie van uw systemen te testen.</p>
+             </div>
+             <div className="bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl hover:border-purple-500/50 transition-all duration-500 group">
+                <div className="bg-purple-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <MapPin className="w-8 h-8 text-purple-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">2. Fysiek</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">Wij richten ons op de tastbare aspecten. Onze specialisten voeren locatiebezoeken en gedetailleerde productinspecties uit om te verzekeren dat uw fysieke uitingen voldoen aan de hoogste standaarden.</p>
+             </div>
+             <div className="bg-[#0a0a0a] border border-white/10 p-8 rounded-3xl hover:border-purple-500/50 transition-all duration-500 group">
+                <div className="bg-pink-500/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <Phone className="w-8 h-8 text-pink-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">3. Telefonisch</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">Menselijke interactie is doorslaggevend. Wij auditen klantenservice- en salesgesprekken om de professionaliteit en consistentie van uw communicatie te beoordelen.</p>
+             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Services */}
+      <div className="max-w-7xl mx-auto px-6 py-32">
+        <h2 className="text-4xl md:text-5xl font-black text-white mb-16 italic text-center">ONZE DIENSTEN</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-gradient-to-br from-white/5 to-transparent border border-white/10 p-8 rounded-3xl">
+                <CheckSquare className="w-10 h-10 text-green-400 mb-6" />
+                <h3 className="text-2xl font-bold text-white mb-4">Kwaliteitscontrole</h3>
+                <p className="text-slate-400 leading-relaxed">Wij voeren grondige checks uit op reviews en productspecificaties. Dit zorgt ervoor dat wat u communiceert naar de markt, daadwerkelijk overeenkomt met de realiteit. Wij identificeren discrepanties die uw merkreputatie kunnen schaden.</p>
+            </div>
+            <div className="bg-gradient-to-br from-white/5 to-transparent border border-white/10 p-8 rounded-3xl">
+                <Zap className="w-10 h-10 text-yellow-400 mb-6" />
+                <h3 className="text-2xl font-bold text-white mb-4">Systeem- & Workflowtesten</h3>
+                <p className="text-slate-400 leading-relaxed">Processen moeten efficiënter lopen en fouten moeten afnemen. Wij analyseren en optimaliseren uw interne bedrijfsprocessen. Het resultaat is een directe optimalisatie van operationele effectiviteit.</p>
+            </div>
+            <div className="bg-gradient-to-br from-white/5 to-transparent border border-white/10 p-8 rounded-3xl">
+                <Users className="w-10 h-10 text-purple-400 mb-6" />
+                <h3 className="text-2xl font-bold text-white mb-4">Mystery Shopping</h3>
+                <p className="text-slate-400 leading-relaxed">Wilt u weten wat er écht gebeurt tijdens een klantinteractie? Wij brengen echte klantervaringen in kaart—online, op locatie en telefonisch. Authentieke inzichten over de 'customer journey'.</p>
+            </div>
+        </div>
+      </div>
+
+      {/* Process Steps */}
+      <div className="bg-[#050505] py-32 border-t border-white/5">
+         <div className="max-w-5xl mx-auto px-6">
+            <div className="text-center mb-20">
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-6 italic">HET PROCES</h2>
+                <p className="text-slate-400 text-lg">In 4 Stappen naar Resultaat. Transparant en direct toepasbaar.</p>
+            </div>
+
+            <div className="space-y-12 relative">
+                <div className="absolute left-[27px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-purple-500 to-blue-500 hidden md:block"></div>
+                
+                {[
+                    { title: "Stap 1: De Aanvraag", desc: "Alles begint bij uw behoefte aan inzicht. Wilt u uw reviews verifiëren, workflows testen of de klantbeleving meten? U dient eenvoudig een aanvraag in om het proces te starten.", icon: "1" },
+                    { title: "Stap 2: De Match", desc: "Na uw aanvraag koppelen wij uw vraagstuk aan de juiste specialisten binnen onze club. Zoekt u een IT-expert of een Mystery Shopper? Wij selecteren de expert met de specifieke domeinkennis.", icon: "2" },
+                    { title: "Stap 3: De Check", desc: "Onze specialisten gaan aan de slag. Dit gebeurt discreet, professioneel en objectief. Afhankelijk van de opdracht voeren zij de workflow-tests, productkennis-toetsingen of review-verificaties uit.", icon: "3" },
+                    { title: "Stap 4: Rapportage & Optimalisatie", desc: "U ontvangt niet alleen data, maar inzichten. Een gedetailleerde rapportage met direct toepasbaar advies. U krijgt heldere prioriteiten en acties zodat uw teams direct kunnen bijsturen.", icon: "4" }
+                ].map((step, idx) => (
+                    <div key={idx} className="flex gap-8 items-start relative">
+                        <div className="w-14 h-14 rounded-full bg-[#0a0a0a] border-2 border-purple-500 flex items-center justify-center shrink-0 z-10">
+                            <span className="text-xl font-black text-white">{step.icon}</span>
+                        </div>
+                        <div className="bg-white/5 border border-white/10 p-8 rounded-2xl flex-grow hover:bg-white/10 transition-colors">
+                            <h3 className="text-2xl font-bold text-white mb-3">{step.title}</h3>
+                            <p className="text-slate-400 leading-relaxed">{step.desc}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+         </div>
+      </div>
+
+      {/* Why VVC & CTA */}
+      <div className="py-32 px-6 bg-gradient-to-b from-black to-purple-900/10">
+        <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-black text-white mb-16 italic">WAAROM VVC?</h2>
+            <div className="grid md:grid-cols-3 gap-8 mb-20">
+                <div>
+                    <div className="text-purple-500 font-bold text-xl mb-2">Objectiviteit</div>
+                    <p className="text-slate-400 text-sm">Wij doorbreken interne blindheid met onafhankelijke checks.</p>
+                </div>
+                <div>
+                    <div className="text-purple-500 font-bold text-xl mb-2">Direct Resultaat</div>
+                    <p className="text-slate-400 text-sm">Onze adviezen zijn gericht op onmiddellijke efficiëntiewinst.</p>
+                </div>
+                <div>
+                    <div className="text-purple-500 font-bold text-xl mb-2">Bewezen Impact</div>
+                    <p className="text-slate-400 text-sm">"Concrete verbeterpunten die direct toepasbaar zijn."</p>
+                </div>
+            </div>
+
+            <div className="bg-[#0f0f0f] border border-white/10 rounded-3xl p-12 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600/20 rounded-full blur-[80px]"></div>
+                <div className="relative z-10">
+                    <h3 className="text-3xl font-black text-white mb-6">Wilt u de kwaliteit binnen uw organisatie waarborgen?</h3>
+                    <p className="text-slate-400 mb-8 max-w-2xl mx-auto">Vraag vrijblijvend een offerte aan. We denken graag met u mee over de beste aanpak voor uw situatie.</p>
+                    <button onClick={scrollToRegister} className="bg-white text-black font-black uppercase tracking-wider py-4 rounded-xl hover:bg-purple-500 hover:text-white transition-all shadow-xl hover:shadow-purple-500/30">
+                        Offerte Aanvragen
+                    </button>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <RegistrationSection defaultTab="business" />
+      <Ticker />
     </div>
+  );
+};
+
+export const RegisterPage = () => (
+  <div className="bg-black min-h-screen pt-24 relative">
+    <Ticker />
+    <RegistrationSection defaultTab="talent" />
+  </div>
 );
 
-export const CareersPage = ({ onNavigate }: any) => (
-    <div className="bg-black min-h-screen pt-24">
+export const CareersPage = ({ onNavigate }: any) => {
+  const [selectedJob, setSelectedJob] = useState<any>(null);
+
+  const vacancies = [
+    {
+      title: "Trainee Senior Consultant",
+      subtitle: "De Regisseur van Talent",
+      salary: (
+        <div className="flex flex-col gap-1">
+          <span className="text-sm text-slate-400 font-normal">Jaar overeenkomst</span>
+          <span className="text-white">€4.500.- tot €6.500 Basis</span>
+          <span className="text-yellow-400">50K - 100K OTE + PASSIEF</span>
+        </div>
+      ),
+      description: "Ben jij klaar met de traditionele 9-tot-5 mentaliteit en wil je ondernemen met een vangnet? Als Trainee Senior Consultant word je opgeleid tot de spin in het web van onze organisatie. In deze allround rol leer je het volledige proces beheersen: van het spotten van toptalent tot het succesvol plaatsen bij onze partners. Jij bent geen recruiter, jij bent een business partner.",
+      role: "Je bouwt je eigen \"route\" op. Dit betekent dat je verantwoordelijk bent voor de hele cyclus. Je leert hoe je met onze unieke \"warme netwerk\"-aanpak deuren opent zonder koud te bellen. Je begeleidt kandidaten van de eerste kennismaking tot de handtekening en blijft hun vertrouwenspersoon daarna.",
+      profile: [
+        "Ondernemend: Je ziet jezelf als de \"CEO van je eigen route\".",
+        "Allrounder: Je schakelt makkelijk tussen de menselijke connectie (relatiebeheer) en de harde deal (closing).",
+        "Resultaatgericht: Je snapt dat executie belangrijker is dan praten. Resultaat is de enige waarheid."
+      ],
+      rewards: [
+        "Direct verdienen: €30,- per uur tijdens beluren + €300,- bonus per plaatsing.",
+        "Passief Inkomen: Bouw je eigen \"sneeuwbaleffect\" met €25,- per maand per actieve kandidaat.",
+        "Groei: Start flexibel en groei door naar een vast 40-urig jaarcontract op basis van je succes."
+      ]
+    },
+    {
+      title: "Trainee Senior Resourcer",
+      subtitle: "De Architect van Relaties (The Networker)",
+      salary: (
+        <div className="flex flex-col gap-1">
+          <span className="text-sm text-slate-400 font-normal">Jaar overeenkomst</span>
+          <span className="text-white">€4.500.- tot €6.500 Basis</span>
+          <span className="text-yellow-400">50K - 100K OTE + PASSIEF</span>
+        </div>
+      ),
+      description: "Heb jij de gunfactor? Leg jij makkelijk contact en weet je mensen aan je te binden? Als Trainee Senior Resourcer specialiseer jij je in het begin van het proces. Jij bent de deuropener. In deze rol, gebaseerd op onze 'Double Team' pilot, focus jij je volledig op het bouwen van relaties en het vinden van de perfecte match.",
+      role: "Jij beheert de instroom van talent. Je werkt met onze stroom van warme leads en zorgt dat de agenda’s gevuld worden met kwaliteit. Jouw taak is het winnen van vertrouwen. Jij zet de voorzet, zodat jouw collega (de Closer) hem kan inkoppen. Jij bent het eerste visitekaartje van VVC.",
+      profile: [
+        "Connector: Je bent een \"netwerker pur sang\" en haalt energie uit gesprekken.",
+        "Empathisch & Scherp: Je voelt precies aan wat een kandidaat zoekt en weet dit te vertalen naar een kans.",
+        "Teamplayer: Je werkt nauw samen met de Closer; jullie succes is gedeeld succes (\"1 Team, 1 Taak\")."
+      ],
+      rewards: [
+        "Focus Bonus: Verdien goed door je te specialiseren. Profiteer mee van de deals die uit jouw netwerk komen.",
+        "Zekerheid: €30,- per uur voor jouw bel-activiteiten.",
+        "Partnership: Werk samen in een duo-constructie met een gemiddeld inkomensdoel van €4.000,- per maand."
+      ]
+    },
+    {
+      title: "Trainee Senior Closer",
+      subtitle: "De Dealmaker (The Killer Closer)",
+      salary: (
+        <div className="flex flex-col gap-1">
+          <span className="text-sm text-slate-400 font-normal">Jaar overeenkomst</span>
+          <span className="text-white">€4.500.- tot €6.500 Basis</span>
+          <span className="text-yellow-400">50K - 100K OTE + PASSIEF</span>
+        </div>
+      ),
+      description: "Jij bent er voor de finish. Als Trainee Senior Closer word je klaargestoomd voor het moment suprême: de handtekening. Waar anderen stoppen, begin jij. Deze rol is puur gericht op conversie en resultaat. De relatie is al gelegd door de Resourcer; aan jou de taak om de deal over de streep te trekken.",
+      role: "Je neemt het stokje over zodra de relatie is gevestigd. Je voert de contractbesprekingen, onderhandelt over de voorwaarden en zorgt voor de uiteindelijke plaatsing. Jouw focus is laser-scherp: leads omzetten in resultaat. Je wordt getraind om bezwaren om te buigen in kansen.",
+      profile: [
+        "Winnaarsmentaliteit: Je gaat voor goud. \"Tweede plaats is de eerste verliezer.\"",
+        "Overtuigingskracht: Je staat stevig in je schoenen en durft om de deal te vragen.",
+        "Executie: Je draait niet om de hete brij heen; je bent duidelijk, zakelijk en doelgericht."
+      ],
+      rewards: [
+        "High Reward: Profiteer maximaal van onze bonusstructuur (€300,- per plaatsing) door hoge volumes te draaien.",
+        "Lange termijn: Ook jij bouwt mee aan het passieve inkomen over de kandidaten die jij plaatst.",
+        "Vrijheid: Bewijs je waarde in resultaten en bepaal je eigen uren."
+      ]
+    }
+  ];
+
+  return (
+    <div className="bg-black min-h-screen pt-24 relative">
+        {/* Modal Overlay */}
+        {selectedJob && (
+            <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
+                <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setSelectedJob(null)}></div>
+                <div className="bg-[#0f0f0f] border border-white/10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl relative z-[160] shadow-2xl animate-in fade-in zoom-in duration-300">
+                    <button onClick={() => setSelectedJob(null)} className="absolute top-4 right-4 p-2 bg-white/5 rounded-full hover:bg-white/10 transition-colors z-50">
+                        <X className="text-white" size={24} />
+                    </button>
+                    
+                    <div className="p-8 md:p-10">
+                        <div className="mb-8">
+                            <div className="inline-block px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-xs font-bold uppercase tracking-widest mb-4">Nu Solliciteren</div>
+                            <h2 className="text-3xl md:text-4xl font-black text-white mb-2 italic">{selectedJob.title}</h2>
+                            <p className="text-xl text-slate-400">{selectedJob.subtitle}</p>
+                        </div>
+
+                        <div className="space-y-8">
+                            <div>
+                                <h3 className="text-white font-bold text-lg mb-3 flex items-center"><Target className="w-5 h-5 mr-2 text-pink-500"/> Jouw Route</h3>
+                                <p className="text-slate-400 leading-relaxed text-sm">{selectedJob.description}</p>
+                            </div>
+
+                             <div>
+                                <h3 className="text-white font-bold text-lg mb-3 flex items-center"><Briefcase className="w-5 h-5 mr-2 text-purple-500"/> Wat ga je doen?</h3>
+                                <p className="text-slate-400 leading-relaxed text-sm">{selectedJob.role}</p>
+                            </div>
+
+                            <div>
+                                <h3 className="text-white font-bold text-lg mb-3 flex items-center"><Users className="w-5 h-5 mr-2 text-yellow-400"/> Wie zoeken wij?</h3>
+                                <ul className="space-y-2">
+                                    {selectedJob.profile.map((item: string, i: number) => (
+                                        <li key={i} className="text-slate-400 text-sm flex items-start">
+                                            <span className="w-1.5 h-1.5 bg-white rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                                <h3 className="text-white font-bold text-lg mb-4 flex items-center"><Euro className="w-5 h-5 mr-2 text-green-400"/> Jouw Beloning</h3>
+                                <ul className="space-y-3">
+                                    {selectedJob.rewards.map((item: string, i: number) => (
+                                        <li key={i} className="text-slate-300 text-sm flex items-start">
+                                            <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 mr-3 flex-shrink-0" />
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                             <div className="pt-6 border-t border-white/10">
+                                <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Waarom VVC?</h4>
+                                <p className="text-slate-400 text-sm mb-4">Bij de Verdienende Vrienden Club (VVC) krijg je geen baan, maar een toekomst.</p>
+                                <ul className="space-y-2 mb-6">
+                                    <li className="text-slate-400 text-sm flex items-start"><span className="text-pink-500 font-bold mr-2">Cultuur:</span> Geen politiek, alleen pure samenwerking.</li>
+                                    <li className="text-slate-400 text-sm flex items-start"><span className="text-pink-500 font-bold mr-2">Ongekende Groei:</span> On-Target Earnings tussen €50.000 en €95.000.</li>
+                                    <li className="text-slate-400 text-sm flex items-start"><span className="text-pink-500 font-bold mr-2">Vrijheid:</span> De rugdekking van een club, de vrijheid van een ondernemer.</li>
+                                </ul>
+                                <p className="text-white font-black italic text-center mb-6">Durf jij de stap aan? Word vriend, word partner.</p>
+                                <button onClick={() => { setSelectedJob(null); document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' }); }} className="w-full bg-white text-black font-black uppercase tracking-wider py-4 rounded-xl hover:bg-pink-500 hover:text-white transition-all shadow-xl hover:shadow-pink-500/20">Direct Solliciteren</button>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )}
+
       <div className="text-center py-20 px-6 max-w-4xl mx-auto">
          <div className="inline-flex items-center space-x-2 px-3 py-1 mb-6 rounded-full bg-pink-900/30 border border-pink-500/30 text-pink-400 text-xs font-bold tracking-[0.2em] uppercase"><span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span><span>We are hiring</span></div>
-         <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-6">JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">1% CLUB</span></h1>
-         <p className="text-xl text-slate-400">Verdien wat je waard bent. Geen plafonds, geen kantoortijden, alleen resultaat.</p>
+         <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-6">JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500 pr-14 pb-2">1% CLUB</span></h1>
+         <p className="text-xl text-slate-400 mb-12">Verdien wat je waard bent. Geen plafonds, geen kantoortijden, alleen resultaat.</p>
+         <div className="relative rounded-3xl overflow-hidden aspect-video border border-white/10 shadow-2xl group">
+            <div className="absolute inset-0 bg-pink-500/10 mix-blend-overlay group-hover:bg-pink-500/0 transition-colors duration-500"></div>
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="VVC Team" className="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+         </div>
       </div>
-      <MarketingCalculator onNavigate={onNavigate} />
+      <Ticker />
       <div className="max-w-7xl mx-auto px-6 py-24" id="jobs">
         <h2 className="text-4xl font-black text-white mb-12 italic">OPENSTAANDE VACATURES</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[{t:"High Ticket Closer", s:"€5k - €15k /mnd"}, {t:"Appointment Setter", s:"€2k - €5k /mnd"}, {t:"Quality Control Manager", s:"€45 /uur"}].map((job,i) =>(
-            <div key={i} className="bg-[#0f0f0f] border border-white/10 p-8 rounded-2xl hover:border-pink-500 transition-all"><h3 className="text-2xl font-bold text-white mb-2">{job.t}</h3><div className="text-white font-bold mb-6 text-yellow-400">{job.s}</div><button className="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-pink-500 hover:text-white transition-all">Bekijk Functie</button></div>
+          {vacancies.map((job,i) =>(
+            <div key={i} className="bg-[#0f0f0f] border border-white/10 p-8 rounded-2xl hover:border-pink-500 transition-all group flex flex-col">
+                <div className="mb-auto">
+                    <h3 className="text-2xl font-bold text-white mb-2">{job.title}</h3>
+                    <p className="text-slate-500 text-sm mb-4 h-10">{job.subtitle}</p>
+                    <div className="text-white font-bold mb-6 text-yellow-400">{job.salary}</div>
+                </div>
+                <button onClick={() => setSelectedJob(job)} className="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-pink-500 hover:text-white transition-all shadow-lg hover:shadow-pink-500/20">Bekijk Functie</button>
+            </div>
           ))}
         </div>
       </div>
+      <MarketingCalculator onNavigate={onNavigate} />
+      <RegistrationSection />
     </div>
-);
+  );
+};
 
 export const MarketingApp = ({ onLogin }: any) => {
   const [currentPage, setCurrentPage] = useState('home');
   const renderPage = () => {
     switch (currentPage) {
       case 'home': return <HomePage onNavigate={setCurrentPage} />;
-      case 'about': return <AboutPage />;
-      case 'process': return <ProcessPage />;
+      case 'about': return <AboutPage onNavigate={setCurrentPage} />;
+      case 'process': return <ProcessPage onNavigate={setCurrentPage} />;
       case 'careers': return <CareersPage onNavigate={setCurrentPage} />;
+      case 'register': return <RegisterPage />;
       default: return <HomePage onNavigate={setCurrentPage} />;
     }
   };

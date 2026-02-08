@@ -84,10 +84,19 @@ const Auth: React.FC<{ onLogin: () => void }> = ({ onLogin }) => {
             <canvas ref={canvasRef} className="absolute inset-0" />
             <div className="relative z-10 w-full max-w-md bg-slate-900/80 backdrop-blur border border-cyan-900/50 p-8 rounded-2xl shadow-2xl">
                 <h1 className="text-3xl font-bold text-cyan-400 text-center mb-8">SYSTEM ACCESS</h1>
-                <form onSubmit={(e) => { e.preventDefault(); setLoading(true); setTimeout(onLogin, 1500); }} className="space-y-4">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setLoading(true);
+                    onLogin();
+                  }}
+                  className="space-y-4"
+                >
                     <div className="group"><label className="text-xs text-cyan-600">ID</label><input className="w-full bg-slate-950 border border-slate-700 p-3 rounded text-cyan-100 focus:border-cyan-500 outline-none" required placeholder="USER@VVC.NET" /></div>
                     <div className="group"><label className="text-xs text-cyan-600">KEY</label><input type="password" className="w-full bg-slate-950 border border-slate-700 p-3 rounded text-cyan-100 focus:border-cyan-500 outline-none" required placeholder="••••••••" /></div>
-                    <button className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 rounded transition-all">{loading ? 'AUTHENTICATING...' : 'INITIALIZE'}</button>
+                    <button className="w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-3 rounded transition-all">
+                      {loading ? 'AUTHENTICATING...' : 'INITIALIZE'}
+                    </button>
                 </form>
             </div>
         </div>
@@ -99,6 +108,26 @@ const App: React.FC = () => {
     const [showLogin, setShowLogin] = useState(false);
     const [user, setUser] = useState<User>(CURRENT_USER);
     const [missions, setMissions] = useState<Mission[]>(MOCK_MISSIONS);
+
+    useEffect(() => {
+        const savedAuth = localStorage.getItem('vvc_auth') === 'true';
+        if (savedAuth) {
+            setIsAuthenticated(true);
+            setShowLogin(false);
+        }
+    }, []);
+
+    const handleLogin = () => {
+        setIsAuthenticated(true);
+        setShowLogin(false);
+        localStorage.setItem('vvc_auth', 'true');
+    };
+
+    const handleLogout = () => {
+        setIsAuthenticated(false);
+        setShowLogin(false);
+        localStorage.removeItem('vvc_auth');
+    };
 
     const handleCompleteMission = (missionId: string) => {
         setMissions(prev => prev.map(m => m.id === missionId ? { ...m, status: MissionStatus.COMPLETED } : m));
@@ -112,12 +141,12 @@ const App: React.FC = () => {
                     <ScrollToTop />
                     {!isAuthenticated ? (
                         showLogin ? (
-                            <Auth onLogin={() => setIsAuthenticated(true)} />
+                            <Auth onLogin={handleLogin} />
                         ) : (
                             <MarketingApp onLogin={() => setShowLogin(true)} />
                         )
                     ) : (
-                        <Layout user={user} onLogout={() => setIsAuthenticated(false)}>
+                        <Layout user={user} onLogout={handleLogout}>
                             <RouteChangeHandler>
                                 <Routes>
                                 <Route path="/" element={<Dashboard user={user} activeMissions={missions.filter(m => m.status === MissionStatus.AVAILABLE || m.status === MissionStatus.IN_PROGRESS)} notifications={MOCK_NOTIFICATIONS} />} />

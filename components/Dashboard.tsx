@@ -1,4 +1,4 @@
-import React, { useState, useContext, useLayoutEffect, useRef } from 'react';
+import React, { useState, useContext, useLayoutEffect, useEffect, useRef } from 'react';
 import { NavLink, Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import * as d3 from 'd3';
 import {
