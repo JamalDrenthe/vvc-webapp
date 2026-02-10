@@ -69,28 +69,30 @@ export const MarketingNavbar = ({ currentPage, onNavigate, onLogin }: any) => {
           {/* Desktop Links */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <button 
+              <a 
                 key={link.name} 
-                onClick={() => onNavigate(link.id)}
+                href={`#${link.id}`}
                 className={`text-xs font-bold transition-colors uppercase tracking-widest relative group ${currentPage === link.id ? 'text-white' : 'text-slate-400 hover:text-white'}`}
               >
                 {link.name}
                 <span className={`absolute -bottom-2 left-0 w-full h-0.5 bg-pink-500 transform transition-transform duration-300 ${currentPage === link.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-              </button>
+              </a>
             ))}
+            <a href="https://pitch.verdienendevrienden.club" className="text-xs font-bold text-slate-400 hover:text-white uppercase tracking-widest transition-colors">Pitch</a>
             <a href="https://login.verdienendevrienden.club/" className="text-xs font-bold text-slate-400 hover:text-white uppercase tracking-widest transition-colors">Inloggen</a>
-            <button 
-              onClick={() => onNavigate('register')}
+            <a 
+              href="#register"
               className="px-6 py-2 bg-white text-black font-black text-[10px] uppercase tracking-[0.2em] rounded-full hover:bg-pink-500 hover:text-white transition-all shadow-lg hover:shadow-pink-500/20"
             >
               Vrienden Worden?
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button 
             className="md:hidden text-white z-[110] p-2 hover:bg-white/10 rounded-full transition-colors" 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Sluit menu" : "Open menu"}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -103,29 +105,36 @@ export const MarketingNavbar = ({ currentPage, onNavigate, onLogin }: any) => {
       >
         <div className="flex flex-col space-y-6">
           {navLinks.map((link, idx) => (
-            <button 
+            <a 
               key={link.name} 
-              onClick={() => { onNavigate(link.id); setIsMobileMenuOpen(false); }}
-              style={{ transitionDelay: `${idx * 50}ms` }}
-              className={`text-4xl font-black text-left uppercase tracking-tighter transition-all duration-500 ${currentPage === link.id ? 'text-pink-500 translate-x-4' : 'text-white hover:text-pink-400'}`}
+              href={`#${link.id}`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`text-4xl font-black text-left uppercase tracking-tighter transition-all duration-500 ${['delay-0', 'delay-[50ms]', 'delay-100', 'delay-150'][idx]} ${currentPage === link.id ? 'text-pink-500 translate-x-4' : 'text-white hover:text-pink-400'}`}
             >
               {link.name}
-            </button>
+            </a>
           ))}
           
           <div className="pt-8 mt-8 border-t border-white/10 space-y-6">
+            <a 
+              href="https://pitch.verdienendevrienden.club"
+              className="text-2xl font-black text-white uppercase tracking-tight hover:text-pink-500 transition-colors block w-full text-left"
+            >
+              PITCH
+            </a>
             <a 
               href="https://login.verdienendevrienden.club/"
               className="text-2xl font-black text-white uppercase tracking-tight hover:text-pink-500 transition-colors block w-full text-left"
             >
               INLOGGEN
             </a>
-            <button 
-              onClick={() => { onNavigate('register'); setIsMobileMenuOpen(false); }}
-              className="w-full bg-pink-500 text-white font-black uppercase tracking-widest py-5 rounded-2xl text-center shadow-2xl shadow-pink-500/20 active:scale-95 transition-transform"
+            <a 
+              href="#register"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full bg-pink-500 text-white font-black uppercase tracking-widest py-5 rounded-2xl text-center shadow-2xl shadow-pink-500/20 active:scale-95 transition-transform block"
             >
               VRIENDEN WORDEN?
-            </button>
+            </a>
           </div>
         </div>
 
@@ -151,13 +160,13 @@ export const MarketingFooter = ({ onNavigate, onLogin }: any) => {
           </p>
           <div className="flex space-x-4">
             {[
-                { icon: <Linkedin size={20} />, href: "#" },
-                { icon: <Facebook size={20} />, href: "#" },
-                { icon: <Instagram size={20} />, href: "#" },
-                { icon: <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>, href: "#" },
-                { icon: <Youtube size={20} />, href: "#" }
+                { icon: <Linkedin size={20} />, href: "#", label: "Volg ons op LinkedIn" },
+                { icon: <Facebook size={20} />, href: "#", label: "Volg ons op Facebook" },
+                { icon: <Instagram size={20} />, href: "#", label: "Volg ons op Instagram" },
+                { icon: <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>, href: "#", label: "Volg ons op TikTok" },
+                { icon: <Youtube size={20} />, href: "#", label: "Abonneer op ons YouTube kanaal" }
             ].map((social, i) => (
-                <a key={i} href={social.href} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors text-white">
+                <a key={i} href={social.href} aria-label={social.label} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/20 transition-colors text-white">
                     {social.icon}
                 </a>
             ))}
@@ -167,10 +176,10 @@ export const MarketingFooter = ({ onNavigate, onLogin }: any) => {
         <div>
           <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Links</h4>
           <ul className="space-y-2 text-slate-400">
-            <li><button onClick={() => onNavigate('about')} className="hover:text-pink-500 transition-colors text-left text-sm font-medium">Over VVC</button></li>
-            <li><button onClick={() => onNavigate('process')} className="hover:text-pink-500 transition-colors text-left text-sm font-medium">Hoe het werkt</button></li>
-            <li><button onClick={() => onNavigate('careers')} className="hover:text-pink-500 transition-colors text-left text-sm font-medium">Vacatures</button></li>
-            <li><a href="https://login.verdienendevrienden.club/" className="hover:text-pink-500 transition-colors text-left text-sm font-bold text-white">Inloggen</a></li>
+            <li><a href="#about" className="hover:text-pink-500 transition-colors text-left text-sm font-medium block">Over VVC</a></li>
+            <li><a href="#process" className="hover:text-pink-500 transition-colors text-left text-sm font-medium block">Hoe het werkt</a></li>
+            <li><a href="#careers" className="hover:text-pink-500 transition-colors text-left text-sm font-medium block">Vacatures</a></li>
+            <li><a href="https://login.verdienendevrienden.club/" className="hover:text-pink-500 transition-colors text-left text-sm font-bold text-white block">Inloggen</a></li>
           </ul>
         </div>
 
@@ -222,7 +231,7 @@ export const MarketingCalculator = ({ onNavigate }: any) => {
                   <span>Beluren per week</span>
                   <span className="text-pink-500">{hours}u</span>
                 </div>
-                <input type="range" min="0" max="40" value={hours} onChange={(e) => setHours(parseInt(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-pink-500" />
+                <input type="range" aria-label="Beluren per week" min="0" max="40" value={hours} onChange={(e) => setHours(parseInt(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-pink-500" />
                 <div className="flex justify-between text-xs text-slate-500 mt-2"><span>Part-time</span><span>Full-time</span></div>
               </div>
               <div>
@@ -230,7 +239,7 @@ export const MarketingCalculator = ({ onNavigate }: any) => {
                   <span>Plaatsingen per maand</span>
                   <span className="text-purple-500">{placements}</span>
                 </div>
-                <input type="range" min="0" max="20" value={placements} onChange={(e) => setPlacements(parseInt(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-purple-500" />
+                <input type="range" aria-label="Plaatsingen per maand" min="0" max="20" value={placements} onChange={(e) => setPlacements(parseInt(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-purple-500" />
               </div>
               <div className="bg-white/5 p-4 rounded-xl border border-white/10 text-sm text-slate-300">
                 <p>💡 <strong className="text-white">Passief Inkomen:</strong> Elke plaatsing levert €25/mnd op zolang de kandidaat werkt. Dit stapelt elke maand op!</p>
@@ -242,7 +251,7 @@ export const MarketingCalculator = ({ onNavigate }: any) => {
                  <div className="text-sm font-bold uppercase tracking-widest text-purple-300 mb-2">Geschat Maandinkomen</div>
                  <div className="text-6xl font-black text-white mb-2">€{total.toLocaleString()}</div>
                  <div className="text-slate-400 text-sm mb-8">excl. cumulatieve passieve groei</div>
-                 <button onClick={() => onNavigate && onNavigate('careers')} className="w-full bg-white text-black font-black uppercase tracking-wider py-4 rounded-xl hover:bg-pink-500 hover:text-white transition-all shadow-xl hover:shadow-pink-500/20">Start met verdienen</button>
+                 <a href="#careers" className="w-full bg-white text-black font-black uppercase tracking-wider py-4 rounded-xl hover:bg-pink-500 hover:text-white transition-all shadow-xl hover:shadow-pink-500/20 block">Start met verdienen</a>
                </div>
             </div>
           </div>
@@ -274,9 +283,9 @@ export const HeroSection = ({ onNavigate }: any) => {
               Stop met werken voor een baas. Begin met bouwen aan je imperium. 
               Verdien <span className="text-white font-bold">€50k - €100k</span> OTE + Passief inkomen.
             </p>
-            <button onClick={() => onNavigate('process')} className="group bg-white text-black px-8 py-4 rounded-full font-black text-sm tracking-wider uppercase hover:bg-pink-500 hover:text-white transition-all transform hover:scale-105 flex items-center">
+            <a href="#process" className="group bg-white text-black px-8 py-4 rounded-full font-black text-sm tracking-wider uppercase hover:bg-pink-500 hover:text-white transition-all transform hover:scale-105 flex items-center inline-flex">
               Start Onboarding <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
           </div>
           <div className="hidden md:flex relative w-64 h-64 items-center justify-center">
             <div className="absolute inset-0 border-4 border-purple-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
@@ -323,7 +332,7 @@ export const Process = () => {
         </div>
         <div className="mt-16 relative rounded-3xl overflow-hidden aspect-[21/9] border border-white/10 shadow-2xl group">
             <div className="absolute inset-0 bg-purple-900/20 mix-blend-overlay group-hover:bg-purple-900/0 transition-colors duration-500"></div>
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80" alt="VVC Process" className="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-700" />
+            <img loading="lazy" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80" alt="VVC bedrijfsproces optimalisatie en workflow visualisatie" className="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         </div>
       </div>
@@ -331,16 +340,18 @@ export const Process = () => {
   );
 };
 
-export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 'talent' | 'business' }) => {
+export const RegistrationSection = ({ defaultTab = 'talent', isPageTitle = false }: { defaultTab?: 'talent' | 'business', isPageTitle?: boolean }) => {
   const [activeTab, setActiveTab] = useState<'talent' | 'business'>(defaultTab);
   const [isFormExpanded, setIsFormExpanded] = useState(true);
+
+  const HeadingTag = isPageTitle ? 'h1' : 'h2';
 
   return (
     <section id="register" className="py-24 bg-[#0a0a0a] border-t border-white/10">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-12">
             <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 text-xs font-bold uppercase tracking-widest mb-4">Start Hier</div>
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-6 italic">WORD ONDERDEEL VAN DE CLUB</h2>
+            <HeadingTag className="text-3xl md:text-5xl font-black text-white mb-6 italic">WORD ONDERDEEL VAN DE CLUB</HeadingTag>
             <p className="text-slate-400 text-lg">Kies je route: Talent of Partner.</p>
         </div>
 
@@ -365,6 +376,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
             <button 
                 onClick={() => setIsFormExpanded(!isFormExpanded)}
                 className="absolute top-6 right-6 p-2 bg-white/5 hover:bg-white/10 rounded-full text-slate-400 hover:text-white transition-colors z-20"
+                aria-label={isFormExpanded ? "Verberg formulier" : "Toon formulier"}
             >
                 {isFormExpanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
             </button>
@@ -372,7 +384,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
             {activeTab === 'talent' ? (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
                     <div className="mb-8 pr-12">
-                        <h3 className="text-2xl font-bold text-white mb-2">Word Lid (Talent)</h3>
+                        <h3 className="text-2xl font-bold text-white mb-2">Word Lid</h3>
                         <p className="text-slate-400 text-sm">Geen motivatiebrieven. Wij selecteren op professionaliteit en executie.</p>
                     </div>
                     <div className={`grid transition-[grid-template-rows] duration-500 ease-out ${isFormExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
@@ -400,15 +412,15 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">LinkedIn Profiel</label>
-                                    <input type="url" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors" placeholder="https://linkedin.com/in/..." />
+                                    <input type="url" aria-label="LinkedIn profiel" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors" placeholder="https://linkedin.com/in/..." />
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Interesse in functie</label>
+                                        <label htmlFor="interest" className="text-xs font-bold text-slate-500 uppercase tracking-wider">Interesse in functie</label>
                                         <div className="relative">
-                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                            <select id="interest" aria-label="Interesse in functie" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
                                                 <option>Trainee Senior Consultant</option>
-                                                <option>Trainee Senior Resourser</option>
+                                                <option>Trainee Senior Resourcer</option>
                                                 <option>Trainee Senior Closer</option>
                                             </select>
                                             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
@@ -419,7 +431,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Ervaring in Sales</label>
                                         <div className="relative">
-                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                            <select aria-label="Ervaring in Sales" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
                                                 <option>Geen ervaring (Starter)</option>
                                                 <option>1-2 jaar</option>
                                                 <option>3-5 jaar</option>
@@ -435,7 +447,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Huidige Situatie</label>
                                         <div className="relative">
-                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                            <select aria-label="Huidige Situatie" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
                                                 <option>Loondienst (Fulltime)</option>
                                                 <option>Loondienst (Parttime)</option>
                                                 <option>Ondernemer / ZZP</option>
@@ -450,7 +462,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Inkomensdoel (p/m)</label>
                                         <div className="relative">
-                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                            <select aria-label="Inkomensdoel per maand" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
                                                 <option>€3.000 - €5.000</option>
                                                 <option>€5.000 - €10.000</option>
                                                 <option>€10.000+</option>
@@ -465,7 +477,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Beschikbaarheid (uren p/w)</label>
                                         <div className="relative">
-                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                            <select aria-label="Beschikbaarheid per week" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
                                                 <option>10-20 uur</option>
                                                 <option>20-30 uur</option>
                                                 <option>30-40 uur</option>
@@ -479,7 +491,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Hoe ken je ons?</label>
                                         <div className="relative">
-                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
+                                            <select aria-label="Hoe ken je ons" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
                                                 <option>Instagram</option>
                                                 <option>LinkedIn</option>
                                                 <option>TikTok</option>
@@ -506,7 +518,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
             ) : (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
                     <div className="mb-8 pr-12">
-                        <h3 className="text-2xl font-bold text-white mb-2">Word Partner (Bedrijven)</h3>
+                        <h3 className="text-2xl font-bold text-white mb-2">Word Partner</h3>
                         <p className="text-slate-400 text-sm">Vraag een offerte aan voor kwaliteitscontrole, workflowtesten of mystery shopping.</p>
                     </div>
                     <div className={`grid transition-[grid-template-rows] duration-500 ease-out ${isFormExpanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
@@ -540,7 +552,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Bedrijfsgrootte (FTE)</label>
                                         <div className="relative">
-                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
+                                            <select aria-label="Bedrijfsgrootte in FTE" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
                                                 <option>1-10 medewerkers</option>
                                                 <option>11-50 medewerkers</option>
                                                 <option>51-200 medewerkers</option>
@@ -556,7 +568,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
                                      <div className="space-y-2">
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Sector</label>
                                         <div className="relative">
-                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
+                                            <select aria-label="Sector" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
                                                 <option>Financiële Dienstverlening</option>
                                                 <option>Vastgoed & Makelaardij</option>
                                                 <option>Automotive</option>
@@ -571,7 +583,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Omvang Sales Team</label>
                                         <div className="relative">
-                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
+                                            <select aria-label="Omvang Sales Team" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
                                                 <option>Geen (Startend)</option>
                                                 <option>1-5 verkopers</option>
                                                 <option>5-15 verkopers</option>
@@ -587,7 +599,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Gewenste Startdatum</label>
                                         <div className="relative">
-                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
+                                            <select aria-label="Gewenste Startdatum" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
                                                 <option>Zo snel mogelijk</option>
                                                 <option>Binnen 1 maand</option>
                                                 <option>Binnen 3 maanden</option>
@@ -601,7 +613,7 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
                                     <div className="space-y-2">
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Primaire Dienst</label>
                                         <div className="relative">
-                                            <select className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
+                                            <select aria-label="Primaire Dienst" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors appearance-none cursor-pointer">
                                                 <option>Kwaliteitscontrole</option>
                                                 <option>Workflowtesten</option>
                                                 <option>Mystery Shopping</option>
@@ -633,23 +645,72 @@ export const RegistrationSection = ({ defaultTab = 'talent' }: { defaultTab?: 't
 
 export const RecruitmentCTA = ({ onNavigate }: any) => {
   return (
-    <section id="careers" className="py-24 bg-black flex justify-center px-6">
-      <div className="w-full max-w-4xl mx-auto relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 to-black border border-white/10 shadow-2xl">
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          <div className="relative h-48 md:h-auto bg-pink-900">
-            <img src="https://picsum.photos/600/800" alt="Club Vibe" className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-80" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-            <div className="absolute bottom-4 left-4">
-              <div className="bg-white text-black text-xs font-bold px-2 py-1 uppercase tracking-wider inline-block mb-1">Since 2022</div>
-              <div className="text-white font-black text-xl leading-none">THE CLUB</div>
-            </div>
-          </div>
-          <div className="col-span-2 p-8 md:p-10 flex flex-col justify-center relative">
-            <div className="absolute top-0 right-0 p-4 opacity-10"><Euro size={120} className="text-white" /></div>
-            <h3 className="text-2xl font-bold mb-2 text-white">Wil jij <span className="text-yellow-400">€8.000+</span> per maand verdienen?</h3>
-            <p className="text-slate-400 text-sm mb-6 leading-relaxed">Wij zoeken Junior Consultants en Sales Duo's.</p>
-            <div className="flex items-center gap-4">
-              <button onClick={() => onNavigate('careers')} className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white px-6 py-3 rounded-lg font-bold text-sm transition-all shadow-lg hover:shadow-pink-500/25">BEKIJK VACATURES</button>
+    <section id="careers" className="py-32 bg-black relative overflow-hidden px-6">
+      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-pink-600/15 rounded-full blur-[150px] animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[120px]"></div>
+
+      <div className="w-full max-w-6xl mx-auto relative">
+        <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1a0b2e] via-[#0f0f0f] to-[#0a0a0a]"></div>
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.04]"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-pink-600/10 rounded-full blur-[80px] -mr-48 -mt-48 group-hover:bg-pink-600/20 transition-all duration-700"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-600/10 rounded-full blur-[60px] -ml-32 -mb-32"></div>
+
+          <div className="relative z-10 p-8 md:p-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center space-x-2 px-3 py-1 mb-6 rounded-full bg-pink-500/10 border border-pink-500/30 text-pink-400 text-xs font-bold tracking-[0.2em] uppercase">
+                  <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
+                  <span>Now Hiring</span>
+                </div>
+
+                <h3 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight">
+                  Verdien <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">€8.000+</span> per maand
+                </h3>
+                <p className="text-slate-400 text-base md:text-lg mb-8 leading-relaxed max-w-lg">
+                  Wij zoeken ambitieuze Junior Consultants en Sales Duo's die klaar zijn om hun eigen route te bouwen. Geen plafond, geen limiet.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-10">
+                  <a href="#careers" className="group/btn bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white px-8 py-4 rounded-xl font-black text-sm uppercase tracking-wider transition-all shadow-lg hover:shadow-pink-500/30 hover:scale-105 flex items-center">
+                    Bekijk Vacatures <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  </a>
+                  <a href="#register" className="text-slate-400 hover:text-white font-bold text-sm uppercase tracking-wider transition-colors flex items-center group/link">
+                    <span className="w-8 h-[1px] bg-slate-600 group-hover/link:bg-white group-hover/link:w-12 mr-3 transition-all"></span>
+                    Direct Solliciteren
+                  </a>
+                </div>
+
+                <div className="flex items-center gap-3 text-xs text-slate-500">
+                  <div className="flex -space-x-2">
+                    {[
+                      'bg-gradient-to-br from-pink-400 to-pink-600',
+                      'bg-gradient-to-br from-purple-400 to-purple-600',
+                      'bg-gradient-to-br from-yellow-400 to-yellow-600',
+                    ].map((bg, i) => (
+                      <div key={i} className={`w-7 h-7 rounded-full ${bg} border-2 border-[#0f0f0f] flex items-center justify-center text-[9px] font-bold text-white`}>
+                        {['JD', 'AK', 'MV'][i]}
+                      </div>
+                    ))}
+                  </div>
+                  <span className="font-medium">12+ vrienden gestart deze maand</span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { value: '€30/u', label: 'Basis Uurloon', icon: <Euro className="w-5 h-5" />, accent: 'from-yellow-500/20 to-yellow-600/5 border-yellow-500/20 text-yellow-400' },
+                  { value: '€300', label: 'Per Plaatsing', icon: <TrendingUp className="w-5 h-5" />, accent: 'from-pink-500/20 to-pink-600/5 border-pink-500/20 text-pink-400' },
+                  { value: '€25/mnd', label: 'Passief Inkomen', icon: <Zap className="w-5 h-5" />, accent: 'from-purple-500/20 to-purple-600/5 border-purple-500/20 text-purple-400' },
+                  { value: '∞', label: 'Geen Plafond', icon: <Crown className="w-5 h-5" />, accent: 'from-white/10 to-white/5 border-white/10 text-white' },
+                ].map((stat, idx) => (
+                  <div key={idx} className={`bg-gradient-to-br ${stat.accent} border rounded-2xl p-5 backdrop-blur-sm hover:scale-105 transition-all duration-300 group/card`}>
+                    <div className={`${stat.accent.split(' ').pop()} mb-3 opacity-60 group-hover/card:opacity-100 transition-opacity`}>{stat.icon}</div>
+                    <div className="text-2xl md:text-3xl font-black text-white mb-1">{stat.value}</div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -670,9 +731,9 @@ export const Services = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
                 { value: "€50k+", label: "Gemiddeld OTE", icon: <Euro className="w-5 h-5" /> },
-                { value: "9.8", label: "klanten", icon: <TrendingUp className="w-5 h-5" /> },
+                { value: "9.8", label: "Recensies", icon: <TrendingUp className="w-5 h-5" /> },
                 { value: "Elite", label: "Focus Sectoren", icon: <ShieldCheck className="w-5 h-5" /> },
-                { value: "500+", label: "klanten", icon: <Users className="w-5 h-5" /> },
+                { value: "150+", label: "klanten", icon: <Users className="w-5 h-5" /> },
             ].map((stat, idx) => (
                 <div key={idx} className="bg-slate-900/50 border border-white/10 p-6 rounded-2xl text-center group hover:border-white/30 transition-all">
                     <div className="flex justify-center mb-3 text-slate-400 group-hover:text-white transition-colors">{stat.icon}</div>
@@ -688,7 +749,7 @@ export const Services = () => {
           <p className="text-slate-400 text-lg mb-12">Wij bieden diepgaande kwaliteitscontroles, variërend van digitale audits tot fysieke inspecties. Onze focus ligt op absolute perfectie.</p>
           <div className="relative rounded-3xl overflow-hidden aspect-video border border-white/10 shadow-2xl group">
             <div className="absolute inset-0 bg-purple-500/10 mix-blend-overlay group-hover:bg-purple-500/0 transition-colors duration-500"></div>
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="VVC Services Visualization" className="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" />
+            <img loading="lazy" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="VVC kwaliteitscontrole en mystery shopping diensten" className="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
           </div>
         </div>
@@ -868,9 +929,9 @@ export const AboutPage = ({ onNavigate }: any) => (
             <p className="text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 font-black mb-12 drop-shadow-md">"GEGARANDEERDE GROEI VOOR ONZE VRIENDEN."</p>
             <p className="text-xl text-white mb-12 font-medium">Wij verliezen nooit. Win jij met ons mee?</p>
             
-            <button onClick={() => onNavigate && onNavigate('careers')} className="group bg-white text-black px-10 py-5 rounded-full font-black text-sm tracking-widest uppercase hover:bg-pink-500 hover:text-white transition-all transform hover:scale-105 shadow-2xl hover:shadow-pink-500/50 flex items-center mx-auto ring-4 ring-white/10">
+            <a href="#careers" className="group bg-white text-black px-10 py-5 rounded-full font-black text-sm tracking-widest uppercase hover:bg-pink-500 hover:text-white transition-all transform hover:scale-105 shadow-2xl hover:shadow-pink-500/50 flex items-center mx-auto ring-4 ring-white/10 inline-flex">
                 Start Jouw Route <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
           </div>
       </div>
     </div>
@@ -1025,9 +1086,9 @@ export const ProcessPage = ({ onNavigate }: any) => {
                 <div className="relative z-10">
                     <h3 className="text-3xl font-black text-white mb-6">Wilt u de kwaliteit binnen uw organisatie waarborgen?</h3>
                     <p className="text-slate-400 mb-8 max-w-2xl mx-auto">Vraag vrijblijvend een offerte aan. We denken graag met u mee over de beste aanpak voor uw situatie.</p>
-                    <button onClick={scrollToRegister} className="bg-white text-black font-black uppercase tracking-wider py-4 rounded-xl hover:bg-purple-500 hover:text-white transition-all shadow-xl hover:shadow-purple-500/30">
+                    <a href="#register" className="bg-white text-black font-black uppercase tracking-wider py-4 rounded-xl hover:bg-purple-500 hover:text-white transition-all shadow-xl hover:shadow-purple-500/30 block w-full md:w-auto text-center">
                         Offerte Aanvragen
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1121,6 +1182,56 @@ export const CareersPage = ({ onNavigate }: any) => {
     }
   ];
 
+  useEffect(() => {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": vacancies.map((job, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+            "@type": "JobPosting",
+            "title": job.title,
+            "description": `<p>${job.description}</p><p><strong>Rol:</strong> ${job.role}</p><p><strong>Profiel:</strong> ${job.profile.join(', ')}</p>`,
+            "datePosted": new Date().toISOString().split('T')[0],
+            "hiringOrganization": {
+              "@type": "Organization",
+              "name": "Verdienende Vrienden Club",
+              "sameAs": "https://www.verdienendevrienden.club/"
+            },
+            "jobLocation": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Amsterdam",
+                "addressCountry": "NL"
+              }
+            },
+            "employmentType": "CONTRACTOR",
+            "baseSalary": {
+                "@type": "MonetaryAmount",
+                "currency": "EUR",
+                "value": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 50000,
+                    "maxValue": 100000,
+                    "unitText": "YEAR"
+                }
+            }
+        }
+      }))
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="bg-black min-h-screen pt-24 relative">
         {/* Modal Overlay */}
@@ -1128,7 +1239,7 @@ export const CareersPage = ({ onNavigate }: any) => {
             <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
                 <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setSelectedJob(null)}></div>
                 <div className="bg-[#0f0f0f] border border-white/10 w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl relative z-[160] shadow-2xl animate-in fade-in zoom-in duration-300">
-                    <button onClick={() => setSelectedJob(null)} className="absolute top-4 right-4 p-2 bg-white/5 rounded-full hover:bg-white/10 transition-colors z-50">
+                    <button onClick={() => setSelectedJob(null)} aria-label="Sluit vacature details" className="absolute top-4 right-4 p-2 bg-white/5 rounded-full hover:bg-white/10 transition-colors z-50">
                         <X className="text-white" size={24} />
                     </button>
                     
@@ -1183,7 +1294,7 @@ export const CareersPage = ({ onNavigate }: any) => {
                                     <li className="text-slate-400 text-sm flex items-start"><span className="text-pink-500 font-bold mr-2">Vrijheid:</span> De rugdekking van een club, de vrijheid van een ondernemer.</li>
                                 </ul>
                                 <p className="text-white font-black italic text-center mb-6">Durf jij de stap aan? Word vriend, word partner.</p>
-                                <button onClick={() => { setSelectedJob(null); document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' }); }} className="w-full bg-white text-black font-black uppercase tracking-wider py-4 rounded-xl hover:bg-pink-500 hover:text-white transition-all shadow-xl hover:shadow-pink-500/20">Direct Solliciteren</button>
+                                <a href="#register" onClick={() => setSelectedJob(null)} className="w-full bg-white text-black font-black uppercase tracking-wider py-4 rounded-xl hover:bg-pink-500 hover:text-white transition-all shadow-xl hover:shadow-pink-500/20 block text-center">Direct Solliciteren</a>
                              </div>
                         </div>
                     </div>
@@ -1197,7 +1308,7 @@ export const CareersPage = ({ onNavigate }: any) => {
          <p className="text-xl text-slate-400 mb-12">Verdien wat je waard bent. Geen plafonds, geen kantoortijden, alleen resultaat.</p>
          <div className="relative rounded-3xl overflow-hidden aspect-video border border-white/10 shadow-2xl group">
             <div className="absolute inset-0 bg-pink-500/10 mix-blend-overlay group-hover:bg-pink-500/0 transition-colors duration-500"></div>
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="VVC Team" className="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" />
+            <img loading="lazy" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="VVC team van sales professionals en ondernemers" className="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
          </div>
       </div>
@@ -1225,21 +1336,72 @@ export const CareersPage = ({ onNavigate }: any) => {
 
 export const MarketingApp = ({ onLogin }: any) => {
   const [currentPage, setCurrentPage] = useState('home');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash && ['home', 'about', 'process', 'careers', 'register'].includes(hash)) {
+        setCurrentPage(hash);
+      } else {
+        setCurrentPage('home');
+      }
+    };
+
+    // Handle initial hash
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  useEffect(() => {
+    const titles: Record<string, string> = {
+      home: 'Verdienende Vrienden Club - Join the Money Movement',
+      about: 'Over Ons - Verdienende Vrienden Club',
+      process: 'Hoe het werkt - Verdienende Vrienden Club',
+      careers: 'Vacatures - Verdienende Vrienden Club',
+      register: 'Aanmelden - Verdienende Vrienden Club',
+    };
+    
+    const descriptions: Record<string, string> = {
+      home: "Verdienende Vrienden Club (VVC) is een exclusief ecosysteem voor sales talent. Verdien €50k-€100k OTE, bouw passief inkomen en werk als partner.",
+      about: "VVC is geen traditioneel bedrijf maar een ecosysteem. Wij bieden de rugdekking van een gevestigde club met de vrijheid van ondernemerschap.",
+      process: "Van aanvraag tot optimalisatie: wij leveren geen rapporten voor in de lade, maar brandstof voor groei. Ontdek onze 360-graden aanpak.",
+      careers: "Bekijk onze vacatures voor Trainee Senior Consultant, Resourcer en Closer. Verdien wat je waard bent met ongekende doorgroeimogelijkheden.",
+      register: "Word onderdeel van de club. Start hier jouw route als Talent of Partner. Geen motivatiebrieven, wij selecteren op professionaliteit."
+    };
+
+    document.title = titles[currentPage] || 'Verdienende Vrienden Club';
+    
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', descriptions[currentPage] || descriptions['home']);
+    }
+    
+    // Scroll to top on page change unless it's just a section navigation within home
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
+  const onNavigate = (page: string) => {
+    window.location.hash = page;
+  };
+
   const renderPage = () => {
     switch (currentPage) {
-      case 'home': return <HomePage onNavigate={setCurrentPage} />;
-      case 'about': return <AboutPage onNavigate={setCurrentPage} />;
-      case 'process': return <ProcessPage onNavigate={setCurrentPage} />;
-      case 'careers': return <CareersPage onNavigate={setCurrentPage} />;
+      case 'home': return <HomePage onNavigate={onNavigate} />;
+      case 'about': return <AboutPage onNavigate={onNavigate} />;
+      case 'process': return <ProcessPage onNavigate={onNavigate} />;
+      case 'careers': return <CareersPage onNavigate={onNavigate} />;
       case 'register': return <RegisterPage />;
-      default: return <HomePage onNavigate={setCurrentPage} />;
+      default: return <HomePage onNavigate={onNavigate} />;
     }
   };
   return (
     <div className="bg-black min-h-screen text-white font-sans selection:bg-pink-500 selection:text-white flex flex-col">
-      <MarketingNavbar currentPage={currentPage} onNavigate={setCurrentPage} onLogin={onLogin} />
+      <MarketingNavbar currentPage={currentPage} onNavigate={onNavigate} onLogin={onLogin} />
       <main className="flex-grow">{renderPage()}</main>
-      <MarketingFooter onNavigate={setCurrentPage} onLogin={onLogin} />
+      <MarketingFooter onNavigate={onNavigate} onLogin={onLogin} />
     </div>
   );
 };
