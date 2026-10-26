@@ -27,7 +27,9 @@ export const Ticker = () => (
 
 export const MarketingNavbar = ({ currentPage, onNavigate, onLogin }: any) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const drawerRef = React.useRef<HTMLDivElement>(null);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => { setIsScrolled(window.scrollY > 20); };
@@ -35,120 +37,216 @@ export const MarketingNavbar = ({ currentPage, onNavigate, onLogin }: any) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isDrawerOpen &&
+        drawerRef.current &&
+        !drawerRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsDrawerOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsDrawerOpen(false);
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isDrawerOpen]);
+
   const navLinks = [
-    { name: 'Home', id: 'home' },
     { name: 'Over Ons', id: 'about' },
-    { name: 'Hoe werkt het?', id: 'process' },
+    { name: 'Werkwijze', id: 'process' },
     { name: 'Vacatures', id: 'careers' },
+    { name: 'Aanmelden', id: 'register' },
   ];
 
-  const pageTitles: Record<string, string> = {
-    home: 'Home',
-    about: 'Over Ons',
-    process: 'Proces',
-    careers: 'Vacatures',
+  const handleNavClick = (id: string) => {
+    onNavigate(id);
+    setIsDrawerOpen(false);
   };
 
   return (
-    <>
-      <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-out ${isScrolled || isMobileMenuOpen ? 'bg-black border-b border-white/10 py-4 shadow-2xl' : 'bg-transparent py-6'}`}>
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          {/* Brand */}
-          <button 
-            onClick={() => { onNavigate('home'); setIsMobileMenuOpen(false); }} 
-            className="text-2xl md:text-3xl font-black italic tracking-tighter text-white z-[110] relative focus:outline-none flex items-center group cursor-pointer"
-          >
-            <img
-              src="/vvc-logo.svg"
-              alt="VVC Logo"
-              className="w-8 h-8 md:w-9 md:h-9 mr-2.5 rounded-full shadow-[0_0_12px_rgba(230,0,126,0.3)] group-hover:scale-105 transition-transform shrink-0"
-            />
-            VVC<span className="text-pink-500">.</span>
-          </button>
-
-          {/* Current Page Title (Mobile Only - Centered) */}
-          <div className="md:hidden absolute left-1/2 -translate-x-1/2 text-white font-black text-sm uppercase tracking-widest opacity-80 z-[105]">
-            {pageTitles[currentPage] || 'VVC'}
-          </div>
-
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={`#${link.id}`}
-                className={`text-xs font-bold transition-colors uppercase tracking-widest relative group ${currentPage === link.id ? 'text-white' : 'text-slate-400 hover:text-white'}`}
-              >
-                {link.name}
-                <span className={`absolute -bottom-2 left-0 w-full h-0.5 bg-pink-500 transform transition-transform duration-300 ${currentPage === link.id ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}></span>
-              </a>
-            ))}
-            <a href="https://pitch.verdienendevrienden.club" className="text-xs font-bold text-slate-400 hover:text-white uppercase tracking-widest transition-colors">Pitch</a>
-            <a href="https://login.verdienendevrienden.club/" className="text-xs font-bold text-slate-400 hover:text-white uppercase tracking-widest transition-colors">Inloggen</a>
-            <a 
-              href="#register"
-              className="px-6 py-2 bg-white text-black font-black text-[10px] uppercase tracking-[0.2em] rounded-full hover:bg-pink-500 hover:text-white transition-all shadow-lg hover:shadow-pink-500/20"
-            >
-              Vrienden Worden?
-            </a>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="md:hidden text-white z-[110] p-2 hover:bg-white/10 rounded-full transition-colors" 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? "Sluit menu" : "Open menu"}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Menu Fullscreen Overlay */}
+    <header className="fixed top-0 left-0 right-0 z-[100] transition-all duration-300" role="banner">
+      {/* VVC Navbar Band */}
       <div 
-        className={`fixed inset-0 bg-black z-[90] md:hidden transition-all duration-300 ease-out flex flex-col p-8 pt-24 ${isMobileMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-full invisible'}`}
+        className={`relative flex items-center justify-between px-6 py-3.5 md:py-4 transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-[#050508]/95 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_35px_rgba(0,0,0,0.85)]' 
+            : 'bg-[#050508]/80 backdrop-blur-md border-b border-white/5'
+        }`}
       >
-        <div className="flex flex-col space-y-6">
-          {navLinks.map((link, idx) => (
-            <a 
-              key={link.name} 
-              href={`#${link.id}`}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`text-4xl font-black text-left uppercase tracking-tighter transition-all duration-500 ${['delay-0', 'delay-[50ms]', 'delay-100', 'delay-150'][idx]} ${currentPage === link.id ? 'text-pink-500 translate-x-4' : 'text-white hover:text-pink-400'}`}
-            >
-              {link.name}
-            </a>
-          ))}
-          
-          <div className="pt-8 mt-8 border-t border-white/10 space-y-6">
-            <a 
-              href="https://pitch.verdienendevrienden.club"
-              className="text-2xl font-black text-white uppercase tracking-tight hover:text-pink-500 transition-colors block w-full text-left"
-            >
-              PITCH
-            </a>
-            <a 
-              href="https://login.verdienendevrienden.club/"
-              className="text-2xl font-black text-white uppercase tracking-tight hover:text-pink-500 transition-colors block w-full text-left"
-            >
-              INLOGGEN
-            </a>
-            <a 
-              href="#register"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full bg-pink-500 text-white font-black uppercase tracking-widest py-5 rounded-2xl text-center shadow-2xl shadow-pink-500/20 active:scale-95 transition-transform block"
-            >
-              VRIENDEN WORDEN?
-            </a>
+        {/* Left Protruding Circular VVC. Emblem */}
+        <a 
+          href="#home" 
+          onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} 
+          className="group flex items-center gap-3 focus:outline-none cursor-pointer"
+          aria-label="VVC Home"
+        >
+          <div className="relative flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-gradient-to-tr from-pink-600/30 to-purple-600/20 border border-white/20 p-1 group-hover:border-pink-500/60 shadow-[0_0_15px_rgba(230,0,126,0.3)] group-hover:shadow-[0_0_24px_rgba(230,0,126,0.6)] transition-all shrink-0">
+            <img src="/vvc-logo.svg" alt="VVC Logo" className="w-full h-full object-contain filter group-hover:scale-105 transition-transform" />
           </div>
+          <span className="text-xl md:text-2xl font-black italic tracking-tighter text-white">
+            VVC<span className="text-pink-500 inline-block drop-shadow-[0_0_8px_rgba(230,0,126,0.8)]">.</span>
+          </span>
+        </a>
+
+        {/* Desktop Elegant Center Links */}
+        <nav id="inlineDesktopNav" className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest text-zinc-400">
+          {navLinks.map((link) => {
+            const isActive = currentPage === link.id;
+            return (
+              <button
+                key={link.id}
+                onClick={() => handleNavClick(link.id)}
+                className={`hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer relative py-1 ${
+                  isActive ? 'text-white' : ''
+                }`}
+              >
+                {isActive && <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse"></span>}
+                {link.name}
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* Right Actions: Member Portal link & Custom 3-Bar Hamburger */}
+        <div className="flex items-center gap-4">
+          <a
+            href="https://login.verdienendevrienden.club/"
+            className="hidden sm:inline-flex text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
+          >
+            Inloggen
+          </a>
+          
+          <button 
+            ref={buttonRef}
+            onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+            className="relative w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex flex-col items-center justify-center gap-1.5 text-white transition-colors focus:outline-none cursor-pointer group"
+            aria-label="Toggle Navigation Menu" 
+            aria-expanded={isDrawerOpen}
+          >
+            <span className={`w-5 h-0.5 bg-white transition-all duration-300 origin-center ${isDrawerOpen ? 'rotate-45 translate-y-2 bg-pink-500' : 'group-hover:bg-pink-400'}`}></span>
+            <span className={`w-5 h-0.5 bg-white transition-all duration-200 ${isDrawerOpen ? 'opacity-0 scale-0' : 'group-hover:bg-pink-400'}`}></span>
+            <span className={`w-5 h-0.5 bg-white transition-all duration-300 origin-center ${isDrawerOpen ? '-rotate-45 -translate-y-2 bg-pink-500' : 'group-hover:bg-pink-400'}`}></span>
+          </button>
         </div>
 
-        {/* Branding Footer for Menu */}
-        <div className="mt-auto pb-8 opacity-20 text-center">
-            <div className="text-6xl font-black italic tracking-tighter text-white">VVC.</div>
-        </div>
+        {/* Bottom Neon Pink Laser Line & Glow Bloom */}
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-pink-500/80 to-transparent pointer-events-none"></div>
+        <div className="absolute -bottom-1 left-0 right-0 h-[6px] bg-gradient-to-r from-transparent via-pink-500/35 to-transparent blur-[3px] pointer-events-none"></div>
+
+        {/* Interactive Slide-Down Navigation Menu Drawer */}
+        {isDrawerOpen && (
+          <div 
+            ref={drawerRef}
+            id="navDrawer" 
+            className="absolute right-4 md:right-8 top-full mt-3 w-[calc(100vw-2rem)] sm:w-96 bg-[#09090e]/95 backdrop-blur-2xl border border-white/10 rounded-2xl p-4 shadow-[0_25px_60px_rgba(0,0,0,0.85)] z-[120] animate-in fade-in slide-in-from-top-2 duration-200"
+            role="dialog"
+            aria-label="Navigatiemenu"
+          >
+            <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
+              <span className="text-[11px] font-semibold uppercase tracking-widest text-pink-500">VVC. Navigatie</span>
+              <span className="inline-flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live Ecosysteem
+              </span>
+            </div>
+
+            <ul className="space-y-1.5">
+              <li>
+                <button 
+                  onClick={() => handleNavClick('home')}
+                  className="w-full group flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-all text-left cursor-pointer"
+                >
+                  <div>
+                    <div className="text-sm font-semibold text-white group-hover:text-pink-400 transition-colors">Home</div>
+                    <div className="text-xs text-zinc-400">Join the Money Movement</div>
+                  </div>
+                  <span className="text-zinc-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all">→</span>
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => handleNavClick('about')}
+                  className="w-full group flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-all text-left cursor-pointer"
+                >
+                  <div>
+                    <div className="text-sm font-semibold text-white group-hover:text-pink-400 transition-colors">Over VVC &amp; De Club</div>
+                    <div className="text-xs text-zinc-400">Onze visie, netwerk en filosofie</div>
+                  </div>
+                  <span className="text-zinc-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all">→</span>
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => handleNavClick('process')}
+                  className="w-full group flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-all text-left cursor-pointer"
+                >
+                  <div>
+                    <div className="text-sm font-semibold text-white group-hover:text-pink-400 transition-colors">Werkwijze &amp; Methodologie</div>
+                    <div className="text-xs text-zinc-400">360-graden aanpak &amp; kwaliteitsborging</div>
+                  </div>
+                  <span className="text-zinc-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all">→</span>
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => handleNavClick('careers')}
+                  className="w-full group flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-all text-left cursor-pointer"
+                >
+                  <div>
+                    <div className="text-sm font-semibold text-white group-hover:text-pink-400 transition-colors">Vacatures &amp; Traineeships</div>
+                    <div className="text-xs text-zinc-400">Senior Closer, Resourcer &amp; Consultant</div>
+                  </div>
+                  <span className="text-zinc-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all">→</span>
+                </button>
+              </li>
+              <li>
+                <a 
+                  href="https://pitch.verdienendevrienden.club/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-all"
+                >
+                  <div>
+                    <div className="text-sm font-semibold text-white group-hover:text-pink-400 transition-colors">Interactieve Pitch</div>
+                    <div className="text-xs text-zinc-400">Bekijk de live partner presentatie</div>
+                  </div>
+                  <span className="text-zinc-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all">↗</span>
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://login.verdienendevrienden.club/" 
+                  className="group flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-all"
+                >
+                  <div>
+                    <div className="text-sm font-semibold text-white group-hover:text-pink-400 transition-colors">Member Dashboard / CRM</div>
+                    <div className="text-xs text-zinc-400">Centrale inlog voor partners en talent</div>
+                  </div>
+                  <span className="text-zinc-500 group-hover:text-pink-400 group-hover:translate-x-1 transition-all">↗</span>
+                </a>
+              </li>
+            </ul>
+
+            <div className="mt-4 pt-3 border-t border-white/10">
+              <button 
+                onClick={() => handleNavClick('register')}
+                className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-semibold text-xs uppercase tracking-wider shadow-lg shadow-pink-600/30 transition-all text-center block cursor-pointer"
+              >
+                Direct Aanmelden bij VVC.
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-    </>
+    </header>
   );
 };
 
