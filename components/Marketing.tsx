@@ -6,18 +6,18 @@ import {
 } from 'lucide-react';
 
 export const Ticker = () => (
-  <div className="w-full relative bg-yellow-400 text-black py-3 overflow-hidden border-y-4 border-black rotate-1 hover:rotate-0 transition-transform duration-300 z-20 my-24">
-    <div className="absolute inset-0 bg-yellow-500 opacity-50 bg-[size:4px_4px] bg-[linear-gradient(45deg,transparent_25%,#000_25%,#000_50%,transparent_50%,transparent_75%,#000_75%,#000_100%)] bg-[length:20px_20px] opacity-10"></div>
+  <div className="w-full relative bg-[#09090d]/90 text-white py-3.5 overflow-hidden border-y border-white/10 backdrop-blur-md z-20 my-20">
+    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(230,0,126,0.12),transparent_70%)] pointer-events-none"></div>
     <div className="flex whitespace-nowrap overflow-hidden">
-      <div className="animate-marqueeYZ flex items-center space-x-8 text-lg font-black tracking-widest uppercase">
+      <div className="animate-marqueeYZ flex items-center space-x-8 text-sm md:text-base font-black tracking-widest uppercase">
         {[...Array(4)].map((_, i) => (
           <React.Fragment key={i}>
-            <span className="flex items-center"><Zap className="w-5 h-5 mr-2 fill-black" /> NIEUWE VACATURE: SENIOR CLOSER</span>
-            <span className="mx-4 text-black/30">///</span>
-            <span className="flex items-center">€300 BONUS PER DEAL</span>
-            <span className="mx-4 text-black/30">///</span>
-            <span className="flex items-center">PASSIEF INKOMEN START NU</span>
-            <span className="mx-4 text-black/30">///</span>
+            <span className="flex items-center text-pink-400"><Zap className="w-4 h-4 mr-2 fill-pink-500 text-pink-500" /> NIEUWE VACATURE: SENIOR CLOSER</span>
+            <span className="mx-4 text-white/20">///</span>
+            <span className="flex items-center text-yellow-400 font-bold">€300 BONUS PER DEAL</span>
+            <span className="mx-4 text-white/20">///</span>
+            <span className="flex items-center text-white/90">PASSIEF INKOMEN START NU</span>
+            <span className="mx-4 text-white/20">///</span>
           </React.Fragment>
         ))}
       </div>
@@ -157,8 +157,11 @@ export const MarketingFooter = ({ onNavigate, onLogin }: any) => {
     <footer id="contact" className="bg-black py-12 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-2">
-          <div className="text-2xl font-black italic tracking-tighter text-white mb-6">
-            VVC<span className="text-pink-500">.</span>
+          <div className="flex items-center gap-3 mb-6">
+            <img src="/vvc-logo.svg" alt="VVC Logo" className="w-8 h-8 rounded-full border border-pink-500/30 object-contain shadow-[0_0_15px_rgba(230,0,126,0.3)]" />
+            <div className="text-2xl font-black italic tracking-tighter text-white">
+              VVC<span className="text-pink-500">.</span>
+            </div>
           </div>
           <p className="text-slate-500 max-w-sm mb-6">
             Wij optimaliseren bedrijfsprocessen en klantcontact met unieke strategie, technologie en uitvoering.
@@ -197,7 +200,7 @@ export const MarketingFooter = ({ onNavigate, onLogin }: any) => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-white/5 text-center text-slate-600 text-xs">
-        &copy; 2025 Verdienende Vrienden Club – Alle rechten voorbehouden.
+        &copy; {new Date().getFullYear()} Verdienende Vrienden Club – Alle rechten voorbehouden.
       </div>
     </footer>
   );
@@ -247,7 +250,7 @@ export const MarketingCalculator = ({ onNavigate }: any) => {
                 <input type="range" aria-label="Plaatsingen per maand" min="0" max="20" value={placements} onChange={(e) => setPlacements(parseInt(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-purple-500" />
               </div>
               <div className="bg-white/5 p-4 rounded-xl border border-white/10 text-sm text-slate-300">
-                <p>💡 <strong className="text-white">Passief Inkomen:</strong> Elke plaatsing levert €25/mnd op zolang de kandidaat werkt. Dit stapelt elke maand op!</p>
+                <p>💡 <strong className="text-white">Passief Inkomen:</strong> Elke plaatsing levert €25 p/m op zolang de kandidaat werkt. Dit stapelt elke maand op!</p>
               </div>
             </div>
             <div className="bg-gradient-to-br from-purple-900 to-slate-900 border border-purple-500/30 rounded-2xl p-8 text-center relative overflow-hidden group">
@@ -281,8 +284,8 @@ export const HeroSection = ({ onNavigate }: any) => {
               <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
               <span>Now Recruiting</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none mb-6 text-white">
-              JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-400 pr-14 pb-2">MONEY MOVEMENT</span>
+            <h1 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none mb-6 text-white break-words">
+              JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-400">MONEY MOVEMENT</span>
             </h1>
             <p className="text-slate-400 text-lg mb-8 max-w-lg">
               Stop met werken voor een baas. Begin met bouwen aan je imperium. 
@@ -292,14 +295,14 @@ export const HeroSection = ({ onNavigate }: any) => {
               Start Onboarding <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
-          <div className="hidden md:flex relative w-64 h-64 items-center justify-center">
-            <div className="absolute inset-0 border-4 border-purple-500/20 rounded-full animate-[spin_10s_linear_infinite]"></div>
-            <div className="absolute inset-4 border-4 border-pink-500/20 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-            <div className="absolute inset-0 flex items-center justify-center">
-               <div className="text-center">
-                 <div className="text-5xl font-black text-white">VVC</div>
-                 <div className="text-xs text-pink-500 tracking-[0.3em] font-bold mt-1">EST. 2022</div>
-               </div>
+          <div className="hidden md:flex relative w-64 h-64 items-center justify-center shrink-0">
+            <div className="absolute inset-0 rounded-full bg-pink-600/20 blur-2xl"></div>
+            <div className="absolute inset-0 border border-purple-500/30 rounded-full animate-[spin_20s_linear_infinite]"></div>
+            <div className="absolute inset-3 border border-pink-500/40 rounded-full animate-[spin_25s_linear_infinite_reverse]"></div>
+            <div className="relative z-10 bg-black/70 backdrop-blur-md p-6 rounded-full border border-white/15 w-48 h-48 flex flex-col items-center justify-center shadow-[0_0_40px_rgba(230,0,126,0.25)]">
+              <img src="/vvc-logo.svg" alt="VVC Logo" className="w-14 h-14 mb-2 object-contain drop-shadow-[0_2px_10px_rgba(230,0,126,0.5)]" />
+              <div className="text-xl font-black italic text-white tracking-tighter">VVC</div>
+              <div className="text-[10px] text-pink-400 tracking-[0.25em] font-bold uppercase mt-0.5">Est. 2022</div>
             </div>
           </div>
         </div>
@@ -468,9 +471,9 @@ export const RegistrationSection = ({ defaultTab = 'talent', isPageTitle = false
                                         <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">Inkomensdoel (p/m)</label>
                                         <div className="relative">
                                             <select aria-label="Inkomensdoel per maand" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
-                                                <option>€3.000 - €5.000</option>
-                                                <option>€5.000 - €10.000</option>
-                                                <option>€10.000+</option>
+                                                <option>€3.000 - €5.000 p/m</option>
+                                                <option>€5.000 - €10.000 p/m</option>
+                                                <option>€10.000+ p/m</option>
                                             </select>
                                             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
                                                 <ArrowRight size={16} className="rotate-90" />
@@ -669,8 +672,8 @@ export const RecruitmentCTA = ({ onNavigate }: any) => {
                   <span>Now Hiring</span>
                 </div>
 
-                <h3 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight">
-                  Verdien <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">€8.000+</span> per maand
+                <h3 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight break-words">
+                  Verdien <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">€8.000+</span> p/m
                 </h3>
                 <p className="text-slate-400 text-base md:text-lg mb-8 leading-relaxed max-w-lg">
                   Wij zoeken ambitieuze Junior Consultants en Sales Duo's die klaar zijn om hun eigen route te bouwen. Geen plafond, geen limiet.
@@ -706,7 +709,7 @@ export const RecruitmentCTA = ({ onNavigate }: any) => {
                 {[
                   { value: '€30/u', label: 'Basis Uurloon', icon: <Euro className="w-5 h-5" />, accent: 'from-yellow-500/20 to-yellow-600/5 border-yellow-500/20 text-yellow-400' },
                   { value: '€300', label: 'Per Plaatsing', icon: <TrendingUp className="w-5 h-5" />, accent: 'from-pink-500/20 to-pink-600/5 border-pink-500/20 text-pink-400' },
-                  { value: '€25/mnd', label: 'Passief Inkomen', icon: <Zap className="w-5 h-5" />, accent: 'from-purple-500/20 to-purple-600/5 border-purple-500/20 text-purple-400' },
+                  { value: '€25 p/m', label: 'Passief Inkomen', icon: <Zap className="w-5 h-5" />, accent: 'from-purple-500/20 to-purple-600/5 border-purple-500/20 text-purple-400' },
                   { value: '∞', label: 'Geen Plafond', icon: <Crown className="w-5 h-5" />, accent: 'from-white/10 to-white/5 border-white/10 text-white' },
                 ].map((stat, idx) => (
                   <div key={idx} className={`bg-gradient-to-br ${stat.accent} border rounded-2xl p-5 backdrop-blur-sm hover:scale-105 transition-all duration-300 group/card`}>
@@ -795,7 +798,7 @@ export const AboutPage = ({ onNavigate }: any) => (
           <div className="inline-block mb-6 text-pink-400 font-black tracking-[0.3em] text-xs uppercase border border-pink-500/30 bg-pink-500/10 px-4 py-2 rounded-full animate-in fade-in slide-in-from-bottom-4 duration-700 backdrop-blur-sm">The Story</div>
           <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-8 leading-tight animate-in fade-in slide-in-from-bottom-5 duration-700 delay-100">
             HET SNIJVLAK TUSSEN <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 pr-14 pb-2">VRIENDSCHAP</span> EN ONGEKENDE GROEI
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">VRIENDSCHAP</span> EN ONGEKENDE GROEI
           </h1>
           <p className="text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
             Welkom bij de Verdienende Vrienden Club. Wij zijn geen traditioneel bedrijf. <span className="text-white font-bold">Wij zijn een ecosysteem.</span>
@@ -961,7 +964,7 @@ export const ProcessPage = ({ onNavigate }: any) => {
           <div className="inline-block mb-6 text-purple-500 font-black tracking-[0.3em] text-xs uppercase border border-purple-500/30 px-4 py-2 rounded-full animate-in fade-in slide-in-from-bottom-4 duration-700">How We Work</div>
           <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-8 leading-tight animate-in fade-in slide-in-from-bottom-5 duration-700 delay-100">
             UW KWALITEIT, <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 pr-14 pb-2">ONZE ZORG</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">ONZE ZORG</span>
           </h1>
           <p className="text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
             Van analyse tot optimalisatie. Wij helpen organisaties hun processen naar het hoogste niveau te tillen.
@@ -1122,7 +1125,7 @@ export const CareersPage = ({ onNavigate }: any) => {
       salary: (
         <div className="flex flex-col gap-1">
           <span className="text-sm text-slate-400 font-normal">Jaar overeenkomst</span>
-          <span className="text-white">€4.500.- tot €6.500 Basis</span>
+          <span className="text-white">€4.500 tot €6.500 Basis</span>
           <span className="text-yellow-400">50K - 100K OTE + PASSIEF</span>
         </div>
       ),
@@ -1134,8 +1137,8 @@ export const CareersPage = ({ onNavigate }: any) => {
         "Resultaatgericht: Je snapt dat executie belangrijker is dan praten. Resultaat is de enige waarheid."
       ],
       rewards: [
-        "Direct verdienen: €30,- per uur tijdens beluren + €300,- bonus per plaatsing.",
-        "Passief Inkomen: Bouw je eigen \"sneeuwbaleffect\" met €25,- per maand per actieve kandidaat.",
+        "Direct verdienen: €30 per uur tijdens beluren + €300 bonus per plaatsing.",
+        "Passief Inkomen: Bouw je eigen \"sneeuwbaleffect\" met €25 p/m per actieve kandidaat.",
         "Groei: Start flexibel en groei door naar een vast 40-urig jaarcontract op basis van je succes."
       ]
     },
@@ -1145,7 +1148,7 @@ export const CareersPage = ({ onNavigate }: any) => {
       salary: (
         <div className="flex flex-col gap-1">
           <span className="text-sm text-slate-400 font-normal">Jaar overeenkomst</span>
-          <span className="text-white">€4.500.- tot €6.500 Basis</span>
+          <span className="text-white">€4.500 tot €6.500 Basis</span>
           <span className="text-yellow-400">50K - 100K OTE + PASSIEF</span>
         </div>
       ),
@@ -1158,8 +1161,8 @@ export const CareersPage = ({ onNavigate }: any) => {
       ],
       rewards: [
         "Focus Bonus: Verdien goed door je te specialiseren. Profiteer mee van de deals die uit jouw netwerk komen.",
-        "Zekerheid: €30,- per uur voor jouw bel-activiteiten.",
-        "Partnership: Werk samen in een duo-constructie met een gemiddeld inkomensdoel van €4.000,- per maand."
+        "Zekerheid: €30 per uur voor jouw bel-activiteiten.",
+        "Partnership: Werk samen in een duo-constructie met een gemiddeld inkomensdoel van €4.000 p/m."
       ]
     },
     {
@@ -1168,7 +1171,7 @@ export const CareersPage = ({ onNavigate }: any) => {
       salary: (
         <div className="flex flex-col gap-1">
           <span className="text-sm text-slate-400 font-normal">Jaar overeenkomst</span>
-          <span className="text-white">€4.500.- tot €6.500 Basis</span>
+          <span className="text-white">€4.500 tot €6.500 Basis</span>
           <span className="text-yellow-400">50K - 100K OTE + PASSIEF</span>
         </div>
       ),
@@ -1180,7 +1183,7 @@ export const CareersPage = ({ onNavigate }: any) => {
         "Executie: Je draait niet om de hete brij heen; je bent duidelijk, zakelijk en doelgericht."
       ],
       rewards: [
-        "High Reward: Profiteer maximaal van onze bonusstructuur (€300,- per plaatsing) door hoge volumes te draaien.",
+        "High Reward: Profiteer maximaal van onze bonusstructuur (€300 per plaatsing) door hoge volumes te draaien.",
         "Lange termijn: Ook jij bouwt mee aan het passieve inkomen over de kandidaten die jij plaatst.",
         "Vrijheid: Bewijs je waarde in resultaten en bepaal je eigen uren."
       ]
@@ -1309,7 +1312,7 @@ export const CareersPage = ({ onNavigate }: any) => {
 
       <div className="text-center py-20 px-6 max-w-4xl mx-auto">
          <div className="inline-flex items-center space-x-2 px-3 py-1 mb-6 rounded-full bg-pink-900/30 border border-pink-500/30 text-pink-400 text-xs font-bold tracking-[0.2em] uppercase"><span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span><span>We are hiring</span></div>
-         <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-6">JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500 pr-14 pb-2">1% CLUB</span></h1>
+         <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-6">JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">1% CLUB</span></h1>
          <p className="text-xl text-slate-400 mb-12">Verdien wat je waard bent. Geen plafonds, geen kantoortijden, alleen resultaat.</p>
          <div className="relative rounded-3xl overflow-hidden aspect-video border border-white/10 shadow-2xl group">
             <div className="absolute inset-0 bg-pink-500/10 mix-blend-overlay group-hover:bg-pink-500/0 transition-colors duration-500"></div>
@@ -1325,7 +1328,7 @@ export const CareersPage = ({ onNavigate }: any) => {
             <div key={i} className="bg-[#0f0f0f] border border-white/10 p-8 rounded-2xl hover:border-pink-500 transition-all group flex flex-col">
                 <div className="mb-auto">
                     <h3 className="text-2xl font-bold text-white mb-2">{job.title}</h3>
-                    <p className="text-slate-500 text-sm mb-4 h-10">{job.subtitle}</p>
+                    <p className="text-slate-400 text-sm mb-4 min-h-[2.5rem] flex items-center leading-snug break-words">{job.subtitle}</p>
                     <div className="text-white font-bold mb-6 text-yellow-400">{job.salary}</div>
                 </div>
                 <button onClick={() => setSelectedJob(job)} className="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-pink-500 hover:text-white transition-all shadow-lg hover:shadow-pink-500/20">Bekijk Functie</button>
