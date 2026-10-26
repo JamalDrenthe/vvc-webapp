@@ -468,7 +468,7 @@ export const Hero3D: React.FC<Hero3DProps> = ({ onNavigate }) => {
           backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08);box-shadow:0 24px 60px rgba(0,0,0,.75)}
         .vvc-slogan-pill{background:rgba(8,8,11,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
           border:1px solid rgba(240,17,89,.35);box-shadow:0 16px 48px rgba(0,0,0,.85)}
-        .vvc-plum-text{background:linear-gradient(135deg,#ff3b7f 0%,#ff1e68 42%,#e866d5 85%,#ffb0f2 100%);
+        .vvc-plum-text{padding-right:.2em;margin-right:-.2em;-webkit-box-decoration-break:clone;box-decoration-break:clone;background:linear-gradient(135deg,#ff3b7f 0%,#ff1e68 42%,#e866d5 85%,#ffb0f2 100%);
           -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 4px 18px rgba(240,17,89,.45))}
         .vvc-film-line{height:3px;border-radius:9999px;background:linear-gradient(90deg,transparent,#f01159,#d44ec0,#a54a97,transparent)}
       `}</style>

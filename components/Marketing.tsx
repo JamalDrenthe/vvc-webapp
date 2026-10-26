@@ -735,7 +735,7 @@ export const RecruitmentCTA = ({ onNavigate }: any) => {
                 </div>
 
                 <h3 className="text-3xl md:text-5xl font-black text-white mb-4 leading-tight break-words">
-                  Verdien <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">€8.000+</span> p/m
+                  Verdien <span className="text-transparent bg-clip-text pr-[0.2em] -mr-[0.2em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-gradient-to-r from-yellow-300 to-yellow-500">€8.000+</span> p/m
                 </h3>
                 <p className="text-slate-400 text-base md:text-lg mb-8 leading-relaxed max-w-lg">
                   Wij zoeken ambitieuze Junior Consultants en Sales Duo's die klaar zijn om hun eigen route te bouwen. Geen plafond, geen limiet.
@@ -860,7 +860,7 @@ export const AboutPage = ({ onNavigate }: any) => (
           <div className="inline-block mb-6 text-pink-400 font-black tracking-[0.3em] text-xs uppercase border border-pink-500/30 bg-pink-500/10 px-4 py-2 rounded-full animate-in fade-in slide-in-from-bottom-4 duration-700 backdrop-blur-sm">The Story</div>
           <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-8 leading-tight animate-in fade-in slide-in-from-bottom-5 duration-700 delay-100">
             HET SNIJVLAK TUSSEN <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">VRIENDSCHAP</span> EN ONGEKENDE GROEI
+            <span className="text-transparent bg-clip-text pr-[0.2em] -mr-[0.2em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400">VRIENDSCHAP</span> EN ONGEKENDE GROEI
           </h1>
           <p className="text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
             Welkom bij de Verdienende Vrienden Club. Wij zijn geen traditioneel bedrijf. <span className="text-white font-bold">Wij zijn een ecosysteem.</span>
@@ -996,7 +996,7 @@ export const AboutPage = ({ onNavigate }: any) => (
       <div className="py-24 px-6 text-center border-t border-white/10 bg-gradient-to-b from-[#050505] to-pink-900/20">
           <div className="max-w-3xl mx-auto">
             <h3 className="text-4xl md:text-5xl font-black text-white mb-8 italic drop-shadow-lg">ONZE BELOFTE AAN JOU</h3>
-            <p className="text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 font-black mb-12 drop-shadow-md">"GEGARANDEERDE GROEI VOOR ONZE VRIENDEN."</p>
+            <p className="text-3xl md:text-4xl text-transparent bg-clip-text pr-[0.2em] -mr-[0.2em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-gradient-to-r from-pink-400 to-purple-400 font-black mb-12 drop-shadow-md">"GEGARANDEERDE GROEI VOOR ONZE VRIENDEN."</p>
             <p className="text-xl text-white mb-12 font-medium">Wij verliezen nooit. Win jij met ons mee?</p>
             
             <a href="#careers" className="group bg-white text-black px-10 py-5 rounded-full font-black text-sm tracking-widest uppercase hover:bg-pink-500 hover:text-white transition-all transform hover:scale-105 shadow-2xl hover:shadow-pink-500/50 flex items-center mx-auto ring-4 ring-white/10 inline-flex">
@@ -1026,7 +1026,7 @@ export const ProcessPage = ({ onNavigate }: any) => {
           <div className="inline-block mb-6 text-purple-500 font-black tracking-[0.3em] text-xs uppercase border border-purple-500/30 px-4 py-2 rounded-full animate-in fade-in slide-in-from-bottom-4 duration-700">How We Work</div>
           <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-8 leading-tight animate-in fade-in slide-in-from-bottom-5 duration-700 delay-100">
             UW KWALITEIT, <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">ONZE ZORG</span>
+            <span className="text-transparent bg-clip-text pr-[0.2em] -mr-[0.2em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-gradient-to-r from-purple-500 to-blue-500">ONZE ZORG</span>
           </h1>
           <p className="text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
             Van analyse tot optimalisatie. Wij helpen organisaties hun processen naar het hoogste niveau te tillen.
@@ -1374,7 +1374,7 @@ export const CareersPage = ({ onNavigate }: any) => {
 
       <div className="text-center py-20 px-6 max-w-4xl mx-auto">
          <div className="inline-flex items-center space-x-2 px-3 py-1 mb-6 rounded-full bg-pink-900/30 border border-pink-500/30 text-pink-400 text-xs font-bold tracking-[0.2em] uppercase"><span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span><span>We are hiring</span></div>
-         <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-6">JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">1% CLUB</span></h1>
+         <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-6">JOIN THE <span className="text-transparent bg-clip-text pr-[0.2em] -mr-[0.2em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-gradient-to-r from-pink-500 to-purple-500">1% CLUB</span></h1>
          <p className="text-xl text-slate-400 mb-12">Verdien wat je waard bent. Geen plafonds, geen kantoortijden, alleen resultaat.</p>
          <div className="relative rounded-3xl overflow-hidden aspect-video border border-white/10 shadow-2xl group">
             <div className="absolute inset-0 bg-pink-500/10 mix-blend-overlay group-hover:bg-pink-500/0 transition-colors duration-500"></div>
