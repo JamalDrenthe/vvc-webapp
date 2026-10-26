@@ -769,7 +769,7 @@ export const RecruitmentCTA = ({ onNavigate }: any) => {
 
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: '€30/u', label: 'Basis Uurloon', icon: <Euro className="w-5 h-5" />, accent: 'from-yellow-500/20 to-yellow-600/5 border-yellow-500/20 text-yellow-400' },
+                  { value: '€30/u', label: 'Basis Uurloon', icon: <Clock className="w-5 h-5" />, accent: 'from-yellow-500/20 to-yellow-600/5 border-yellow-500/20 text-yellow-400' },
                   { value: '€300', label: 'Per Plaatsing', icon: <TrendingUp className="w-5 h-5" />, accent: 'from-pink-500/20 to-pink-600/5 border-pink-500/20 text-pink-400' },
                   { value: '€25 p/m', label: 'Passief Inkomen', icon: <Zap className="w-5 h-5" />, accent: 'from-purple-500/20 to-purple-600/5 border-purple-500/20 text-purple-400' },
                   { value: '∞', label: 'Geen Plafond', icon: <Crown className="w-5 h-5" />, accent: 'from-white/10 to-white/5 border-white/10 text-white' },
@@ -800,7 +800,7 @@ export const Services = () => {
        <div className="max-w-7xl mx-auto px-6 mb-24">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-                { value: "€50k+", label: "Gemiddeld OTE", icon: <Euro className="w-5 h-5" /> },
+                { value: "€50k+", label: "Gemiddeld OTE", icon: <Briefcase className="w-5 h-5" /> },
                 { value: "9.8", label: "Recensies", icon: <TrendingUp className="w-5 h-5" /> },
                 { value: "Elite", label: "Focus Sectoren", icon: <ShieldCheck className="w-5 h-5" /> },
                 { value: "150+", label: "klanten", icon: <Users className="w-5 h-5" /> },
