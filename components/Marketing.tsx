@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { 
   Zap, X, Menu, Linkedin, Euro, Briefcase, Users, CheckCircle, BarChart3, 
   ShieldCheck, Search, TrendingUp, ArrowRight, Target, Globe, Facebook, Instagram, Youtube,
@@ -364,110 +364,14 @@ export const MarketingCalculator = ({ onNavigate }: any) => {
   );
 };
 
-export const HeroSection = ({ onNavigate }: any) => {
-  return (
-    <section className="relative w-full pt-28 pb-16 px-4 sm:px-6 md:px-8 max-w-5xl mx-auto">
-      {/* Outer Technical Blueprint Frame */}
-      <div className="relative border border-white/10 bg-black/95 p-6 sm:p-10 md:p-14 overflow-hidden rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.9)]">
-        
-        {/* Technical Blueprint SVG Grid Background with Crosshairs */}
-        <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="vvc-blueprint-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="0.5" />
-                <path d="M -4 0 L 4 0 M 0 -4 L 0 4" fill="none" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="0.8" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#vvc-blueprint-grid)" />
-          </svg>
-        </div>
+// 3D scroll-driven hero (three.js) — lazy geladen zodat de rest van de site snel blijft
+const Hero3D = React.lazy(() => import('./Hero3D'));
 
-        {/* Ambient Subtle Magenta Backlight */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#e6007e]/15 blur-[120px] rounded-full pointer-events-none z-0"></div>
-
-        {/* Corner Crosshairs */}
-        <div className="absolute top-2 left-2 font-mono text-xs text-zinc-600 select-none pointer-events-none">+</div>
-        <div className="absolute top-2 right-2 font-mono text-xs text-zinc-600 select-none pointer-events-none">+</div>
-        <div className="absolute bottom-2 left-2 font-mono text-xs text-zinc-600 select-none pointer-events-none">+</div>
-        <div className="absolute bottom-2 right-2 font-mono text-xs text-zinc-600 select-none pointer-events-none">+</div>
-
-        {/* Top Header Ruler & Geographic Coordinates Stamp */}
-        <div className="relative z-10 w-full flex items-center justify-between border-b border-white/10 pb-3 mb-8 font-mono text-[10px] sm:text-xs text-zinc-500 tracking-wider">
-          <div className="flex items-center gap-2">
-            <span className="text-zinc-600 font-bold">+</span>
-            <div className="hidden xs:flex items-center space-x-1 text-zinc-700 select-none">
-              <span>|</span><span>·</span><span>|</span><span>·</span><span>|</span><span>·</span><span>|</span><span>·</span><span>|</span>
-            </div>
-            <span className="text-zinc-600 font-bold">+</span>
-          </div>
-          <div className="flex items-center gap-2 uppercase tracking-widest text-zinc-400 font-semibold">
-            <span>AMSTERDAM</span>
-            <span className="text-zinc-700">|</span>
-            <span className="text-zinc-500">52° 22' N</span>
-            <span className="text-zinc-500">4° 53' E</span>
-          </div>
-        </div>
-
-        {/* Content Container */}
-        <div className="relative z-10 max-w-2xl">
-          {/* Badge: DE VVC BLAUWDRUK */}
-          <div className="inline-block mb-6">
-            <div className="px-3 py-1 border border-[#e6007e]/60 bg-[#e6007e]/10 text-[#ff1493] text-xs font-mono font-bold tracking-[0.22em] uppercase rounded-sm">
-              DE VVC BLAUWDRUK
-            </div>
-          </div>
-
-          {/* Main Headline */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[0.98] uppercase mb-8">
-            <span className="block text-white">KWALITEIT ALS</span>
-            <span className="block text-[#e6007e]">HOOGSTE VALUTA.</span>
-          </h1>
-
-          {/* Body Paragraph */}
-          <p className="text-zinc-300 text-base sm:text-lg leading-relaxed mb-10 font-normal">
-            Welkom bij de Verdienende Vrienden Club. Wij zijn geen traditioneel bureau, maar een prestatiegericht ecosysteem. Wij elimineren ruis en valideren workflows om organisaties naar hun absolute top te brengen.
-          </p>
-
-          {/* Action Buttons (Stacked on mobile, row on tablet+) */}
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:max-w-md mb-12">
-            <a
-              href="#process"
-              className="w-full sm:w-auto flex-1 bg-[#e6007e] hover:bg-[#ff1493] text-white font-black text-xs sm:text-sm uppercase tracking-widest py-4 px-6 rounded-lg shadow-[0_0_25px_rgba(230,0,126,0.4)] hover:shadow-[0_0_35px_rgba(230,0,126,0.6)] transition-all text-center block active:scale-[0.98]"
-            >
-              Offerte Aanvragen
-            </a>
-            <a
-              href="#register"
-              className="w-full sm:w-auto flex-1 bg-black/80 hover:bg-white/5 border border-white/20 hover:border-white/50 text-white font-black text-xs sm:text-sm uppercase tracking-widest py-4 px-6 rounded-lg transition-all text-center block active:scale-[0.98]"
-            >
-              Word Lid van de Club
-            </a>
-          </div>
-        </div>
-
-        {/* Bottom Section Divider: 01 // INTRO + Cyber Step Chamfer Line */}
-        <div className="relative z-10 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-zinc-500">
-          <div className="flex items-center gap-2">
-            <span className="text-zinc-600 font-bold">+</span>
-            <span className="tracking-widest text-zinc-400 font-semibold uppercase">01 // INTRO</span>
-          </div>
-
-          {/* Angled Neon Chamfer Line */}
-          <div className="relative w-40 sm:w-64 h-4 overflow-hidden">
-            <svg className="w-full h-full" viewBox="0 0 200 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M 0 14 L 60 14 L 75 4 L 200 4" stroke="#e6007e" strokeWidth="1.5" />
-              <path d="M 75 4 L 200 4" stroke="rgba(230,0,126,0.4)" strokeWidth="3" filter="blur(2px)" />
-            </svg>
-          </div>
-
-          <span className="text-zinc-600 font-bold">+</span>
-        </div>
-
-      </div>
-    </section>
-  );
-};
+export const HeroSection = ({ onNavigate }: any) => (
+  <Suspense fallback={<div className="w-full h-screen bg-[#08080b]" />}>
+    <Hero3D onNavigate={onNavigate} />
+  </Suspense>
+);
 
 export const Process = () => {
   const steps = [
