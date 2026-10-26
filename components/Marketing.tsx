@@ -82,18 +82,15 @@ export const MarketingNavbar = ({ currentPage, onNavigate, onLogin }: any) => {
             : 'bg-[#050508]/80 backdrop-blur-md border-b border-white/5'
         }`}
       >
-        {/* Left Protruding Circular VVC. Emblem */}
+        {/* Left VVC. Wordmark (Clean & Uncluttered Blueprint Aesthetic) */}
         <a 
           href="#home" 
           onClick={(e) => { e.preventDefault(); handleNavClick('home'); }} 
-          className="group flex items-center gap-3 focus:outline-none cursor-pointer"
+          className="group flex items-center focus:outline-none cursor-pointer"
           aria-label="VVC Home"
         >
-          <div className="relative flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full bg-gradient-to-tr from-pink-600/30 to-purple-600/20 border border-white/20 p-1 group-hover:border-pink-500/60 shadow-[0_0_15px_rgba(230,0,126,0.3)] group-hover:shadow-[0_0_24px_rgba(230,0,126,0.6)] transition-all shrink-0">
-            <img src="/vvc-logo.svg" alt="VVC Logo" className="w-full h-full object-contain filter group-hover:scale-105 transition-transform" />
-          </div>
-          <span className="text-xl md:text-2xl font-black italic tracking-tighter text-white">
-            VVC<span className="text-pink-500 inline-block drop-shadow-[0_0_8px_rgba(230,0,126,0.8)]">.</span>
+          <span className="text-3xl md:text-4xl font-black italic tracking-tighter text-white select-none group-hover:opacity-90 transition-opacity">
+            VVC<span className="text-[#e6007e]">.</span>
           </span>
         </a>
 
@@ -128,13 +125,13 @@ export const MarketingNavbar = ({ currentPage, onNavigate, onLogin }: any) => {
           <button 
             ref={buttonRef}
             onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-            className="relative w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex flex-col items-center justify-center gap-1.5 text-white transition-colors focus:outline-none cursor-pointer group"
+            className="relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 text-white transition-colors focus:outline-none cursor-pointer group"
             aria-label="Toggle Navigation Menu" 
             aria-expanded={isDrawerOpen}
           >
-            <span className={`w-5 h-0.5 bg-white transition-all duration-300 origin-center ${isDrawerOpen ? 'rotate-45 translate-y-2 bg-pink-500' : 'group-hover:bg-pink-400'}`}></span>
-            <span className={`w-5 h-0.5 bg-white transition-all duration-200 ${isDrawerOpen ? 'opacity-0 scale-0' : 'group-hover:bg-pink-400'}`}></span>
-            <span className={`w-5 h-0.5 bg-white transition-all duration-300 origin-center ${isDrawerOpen ? '-rotate-45 -translate-y-2 bg-pink-500' : 'group-hover:bg-pink-400'}`}></span>
+            <span className={`w-6 h-0.5 bg-white transition-all duration-300 origin-center ${isDrawerOpen ? 'rotate-45 translate-y-2 bg-[#e6007e]' : 'group-hover:bg-[#e6007e]'}`}></span>
+            <span className={`w-6 h-0.5 bg-white transition-all duration-200 ${isDrawerOpen ? 'opacity-0 scale-0' : 'group-hover:bg-[#e6007e]'}`}></span>
+            <span className={`w-6 h-0.5 bg-white transition-all duration-300 origin-center ${isDrawerOpen ? '-rotate-45 -translate-y-2 bg-[#e6007e]' : 'group-hover:bg-[#e6007e]'}`}></span>
           </button>
         </div>
 
@@ -369,43 +366,106 @@ export const MarketingCalculator = ({ onNavigate }: any) => {
 
 export const HeroSection = ({ onNavigate }: any) => {
   return (
-    <div className="w-full pt-28 pb-24 px-4 md:px-8 max-w-[1400px] mx-auto">
-      <div className="w-full relative overflow-hidden rounded-3xl border border-white/10 group">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#240046] via-[#1a0b2e] to-[#000000]"></div>
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-        <div className="absolute -right-20 -top-40 w-96 h-96 bg-pink-600/30 rounded-full blur-[100px] animate-pulse"></div>
-        <div className="absolute -left-20 -bottom-40 w-96 h-96 bg-purple-600/30 rounded-full blur-[100px]"></div>
+    <section className="relative w-full pt-28 pb-16 px-4 sm:px-6 md:px-8 max-w-5xl mx-auto">
+      {/* Outer Technical Blueprint Frame */}
+      <div className="relative border border-white/10 bg-black/95 p-6 sm:p-10 md:p-14 overflow-hidden rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.9)]">
+        
+        {/* Technical Blueprint SVG Grid Background with Crosshairs */}
+        <div className="absolute inset-0 pointer-events-none opacity-20 z-0">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="vvc-blueprint-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="0.5" />
+                <path d="M -4 0 L 4 0 M 0 -4 L 0 4" fill="none" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="0.8" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#vvc-blueprint-grid)" />
+          </svg>
+        </div>
 
-        <div className="relative z-10 px-8 py-16 md:py-24 md:px-16 flex flex-col md:flex-row items-center justify-between">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center space-x-2 px-3 py-1 mb-6 rounded-full bg-white/5 border border-pink-500/30 text-pink-400 text-xs font-bold tracking-[0.2em] uppercase">
-              <span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
-              <span>Now Recruiting</span>
+        {/* Ambient Subtle Magenta Backlight */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#e6007e]/15 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+        {/* Corner Crosshairs */}
+        <div className="absolute top-2 left-2 font-mono text-xs text-zinc-600 select-none pointer-events-none">+</div>
+        <div className="absolute top-2 right-2 font-mono text-xs text-zinc-600 select-none pointer-events-none">+</div>
+        <div className="absolute bottom-2 left-2 font-mono text-xs text-zinc-600 select-none pointer-events-none">+</div>
+        <div className="absolute bottom-2 right-2 font-mono text-xs text-zinc-600 select-none pointer-events-none">+</div>
+
+        {/* Top Header Ruler & Geographic Coordinates Stamp */}
+        <div className="relative z-10 w-full flex items-center justify-between border-b border-white/10 pb-3 mb-8 font-mono text-[10px] sm:text-xs text-zinc-500 tracking-wider">
+          <div className="flex items-center gap-2">
+            <span className="text-zinc-600 font-bold">+</span>
+            <div className="hidden xs:flex items-center space-x-1 text-zinc-700 select-none">
+              <span>|</span><span>·</span><span>|</span><span>·</span><span>|</span><span>·</span><span>|</span><span>·</span><span>|</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none mb-6 text-white break-words">
-              JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-400">MONEY MOVEMENT</span>
-            </h1>
-            <p className="text-slate-400 text-lg mb-8 max-w-lg">
-              Stop met werken voor een baas. Begin met bouwen aan je imperium. 
-              Verdien <span className="text-white font-bold">€50k - €100k</span> OTE + Passief inkomen.
-            </p>
-            <a href="#process" className="group bg-white text-black px-8 py-4 rounded-full font-black text-sm tracking-wider uppercase hover:bg-pink-500 hover:text-white transition-all transform hover:scale-105 flex items-center inline-flex">
-              Start Onboarding <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
+            <span className="text-zinc-600 font-bold">+</span>
           </div>
-          <div className="hidden md:flex relative w-64 h-64 items-center justify-center shrink-0">
-            <div className="absolute inset-0 rounded-full bg-pink-600/20 blur-2xl"></div>
-            <div className="absolute inset-0 border border-purple-500/30 rounded-full animate-[spin_20s_linear_infinite]"></div>
-            <div className="absolute inset-3 border border-pink-500/40 rounded-full animate-[spin_25s_linear_infinite_reverse]"></div>
-            <div className="relative z-10 bg-black/70 backdrop-blur-md p-6 rounded-full border border-white/15 w-48 h-48 flex flex-col items-center justify-center shadow-[0_0_40px_rgba(230,0,126,0.25)]">
-              <img src="/vvc-logo.svg" alt="VVC Logo" className="w-14 h-14 mb-2 object-contain drop-shadow-[0_2px_10px_rgba(230,0,126,0.5)]" />
-              <div className="text-xl font-black italic text-white tracking-tighter">VVC</div>
-              <div className="text-[10px] text-pink-400 tracking-[0.25em] font-bold uppercase mt-0.5">Est. 2022</div>
-            </div>
+          <div className="flex items-center gap-2 uppercase tracking-widest text-zinc-400 font-semibold">
+            <span>AMSTERDAM</span>
+            <span className="text-zinc-700">|</span>
+            <span className="text-zinc-500">52° 22' N</span>
+            <span className="text-zinc-500">4° 53' E</span>
           </div>
         </div>
+
+        {/* Content Container */}
+        <div className="relative z-10 max-w-2xl">
+          {/* Badge: DE VVC BLAUWDRUK */}
+          <div className="inline-block mb-6">
+            <div className="px-3 py-1 border border-[#e6007e]/60 bg-[#e6007e]/10 text-[#ff1493] text-xs font-mono font-bold tracking-[0.22em] uppercase rounded-sm">
+              DE VVC BLAUWDRUK
+            </div>
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[0.98] uppercase mb-8">
+            <span className="block text-white">KWALITEIT ALS</span>
+            <span className="block text-[#e6007e]">HOOGSTE VALUTA.</span>
+          </h1>
+
+          {/* Body Paragraph */}
+          <p className="text-zinc-300 text-base sm:text-lg leading-relaxed mb-10 font-normal">
+            Welkom bij de Verdienende Vrienden Club. Wij zijn geen traditioneel bureau, maar een prestatiegericht ecosysteem. Wij elimineren ruis en valideren workflows om organisaties naar hun absolute top te brengen.
+          </p>
+
+          {/* Action Buttons (Stacked on mobile, row on tablet+) */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:max-w-md mb-12">
+            <a
+              href="#process"
+              className="w-full sm:w-auto flex-1 bg-[#e6007e] hover:bg-[#ff1493] text-white font-black text-xs sm:text-sm uppercase tracking-widest py-4 px-6 rounded-lg shadow-[0_0_25px_rgba(230,0,126,0.4)] hover:shadow-[0_0_35px_rgba(230,0,126,0.6)] transition-all text-center block active:scale-[0.98]"
+            >
+              Offerte Aanvragen
+            </a>
+            <a
+              href="#register"
+              className="w-full sm:w-auto flex-1 bg-black/80 hover:bg-white/5 border border-white/20 hover:border-white/50 text-white font-black text-xs sm:text-sm uppercase tracking-widest py-4 px-6 rounded-lg transition-all text-center block active:scale-[0.98]"
+            >
+              Word Lid van de Club
+            </a>
+          </div>
+        </div>
+
+        {/* Bottom Section Divider: 01 // INTRO + Cyber Step Chamfer Line */}
+        <div className="relative z-10 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-[11px] text-zinc-500">
+          <div className="flex items-center gap-2">
+            <span className="text-zinc-600 font-bold">+</span>
+            <span className="tracking-widest text-zinc-400 font-semibold uppercase">01 // INTRO</span>
+          </div>
+
+          {/* Angled Neon Chamfer Line */}
+          <div className="relative w-40 sm:w-64 h-4 overflow-hidden">
+            <svg className="w-full h-full" viewBox="0 0 200 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 0 14 L 60 14 L 75 4 L 200 4" stroke="#e6007e" strokeWidth="1.5" />
+              <path d="M 75 4 L 200 4" stroke="rgba(230,0,126,0.4)" strokeWidth="3" filter="blur(2px)" />
+            </svg>
+          </div>
+
+          <span className="text-zinc-600 font-bold">+</span>
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 
