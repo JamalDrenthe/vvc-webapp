@@ -632,7 +632,10 @@ export const Layout = ({ children, user, onLogout }: any) => {
         `}
       >
         <div className="p-6 flex items-center justify-between h-16">
-          <div className={`text-2xl font-black italic transition-opacity ${!sidebarOpen && 'md:opacity-0 hidden'}`}>VVC<span className="text-brand-500">.</span></div>
+          <div className="flex items-center gap-2.5">
+            <img src="/vvc-logo.svg" alt="VVC Logo" className="w-8 h-8 rounded-full shadow-[0_0_10px_rgba(230,0,126,0.3)] shrink-0" />
+            <div className={`text-2xl font-black italic transition-opacity ${!sidebarOpen && 'md:opacity-0 hidden'}`}>VVC<span className="text-brand-500">.</span></div>
+          </div>
           {/* Desktop Toggle */}
           <button onClick={() => setSidebarOpen(!sidebarOpen)} className="hidden md:block text-slate-400 hover:text-white" aria-label={sidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}>
             {sidebarOpen ? <PanelLeftClose /> : <PanelLeftOpen />}

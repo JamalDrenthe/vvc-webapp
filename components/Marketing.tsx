@@ -56,8 +56,13 @@ export const MarketingNavbar = ({ currentPage, onNavigate, onLogin }: any) => {
           {/* Brand */}
           <button 
             onClick={() => { onNavigate('home'); setIsMobileMenuOpen(false); }} 
-            className="text-2xl md:text-3xl font-black italic tracking-tighter text-white z-[110] relative focus:outline-none"
+            className="text-2xl md:text-3xl font-black italic tracking-tighter text-white z-[110] relative focus:outline-none flex items-center group cursor-pointer"
           >
+            <img
+              src="/vvc-logo.svg"
+              alt="VVC Logo"
+              className="w-8 h-8 md:w-9 md:h-9 mr-2.5 rounded-full shadow-[0_0_12px_rgba(230,0,126,0.3)] group-hover:scale-105 transition-transform shrink-0"
+            />
             VVC<span className="text-pink-500">.</span>
           </button>
 
