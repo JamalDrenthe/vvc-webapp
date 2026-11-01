@@ -10,13 +10,15 @@ export const Ticker = () => (
     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(230,0,126,0.12),transparent_70%)] pointer-events-none"></div>
     <div className="flex whitespace-nowrap overflow-hidden">
       <div className="animate-marqueeYZ flex items-center space-x-8 text-sm md:text-base font-black tracking-widest uppercase">
-        {[...Array(4)].map((_, i) => (
+        {[...Array(2)].map((_, i) => (
           <React.Fragment key={i}>
-            <span className="flex items-center text-pink-400"><Zap className="w-4 h-4 mr-2 fill-pink-500 text-pink-500" /> NIEUWE VACATURE: SENIOR CLOSER</span>
+            <span className="flex items-center text-pink-400"><Zap className="w-4 h-4 mr-2 fill-pink-500 text-pink-500" /> DJOBBA MATCH: HIGH-TICKET CLOSER</span>
             <span className="mx-4 text-white/20">///</span>
-            <span className="flex items-center text-yellow-400 font-bold">€300 BONUS PER DEAL</span>
+            <span className="flex items-center text-yellow-400 font-bold">13 ACTIEVE GIGS & OPDRACHTEN</span>
             <span className="mx-4 text-white/20">///</span>
-            <span className="flex items-center text-white/90">PASSIEF INKOMEN START NU</span>
+            <span className="flex items-center text-cyan-400"><Zap className="w-4 h-4 mr-2 fill-cyan-400 text-cyan-400" /> INVESTOR RELATIONS MANAGER</span>
+            <span className="mx-4 text-white/20">///</span>
+            <span className="flex items-center text-white/90">72U FACTORING • 100% REMOTE</span>
             <span className="mx-4 text-white/20">///</span>
           </React.Fragment>
         ))}
@@ -489,9 +491,19 @@ export const RegistrationSection = ({ defaultTab = 'talent', isPageTitle = false
                                         <label htmlFor="interest" className="text-xs font-bold text-slate-500 uppercase tracking-wider">Interesse in functie</label>
                                         <div className="relative">
                                             <select id="interest" aria-label="Interesse in functie" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors appearance-none cursor-pointer">
-                                                <option>Trainee Senior Consultant</option>
-                                                <option>Trainee Senior Resourcer</option>
-                                                <option>Trainee Senior Closer</option>
+                                                <option value="Investor Relations Manager">[01/13] Investor Relations Manager (Financieel)</option>
+                                                <option value="Campagnemanager (Growth & Crowdfunding)">[02/13] Campagnemanager (Growth & Crowdfunding) (Marketing)</option>
+                                                <option value="Sponsor- & Partnership Manager">[03/13] Sponsor- & Partnership Manager (Sales)</option>
+                                                <option value="Executive Search Consultant">[04/13] Executive Search Consultant (Administratief)</option>
+                                                <option value="360° Recruiter (IT-Detachering)">[05/13] 360° Recruiter (IT-Detachering) (Sales)</option>
+                                                <option value="Tech Headhunter (AI & Engineering)">[06/13] Tech Headhunter (AI & Engineering) (IT)</option>
+                                                <option value="High-Ticket Closer (B2B-Conversie)">[07/13] High-Ticket Closer (B2B-Conversie) (Sales)</option>
+                                                <option value="Commercieel Agent (Compute & Huisvesting)">[08/13] Commercieel Agent (Compute & Huisvesting) (Sales)</option>
+                                                <option value="B2B Sales Representative (SaaS & Ecosysteem)">[09/13] B2B Sales Representative (SaaS & Ecosysteem) (Sales)</option>
+                                                <option value="Senior Strategy Consultant (AI & M&A)">[10/13] Senior Strategy Consultant (AI & M&A) (Financieel)</option>
+                                                <option value="Subsidieconsultant (R&D & Vastgoed)">[11/13] Subsidieconsultant (R&D & Vastgoed) (Administratief)</option>
+                                                <option value="Recruitment Consultant (Relocatie & Talent)">[12/13] Recruitment Consultant (Relocatie & Talent) (Sociaal Werk)</option>
+                                                <option value="Corporate Funding Broker">[13/13] Corporate Funding Broker (Financieel)</option>
                                             </select>
                                             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
                                                 <ArrowRight size={16} className="rotate-90" />
@@ -1179,94 +1191,626 @@ export const RegisterPage = () => (
 
 export const CareersPage = ({ onNavigate }: any) => {
   const [selectedJob, setSelectedJob] = useState<any>(null);
+  const [activeSector, setActiveSector] = useState<string>('Alle');
 
   const vacancies = [
-    {
-      title: "Trainee Senior Consultant",
-      subtitle: "De Regisseur van Talent",
-      salary: (
-        <div className="flex flex-col gap-1">
-          <span className="text-sm text-slate-400 font-normal">Jaar overeenkomst</span>
-          <span className="text-white">€4.500 tot €6.500 Basis</span>
-          <span className="text-yellow-400">50K - 100K OTE + PASSIEF</span>
-        </div>
-      ),
-      description: "Ben jij klaar met de traditionele 9-tot-5 mentaliteit en wil je ondernemen met een vangnet? Als Trainee Senior Consultant word je opgeleid tot de spin in het web van onze organisatie. In deze allround rol leer je het volledige proces beheersen: van het spotten van toptalent tot het succesvol plaatsen bij onze partners. Jij bent geen recruiter, jij bent een business partner.",
-      role: "Je bouwt je eigen \"route\" op. Dit betekent dat je verantwoordelijk bent voor de hele cyclus. Je leert hoe je met onze unieke \"warme netwerk\"-aanpak deuren opent zonder koud te bellen. Je begeleidt kandidaten van de eerste kennismaking tot de handtekening en blijft hun vertrouwenspersoon daarna.",
-      profile: [
-        "Ondernemend: Je ziet jezelf als de \"CEO van je eigen route\".",
-        "Allrounder: Je schakelt makkelijk tussen de menselijke connectie (relatiebeheer) en de harde deal (closing).",
-        "Resultaatgericht: Je snapt dat executie belangrijker is dan praten. Resultaat is de enige waarheid."
-      ],
-      rewards: [
-        "Direct verdienen: €30 per uur tijdens beluren + €300 bonus per plaatsing.",
-        "Passief Inkomen: Bouw je eigen \"sneeuwbaleffect\" met €25 p/m per actieve kandidaat.",
-        "Groei: Start flexibel en groei door naar een vast 40-urig jaarcontract op basis van je succes."
-      ]
-    },
-    {
-      title: "Trainee Senior Resourcer",
-      subtitle: "De Architect van Relaties (The Networker)",
-      salary: (
-        <div className="flex flex-col gap-1">
-          <span className="text-sm text-slate-400 font-normal">Jaar overeenkomst</span>
-          <span className="text-white">€4.500 tot €6.500 Basis</span>
-          <span className="text-yellow-400">50K - 100K OTE + PASSIEF</span>
-        </div>
-      ),
-      description: "Heb jij de gunfactor? Leg jij makkelijk contact en weet je mensen aan je te binden? Als Trainee Senior Resourcer specialiseer jij je in het begin van het proces. Jij bent de deuropener. In deze rol, gebaseerd op onze 'Double Team' pilot, focus jij je volledig op het bouwen van relaties en het vinden van de perfecte match.",
-      role: "Jij beheert de instroom van talent. Je werkt met onze stroom van warme leads en zorgt dat de agenda’s gevuld worden met kwaliteit. Jouw taak is het winnen van vertrouwen. Jij zet de voorzet, zodat jouw collega (de Closer) hem kan inkoppen. Jij bent het eerste visitekaartje van VVC.",
-      profile: [
-        "Connector: Je bent een \"netwerker pur sang\" en haalt energie uit gesprekken.",
-        "Empathisch & Scherp: Je voelt precies aan wat een kandidaat zoekt en weet dit te vertalen naar een kans.",
-        "Teamplayer: Je werkt nauw samen met de Closer; jullie succes is gedeeld succes (\"1 Team, 1 Taak\")."
-      ],
-      rewards: [
-        "Focus Bonus: Verdien goed door je te specialiseren. Profiteer mee van de deals die uit jouw netwerk komen.",
-        "Zekerheid: €30 per uur voor jouw bel-activiteiten.",
-        "Partnership: Werk samen in een duo-constructie met een gemiddeld inkomensdoel van €4.000 p/m."
-      ]
-    },
-    {
-      title: "Trainee Senior Closer",
-      subtitle: "De Dealmaker (The Killer Closer)",
-      salary: (
-        <div className="flex flex-col gap-1">
-          <span className="text-sm text-slate-400 font-normal">Jaar overeenkomst</span>
-          <span className="text-white">€4.500 tot €6.500 Basis</span>
-          <span className="text-yellow-400">50K - 100K OTE + PASSIEF</span>
-        </div>
-      ),
-      description: "Jij bent er voor de finish. Als Trainee Senior Closer word je klaargestoomd voor het moment suprême: de handtekening. Waar anderen stoppen, begin jij. Deze rol is puur gericht op conversie en resultaat. De relatie is al gelegd door de Resourcer; aan jou de taak om de deal over de streep te trekken.",
-      role: "Je neemt het stokje over zodra de relatie is gevestigd. Je voert de contractbesprekingen, onderhandelt over de voorwaarden en zorgt voor de uiteindelijke plaatsing. Jouw focus is laser-scherp: leads omzetten in resultaat. Je wordt getraind om bezwaren om te buigen in kansen.",
-      profile: [
-        "Winnaarsmentaliteit: Je gaat voor goud. \"Tweede plaats is de eerste verliezer.\"",
-        "Overtuigingskracht: Je staat stevig in je schoenen en durft om de deal te vragen.",
-        "Executie: Je draait niet om de hete brij heen; je bent duidelijk, zakelijk en doelgericht."
-      ],
-      rewards: [
-        "High Reward: Profiteer maximaal van onze bonusstructuur (€300 per plaatsing) door hoge volumes te draaien.",
-        "Lange termijn: Ook jij bouwt mee aan het passieve inkomen over de kandidaten die jij plaatst.",
-        "Vrijheid: Bewijs je waarde in resultaten en bepaal je eigen uren."
-      ]
-    }
-  ];
+  {
+    "id": "vac_ir_01",
+    "code": "01/13",
+    "title": "Investor Relations Manager",
+    "subtitle": "Corporate / Pre-IPO • Financieel",
+    "sector": "Financieel",
+    "domain": "Corporate / Pre-IPO",
+    "type": "VAST / HYBRIDE",
+    "duration": "32–40 uur/week | ZZP of Vast",
+    "compensation": "Salaris + succesfee",
+    "compensationDetail": "Salaris in overleg + succesfee over elk aangebracht en gecontracteerd investeringsvolume",
+    "location": "100% remote (reisbereidheid voor internationale roadshows)",
+    "factoringAvailable": true,
+    "experience": "5+ jaar corporate finance, private equity, venture capital of IR",
+    "description": "Ter voorbereiding op een internationale beursnotering en meerdere kapitaalrondes zoeken wij een Investor Relations Manager. Je bent het vaste aanspreekpunt richting de financiële markt en onderhoudt relaties met institutionele beleggers, family offices en strategische co-investeerders.",
+    "role": "Werven en onboarden van institutionele investeerders en kapitaalverstrekkers. Regisseren van de internationale IR-roadshow en het bookbuilding-proces. Presenteren van groeimodellen, kwartaalcijfers en IFRS-rapportage aan investeringscomités. Schakelen met corporate finance-adviseurs, toezichthouders, juristen en auditors",
+    "tasks": [
+      "Werven en onboarden van institutionele investeerders en kapitaalverstrekkers",
+      "Regisseren van de internationale IR-roadshow en het bookbuilding-proces",
+      "Presenteren van groeimodellen, kwartaalcijfers en IFRS-rapportage aan investeringscomités",
+      "Schakelen met corporate finance-adviseurs, toezichthouders, juristen en auditors"
+    ],
+    "profile": [
+      "HBO/WO in finance, economie of bedrijfskunde, of gelijkwaardige ervaring",
+      "Aantoonbaar netwerk binnen institutioneel kapitaal, family offices en private equity",
+      "Nederlands en Engels op boardroomniveau",
+      "Ervaring met IFRS, kapitaalmarkttransacties en pre-IPO-trajecten"
+    ],
+    "requirements": [
+      "HBO/WO in finance, economie of bedrijfskunde, of gelijkwaardige ervaring",
+      "Aantoonbaar netwerk binnen institutioneel kapitaal, family offices en private equity",
+      "Nederlands en Engels op boardroomniveau",
+      "Ervaring met IFRS, kapitaalmarkttransacties en pre-IPO-trajecten"
+    ],
+    "skills": [
+      "Investor Relations",
+      "Corporate Finance",
+      "Pre-IPO",
+      "IFRS",
+      "Private Equity",
+      "Bookbuilding"
+    ],
+    "rewards": [
+      "Salaris in overleg + succesfee over elk aangebracht en gecontracteerd investeringsvolume",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (reisbereidheid voor internationale roadshows) (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_cmp_02",
+    "code": "02/13",
+    "title": "Campagnemanager (Growth & Crowdfunding)",
+    "subtitle": "Growth & crowdfunding • Marketing",
+    "sector": "Marketing",
+    "domain": "Growth & crowdfunding",
+    "type": "VAST / HYBRIDE",
+    "duration": "32–40 uur/week | ZZP of Vast",
+    "compensation": "Salaris + campagnevergoeding",
+    "compensationDetail": "Salaris in overleg + vergoeding per geactiveerd B2B-lid en voltooide financieringscampagne",
+    "location": "100% remote",
+    "factoringAvailable": true,
+    "experience": "3+ jaar growth marketing, B2B of crowdfunding",
+    "description": "Je bent verantwoordelijk voor de B2B-wervingscampagnes en co-financieringstrajecten voor nieuwe hardware- en vastgoedprojecten. Je bouwt datagedreven funnels die op Europese schaal converteren.",
+    "role": "Ontwerpen, lanceren en optimaliseren van crowdfunding- en ledenwervingscampagnes. Uitrollen van multi-channel campagnes (LinkedIn, Meta, Google, programmatic, e-mail) voor Europese wervingshubs. Continueren van A/B-tests op landingspagina's, advertenties en onboarding-flows. Monitoren van campagnedata, acquisitiekosten (CAC) en funnelconversie",
+    "tasks": [
+      "Ontwerpen, lanceren en optimaliseren van crowdfunding- en ledenwervingscampagnes",
+      "Uitrollen van multi-channel campagnes (LinkedIn, Meta, Google, programmatic, e-mail) voor Europese wervingshubs",
+      "Continueren van A/B-tests op landingspagina's, advertenties en onboarding-flows",
+      "Monitoren van campagnedata, acquisitiekosten (CAC) en funnelconversie"
+    ],
+    "profile": [
+      "HBO/WO in marketing, communicatie of data-analyse, of gelijkwaardige ervaring",
+      "Minimaal 3 jaar ervaring met B2B performance marketing, leadgeneratie of grootschalige crowdfundingcampagnes",
+      "Sterk in zowel copywriting als data-analyse",
+      "Ondernemend en resultaatgericht"
+    ],
+    "requirements": [
+      "HBO/WO in marketing, communicatie of data-analyse, of gelijkwaardige ervaring",
+      "Minimaal 3 jaar ervaring met B2B performance marketing, leadgeneratie of grootschalige crowdfundingcampagnes",
+      "Sterk in zowel copywriting als data-analyse",
+      "Ondernemend en resultaatgericht"
+    ],
+    "skills": [
+      "Growth Marketing",
+      "B2B Funnels",
+      "Crowdfunding",
+      "Performance Ads",
+      "A/B Testing",
+      "CAC Optimalisatie"
+    ],
+    "rewards": [
+      "Salaris in overleg + vergoeding per geactiveerd B2B-lid en voltooide financieringscampagne",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_spm_03",
+    "code": "03/13",
+    "title": "Sponsor- & Partnership Manager",
+    "subtitle": "Media, tech, events • Sales",
+    "sector": "Sales",
+    "domain": "Media, tech, events",
+    "type": "ZZP / INTERIM GIG",
+    "duration": "24–40 uur/week | ZZP of Vast",
+    "compensation": "Salaris + dealvergoeding",
+    "compensationDetail": "Salaris in overleg + percentage van elke gecontracteerde sponsor- of partnership-deal",
+    "location": "100% remote",
+    "factoringAvailable": true,
+    "experience": "3+ jaar B2B-partnerships, media of sponsoring",
+    "description": "Je sluit commerciële samenwerkingen, sponsorcontracten en strategische allianties voor de media-, compute- en community-platforms van de groep.",
+    "role": "Binnenhalen van B2B-sponsors, adverteerders en mediapartners voor evenementen, platforms en hubs. Initiëren van samenwerkingen met hardwareleveranciers, vastgoedpartijen en softwarelicentiepartners. Ontwikkelen van sponsorpakketten en joint-venture-voorstellen. Voeren van onderhandelingen van eerste pitch tot getekend contract",
+    "tasks": [
+      "Binnenhalen van B2B-sponsors, adverteerders en mediapartners voor evenementen, platforms en hubs",
+      "Initiëren van samenwerkingen met hardwareleveranciers, vastgoedpartijen en softwarelicentiepartners",
+      "Ontwikkelen van sponsorpakketten en joint-venture-voorstellen",
+      "Voeren van onderhandelingen van eerste pitch tot getekend contract"
+    ],
+    "profile": [
+      "HBO/WO, of vergelijkbare werkervaring",
+      "Ervaring in B2B-sales, sponsorwerving, media-exploitatie of strategic partnerships",
+      "Commercieel sterk, representatief en zelfsturend"
+    ],
+    "requirements": [
+      "HBO/WO, of vergelijkbare werkervaring",
+      "Ervaring in B2B-sales, sponsorwerving, media-exploitatie of strategic partnerships",
+      "Commercieel sterk, representatief en zelfsturend"
+    ],
+    "skills": [
+      "Strategic Partnerships",
+      "B2B Sponsoring",
+      "Contractonderhandeling",
+      "Joint Ventures",
+      "Media Exploitatie"
+    ],
+    "rewards": [
+      "Salaris in overleg + percentage van elke gecontracteerde sponsor- of partnership-deal",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_esc_04",
+    "code": "04/13",
+    "title": "Executive Search Consultant",
+    "subtitle": "Boardroom & C-level • Administratief",
+    "sector": "Administratief",
+    "domain": "Boardroom & C-level",
+    "type": "VAST / HYBRIDE",
+    "duration": "32–40 uur/week | ZZP of Vast",
+    "compensation": "Salaris + plaatsingsfee",
+    "compensationDetail": "Salaris in overleg + plaatsingsfee per geplaatste executive gebaseerd op jaarsalaris",
+    "location": "100% remote",
+    "factoringAvailable": true,
+    "experience": "5+ jaar executive search of boardroom consulting",
+    "description": "Je werft boardroomposities voor de eigen holdings en voor opdrachtgevers van de B2B recruitment-marketplace. Je opereert op strategisch niveau en bent verantwoordelijk voor het vinden en binden van bestuurders en toezichthouders.",
+    "role": "Werven van statutaire directieleden, non-executive directors (RvC) en country managers. Plaatsen van C-level executives (CIO, CTO, Chief AI Officer, VP Engineering) bij externe opdrachtgevers. Begeleiden van het volledige search-, selectie- en benoemingsproces op boardroomniveau",
+    "tasks": [
+      "Werven van statutaire directieleden, non-executive directors (RvC) en country managers",
+      "Plaatsen van C-level executives (CIO, CTO, Chief AI Officer, VP Engineering) bij externe opdrachtgevers",
+      "Begeleiden van het volledige search-, selectie- en benoemingsproces op boardroomniveau"
+    ],
+    "profile": [
+      "HBO/WO, of gedegen praktijkervaring",
+      "Minimaal 5 jaar ervaring bij een executive search-bureau of als senior headhunter voor C-level posities",
+      "Gesprekspartner voor CEO's, commissarissen en investeringsmaatschappijen",
+      "Nederlands en Engels vloeiend"
+    ],
+    "requirements": [
+      "HBO/WO, of gedegen praktijkervaring",
+      "Minimaal 5 jaar ervaring bij een executive search-bureau of als senior headhunter voor C-level posities",
+      "Gesprekspartner voor CEO's, commissarissen en investeringsmaatschappijen",
+      "Nederlands en Engels vloeiend"
+    ],
+    "skills": [
+      "Executive Search",
+      "Boardroom Consulting",
+      "C-Level Recruitment",
+      "Directie & RvC",
+      "Succession Planning"
+    ],
+    "rewards": [
+      "Salaris in overleg + plaatsingsfee per geplaatste executive gebaseerd op jaarsalaris",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_rec_05",
+    "code": "05/13",
+    "title": "360° Recruiter (IT-Detachering)",
+    "subtitle": "IT-detachering • Sales",
+    "sector": "Sales",
+    "domain": "IT-detachering",
+    "type": "VAST / HYBRIDE",
+    "duration": "24–40 uur/week | ZZP of Vast",
+    "compensation": "Salaris + margedeling",
+    "compensationDetail": "Salaris in overleg + margedeling over gerealiseerde detacheringsomzet",
+    "location": "100% remote",
+    "factoringAvailable": true,
+    "experience": "2+ jaar 360°-recruitment of IT-detachering",
+    "description": "Je beheert zowel de klantkant (IT-detacheringsopdrachten) als de kandidatenkant (selectie en plaatsing van internationale specialisten die via de eigen relocatie-tak instromen).",
+    "role": "Binnenhalen van B2B IT-detacheringscontracten en aanvragen. Matchen van vooraf geverifieerde kennismigranten en IT-professionals aan jouw klantportefeuille. Voeren van tariefonderhandelingen, begeleiden van sollicitatiegesprekken en afsluiten van contracten via het recruitment-systeem",
+    "tasks": [
+      "Binnenhalen van B2B IT-detacheringscontracten en aanvragen",
+      "Matchen van vooraf geverifieerde kennismigranten en IT-professionals aan jouw klantportefeuille",
+      "Voeren van tariefonderhandelingen, begeleiden van sollicitatiegesprekken en afsluiten van contracten via het recruitment-systeem"
+    ],
+    "profile": [
+      "HBO/WO, of vergelijkbare ervaring",
+      "Ervaring als 360°-recruiter, accountmanager of consultant in IT-, engineering- of tech-detachering",
+      "Commercieel gedreven, proactief en relatiegericht",
+      "Ervaring met moderne recruitmentsoftware en matchingtools"
+    ],
+    "requirements": [
+      "HBO/WO, of vergelijkbare ervaring",
+      "Ervaring als 360°-recruiter, accountmanager of consultant in IT-, engineering- of tech-detachering",
+      "Commercieel gedreven, proactief en relatiegericht",
+      "Ervaring met moderne recruitmentsoftware en matchingtools"
+    ],
+    "skills": [
+      "360 Recruitment",
+      "IT Detachering",
+      "Tariefonderhandeling",
+      "Account Management",
+      "Kandidaat Matching"
+    ],
+    "rewards": [
+      "Salaris in overleg + margedeling over gerealiseerde detacheringsomzet",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_thh_06",
+    "code": "06/13",
+    "title": "Tech Headhunter (AI & Engineering)",
+    "subtitle": "AI & engineering • IT",
+    "sector": "IT",
+    "domain": "AI & engineering",
+    "type": "ZZP / INTERIM GIG",
+    "duration": "24–40 uur/week | ZZP of Vast",
+    "compensation": "Salaris + succesfee",
+    "compensationDetail": "Salaris in overleg + succesfee per geplaatste en geverifieerde tech-specialist",
+    "location": "100% remote",
+    "factoringAvailable": true,
+    "experience": "Aantoonbare ervaring in tech-sourcing of direct search",
+    "description": "Je spoort wereldwijd AI-engineers, systeemarchitecten en senior developers op voor externe B2B-klanten en de eigen R&D-, AI- en hardware-afdelingen. Voor geplaatste kandidaten regelt de groep ook visum en huisvesting.",
+    "role": "Actief sourcen via GitHub, LinkedIn Recruiter, StackOverflow en eigen sourcing-tools. Overtuigen van internationaal talent met het totaalpakket: baan, visum, relocatie en huisvesting. Begeleiden van kandidaten door technische assessments tot contractondertekening",
+    "tasks": [
+      "Actief sourcen via GitHub, LinkedIn Recruiter, StackOverflow en eigen sourcing-tools",
+      "Overtuigen van internationaal talent met het totaalpakket: baan, visum, relocatie en huisvesting",
+      "Begeleiden van kandidaten door technische assessments tot contractondertekening"
+    ],
+    "profile": [
+      "HBO/WO, of vergelijkbare praktijkervaring",
+      "Ervaring met het sourcen van schaarse developers en engineers",
+      "Bekend met Python, Rust, Kubernetes en LLM-architecturen",
+      "Vloeiend Engels, comfortabel met kandidaten in verschillende tijdzones"
+    ],
+    "requirements": [
+      "HBO/WO, of vergelijkbare praktijkervaring",
+      "Ervaring met het sourcen van schaarse developers en engineers",
+      "Bekend met Python, Rust, Kubernetes en LLM-architecturen",
+      "Vloeiend Engels, comfortabel met kandidaten in verschillende tijdzones"
+    ],
+    "skills": [
+      "Direct Search",
+      "Tech Sourcing",
+      "AI Engineers",
+      "Python / Rust",
+      "GitHub Sourcing",
+      "Relocatie"
+    ],
+    "rewards": [
+      "Salaris in overleg + succesfee per geplaatste en geverifieerde tech-specialist",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_htc_07",
+    "code": "07/13",
+    "title": "High-Ticket Closer (B2B-Conversie)",
+    "subtitle": "B2B-conversie • Sales",
+    "sector": "Sales",
+    "domain": "B2B-conversie",
+    "type": "ZZP / INTERIM GIG",
+    "duration": "24–40 uur/week (flexibele agenda)",
+    "compensation": "Salaris + commissie",
+    "compensationDetail": "Salaris in overleg + commissie per gecontracteerde B2B-transactie",
+    "location": "100% remote",
+    "factoringAvailable": true,
+    "experience": "Aantoonbaar trackrecord in high-ticket closing",
+    "description": "Je voert de eindgesprekken met warme, voorgekwalificeerde zakelijke leads en sluit de deals voor de gecombineerde proposities (compute, digitale infrastructuur, zakelijk vastgoed). Koude acquisitie is geen onderdeel van de functie.",
+    "role": "Voeren van consultatieve videocalls en telefoongesprekken met zakelijke beslissers. Toelichten van de modulaire B2B-pakketten en het rendement van het ecosysteem. Zorgen dat overeenkomsten tijdens of direct na het gesprek digitaal worden ondertekend. Afstemmen met marketing en sales over leadkwaliteit",
+    "tasks": [
+      "Voeren van consultatieve videocalls en telefoongesprekken met zakelijke beslissers",
+      "Toelichten van de modulaire B2B-pakketten en het rendement van het ecosysteem",
+      "Zorgen dat overeenkomsten tijdens of direct na het gesprek digitaal worden ondertekend",
+      "Afstemmen met marketing en sales over leadkwaliteit"
+    ],
+    "profile": [
+      "HBO/WO, of gelijkwaardige saleservaring",
+      "Trackrecord in consultative selling en high-ticket closing (bij voorkeur B2B SaaS, finance, vastgoed of consultancy)",
+      "Sterk in actief luisteren, bezwaren behandelen en vertrouwen opbouwen",
+      "Resultaatgericht en gedisciplineerd"
+    ],
+    "requirements": [
+      "HBO/WO, of gelijkwaardige saleservaring",
+      "Trackrecord in consultative selling en high-ticket closing (bij voorkeur B2B SaaS, finance, vastgoed of consultancy)",
+      "Sterk in actief luisteren, bezwaren behandelen en vertrouwen opbouwen",
+      "Resultaatgericht en gedisciplineerd"
+    ],
+    "skills": [
+      "High-Ticket Closing",
+      "Consultative Selling",
+      "Deal Sluiting",
+      "Bezwaarhantering",
+      "B2B Proposities"
+    ],
+    "rewards": [
+      "Salaris in overleg + commissie per gecontracteerde B2B-transactie",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_cag_08",
+    "code": "08/13",
+    "title": "Commercieel Agent (Compute & Huisvesting)",
+    "subtitle": "Compute & huisvesting • Sales",
+    "sector": "Sales",
+    "domain": "Compute & huisvesting",
+    "type": "ZZP / INTERIM GIG",
+    "duration": "24–40 uur/week | Flexibel",
+    "compensation": "Salaris + doorlopende courtage",
+    "compensationDetail": "Salaris in overleg + doorlopende courtage over contractverlengingen van jouw portefeuille",
+    "location": "100% remote (eigen regio-indeling mogelijk)",
+    "factoringAvailable": true,
+    "experience": "Zelfstandige B2B-sales of agentuurervaring",
+    "description": "Je vertegenwoordigt de commerciële eindproducten van de operationele clusters in de zakelijke markt: GPU-rekenkracht, zakelijke account-infrastructuur en short-/long-stay huisvesting voor expats en projectteams.",
+    "role": "Verkopen van GPU-servers en digitale infrastructuur aan AI-bedrijven, mediabureaus en tech-ondernemingen. Bemiddelen in B2B-huisvestingscontracten voor bedrijven die internationale specialisten huisvesten. Opbouwen en beheren van een eigen klantenkring met meerjarige afnamecontracten",
+    "tasks": [
+      "Verkopen van GPU-servers en digitale infrastructuur aan AI-bedrijven, mediabureaus en tech-ondernemingen",
+      "Bemiddelen in B2B-huisvestingscontracten voor bedrijven die internationale specialisten huisvesten",
+      "Opbouwen en beheren van een eigen klantenkring met meerjarige afnamecontracten"
+    ],
+    "profile": [
+      "HBO/WO, of gedegen commerciële achtergrond",
+      "Sterk zakelijk netwerk in tech, media of corporate vastgoed",
+      "Zelfstandig, plant eigen agenda, bouwt graag aan terugkerende omzet"
+    ],
+    "requirements": [
+      "HBO/WO, of gedegen commerciële achtergrond",
+      "Sterk zakelijk netwerk in tech, media of corporate vastgoed",
+      "Zelfstandig, plant eigen agenda, bouwt graag aan terugkerende omzet"
+    ],
+    "skills": [
+      "GPU Compute",
+      "Corporate Housing",
+      "Cloud Infrastructuur",
+      "B2B Agentuur",
+      "Recurring Revenue"
+    ],
+    "rewards": [
+      "Salaris in overleg + doorlopende courtage over contractverlengingen van jouw portefeuille",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (eigen regio-indeling mogelijk) (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_bsr_09",
+    "code": "09/13",
+    "title": "B2B Sales Representative (SaaS & Ecosysteem)",
+    "subtitle": "SaaS & ecosysteem • Sales",
+    "sector": "Sales",
+    "domain": "SaaS & ecosysteem",
+    "type": "VAST / HYBRIDE",
+    "duration": "32–40 uur/week | ZZP of Vast",
+    "compensation": "Salaris + commissie",
+    "compensationDetail": "Salaris in overleg + commissie per gesloten B2B-deal plus maandelijkse staffelbonus",
+    "location": "100% remote",
+    "factoringAvailable": true,
+    "experience": "Junior / Medior / Senior",
+    "description": "Je vult de commerciële pijplijn: je vertegenwoordigt de B2B SaaS-software (CRM, AI-outreach, workflow-automatisering) en de bredere ecosysteem-proposities, opent deuren bij nieuwe zakelijke klanten en zet contacten om in verkoopkansen en getekende orders.",
+    "role": "Uitvoeren van gepersonaliseerde outbound campagnes via telefoon, videomessaging, e-mail en LinkedIn. Geven van online productdemo's aan MKB- en enterprise-bedrijven. Kwalificeren van zakelijke partijen en beheren van de eigen salesfunnel in samenwerking met de closers",
+    "tasks": [
+      "Uitvoeren van gepersonaliseerde outbound campagnes via telefoon, videomessaging, e-mail en LinkedIn",
+      "Geven van online productdemo's aan MKB- en enterprise-bedrijven",
+      "Kwalificeren van zakelijke partijen en beheren van de eigen salesfunnel in samenwerking met de closers"
+    ],
+    "profile": [
+      "HBO/WO, of sterke aantoonbare saleservaring",
+      "Communicatief vaardig, bestand tegen afwijzing, energie van nieuwe contacten",
+      "Affiniteit met B2B SaaS, AI-tools en moderne salesmethodieken"
+    ],
+    "requirements": [
+      "HBO/WO, of sterke aantoonbare saleservaring",
+      "Communicatief vaardig, bestand tegen afwijzing, energie van nieuwe contacten",
+      "Affiniteit met B2B SaaS, AI-tools en moderne salesmethodieken"
+    ],
+    "skills": [
+      "B2B SaaS Sales",
+      "Outbound Prospecting",
+      "Product Demo's",
+      "Pipeline Management",
+      "CRMos"
+    ],
+    "rewards": [
+      "Salaris in overleg + commissie per gesloten B2B-deal plus maandelijkse staffelbonus",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_ssc_10",
+    "code": "10/13",
+    "title": "Senior Strategy Consultant (AI & M&A)",
+    "subtitle": "AI, werkkapitaal, M&A • Financieel",
+    "sector": "Financieel",
+    "domain": "AI, werkkapitaal, M&A",
+    "type": "VAST / HYBRIDE",
+    "duration": "32–40 uur/week | ZZP of Vast",
+    "compensation": "Salaris + projectfee",
+    "compensationDetail": "Salaris in overleg + projectfee over de contractwaarde van elk enterprise-traject of M&A transactie",
+    "location": "100% remote",
+    "factoringAvailable": true,
+    "experience": "7+ jaar strategy consulting, M&A of enterprise IT",
+    "description": "Je adviseert op directie- en C-level over AI-automatisering, werkkapitaaloptimalisatie en het begeleiden van fusies, overnames en integraties binnen het ecosysteem.",
+    "role": "Adviseren van middelgrote en grote ondernemingen over AI-executiemotoren, B2B clearing-API's en werkstroomautomatisering. Identificeren, beoordelen (due diligence) en begeleiden van acquisities van tech-startups, softwarebedrijven en licentiepartners. Opstellen van business cases op boardroomniveau",
+    "tasks": [
+      "Adviseren van middelgrote en grote ondernemingen over AI-executiemotoren, B2B clearing-API's en werkstroomautomatisering",
+      "Identificeren, beoordelen (due diligence) en begeleiden van acquisities van tech-startups, softwarebedrijven en licentiepartners",
+      "Opstellen van business cases op boardroomniveau"
+    ],
+    "profile": [
+      "WO-master in business, finance, economie of IT, of gelijkwaardig topniveau door ervaring",
+      "Minimaal 7 jaar ervaring als strategy consultant, M&A-adviseur of enterprise transformation manager",
+      "Diepgaand financieel inzicht (kasstroommodellen, waarderingen, WCO) en begrip van AI- en cloudarchitecturen"
+    ],
+    "requirements": [
+      "WO-master in business, finance, economie of IT, of gelijkwaardig topniveau door ervaring",
+      "Minimaal 7 jaar ervaring als strategy consultant, M&A-adviseur of enterprise transformation manager",
+      "Diepgaand financieel inzicht (kasstroommodellen, waarderingen, WCO) en begrip van AI- en cloudarchitecturen"
+    ],
+    "skills": [
+      "Strategy Consulting",
+      "M&A Advisory",
+      "Due Diligence",
+      "Werkkapitaaloptimalisatie",
+      "AI Transformatie"
+    ],
+    "rewards": [
+      "Salaris in overleg + projectfee over de contractwaarde van elk enterprise-traject of M&A transactie",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_sub_11",
+    "code": "11/13",
+    "title": "Subsidieconsultant (R&D & Vastgoed)",
+    "subtitle": "R&D, AI, duurzaamheid • Administratief",
+    "sector": "Administratief",
+    "domain": "R&D, AI, duurzaamheid",
+    "type": "ZZP / INTERIM GIG",
+    "duration": "24–40 uur/week | ZZP of Vast",
+    "compensation": "Salaris + succespercentage",
+    "compensationDetail": "Salaris in overleg + succespercentage over elk daadwerkelijk toegekend subsidiebedrag",
+    "location": "100% remote",
+    "factoringAvailable": true,
+    "experience": "3+ jaar als subsidieadviseur of grant writer",
+    "description": "Binnen het ecosysteem wordt geïnvesteerd in eigen R&D en duurzame fysieke infrastructuur. Je haalt nationale, Britse en Europese innovatiesubsidies, tech-grants en fiscale regelingen binnen.",
+    "role": "In kaart brengen van relevante regelingen (WBSO, MIT, Horizon Europe, UK Innovate, duurzaamheidsfondsen). Opstellen en indienen van technisch en financieel onderbouwde aanvragen in samenwerking met developers, AI-architecten en vastgoedmanagers. Benutten van fiscale voordelen rond kennismigranten en Europese innovatiehubs. Verzorgen van projectadministratie en eindverantwoording conform UK GAAP en IFRS",
+    "tasks": [
+      "In kaart brengen van relevante regelingen (WBSO, MIT, Horizon Europe, UK Innovate, duurzaamheidsfondsen)",
+      "Opstellen en indienen van technisch en financieel onderbouwde aanvragen in samenwerking met developers, AI-architecten en vastgoedmanagers",
+      "Benutten van fiscale voordelen rond kennismigranten en Europese innovatiehubs",
+      "Verzorgen van projectadministratie en eindverantwoording conform UK GAAP en IFRS"
+    ],
+    "profile": [
+      "HBO/WO, of vergelijkbare ervaring",
+      "Aantoonbare ervaring als subsidieconsultant met sterk slagingspercentage, bij voorkeur op het snijvlak van IT, AI, innovatie en duurzaamheid",
+      "Sterk in het vertalen van technische projecten naar beoordelingscriteria"
+    ],
+    "requirements": [
+      "HBO/WO, of vergelijkbare ervaring",
+      "Aantoonbare ervaring als subsidieconsultant met sterk slagingspercentage, bij voorkeur op het snijvlak van IT, AI, innovatie en duurzaamheid",
+      "Sterk in het vertalen van technische projecten naar beoordelingscriteria"
+    ],
+    "skills": [
+      "WBSO Subsidies",
+      "Horizon Europe",
+      "MIT Regeling",
+      "Innovatiefinanciering",
+      "Grant Writing"
+    ],
+    "rewards": [
+      "Salaris in overleg + succespercentage over elk daadwerkelijk toegekend subsidiebedrag",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_rel_12",
+    "code": "12/13",
+    "title": "Recruitment Consultant (Relocatie & Talent)",
+    "subtitle": "Internationaal talent • Sociaal Werk",
+    "sector": "Sociaal Werk",
+    "domain": "Internationaal talent",
+    "type": "VAST / HYBRIDE",
+    "duration": "24–40 uur/week | ZZP of Vast",
+    "compensation": "Salaris + plaatsingsfee",
+    "compensationDetail": "Salaris in overleg + plaatsingsfee per succesvolle gecontracteerde B2B-plaatsing",
+    "location": "100% remote",
+    "factoringAvailable": true,
+    "experience": "1+ jaar recruitment of HR",
+    "description": "Je bent verantwoordelijk voor de kandidaatkant: je begeleidt gekwalificeerde kennismigranten door het verificatieproces en matcht hen aan openstaande B2B-vacatures op het platform.",
+    "role": "Voeren van diepte-interviews en begeleiden van kandidaten door screening en verificatie. Matchen van gevalideerde IT-, engineering- en tech-specialisten aan openstaande vacatures via het ATS. Coördineren van de digitale overdracht na plaatsing, zodat zusterentiteiten visum, huisvesting en financiële onboarding in gang zetten",
+    "tasks": [
+      "Voeren van diepte-interviews en begeleiden van kandidaten door screening en verificatie",
+      "Matchen van gevalideerde IT-, engineering- en tech-specialisten aan openstaande vacatures via het ATS",
+      "Coördineren van de digitale overdracht na plaatsing, zodat zusterentiteiten visum, huisvesting en financiële onboarding in gang zetten"
+    ],
+    "profile": [
+      "HBO/WO, of vergelijkbare praktijkervaring",
+      "Mensgericht en organisatorisch sterk",
+      "Gestructureerd, vaardig met moderne HR-software",
+      "Vloeiend Nederlands en Engels"
+    ],
+    "requirements": [
+      "HBO/WO, of vergelijkbare praktijkervaring",
+      "Mensgericht en organisatorisch sterk",
+      "Gestructureerd, vaardig met moderne HR-software",
+      "Vloeiend Nederlands en Engels"
+    ],
+    "skills": [
+      "Relocatie Support",
+      "Kandidaat Screening",
+      "Kennismigranten",
+      "Expat Onboarding",
+      "ATS / CRMos"
+    ],
+    "rewards": [
+      "Salaris in overleg + plaatsingsfee per succesvolle gecontracteerde B2B-plaatsing",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (Volledige flexibiliteit en remote werkplek)"
+    ]
+  },
+  {
+    "id": "vac_cfb_13",
+    "code": "13/13",
+    "title": "Corporate Funding Broker",
+    "subtitle": "Hardware & vastgoed • Financieel",
+    "sector": "Financieel",
+    "domain": "Hardware & vastgoed",
+    "type": "ZZP / INTERIM GIG",
+    "duration": "24–40 uur/week | ZZP of Vast",
+    "compensation": "Salaris + bemiddelingsfee",
+    "compensationDetail": "Salaris in overleg + bemiddelingscourtage per afgesloten financieringslijn, lease of hypotheek",
+    "location": "100% remote",
+    "factoringAvailable": true,
+    "experience": "5+ jaar debt advisory, corporate finance of leasing",
+    "description": "Je structureert en bemiddelt zakelijke financieringen voor de uitbreiding van GPU-serverclusters, de vastgoedportefeuille en de interne factoring- en werkkapitaalfaciliteiten.",
+    "role": "Ophalen en structureren van kredietlijnen, equipment lease-constructies en zakelijke vastgoedhypotheken. Bemiddelen bij banken, private debt-fondsen en BaaS/EMI-partners voor factoring- en liquiditeitslijnen. Presenteren van geconsolideerde cijfers (UK GAAP, IFRS) en onderpandstructuren aan kredietcomités",
+    "tasks": [
+      "Ophalen en structureren van kredietlijnen, equipment lease-constructies en zakelijke vastgoedhypotheken",
+      "Bemiddelen bij banken, private debt-fondsen en BaaS/EMI-partners voor factoring- en liquiditeitslijnen",
+      "Presenteren van geconsolideerde cijfers (UK GAAP, IFRS) en onderpandstructuren aan kredietcomités"
+    ],
+    "profile": [
+      "HBO/WO, of gelijkwaardig vakmanschap",
+      "Ervaring als zakelijk financieringsadviseur, debt broker, accountmanager grootzakelijk bij een bank of leasing-specialist",
+      "Netwerk van kapitaalverstrekkers, leasemaatschappijen, private debt-fondsen en vastgoedfinanciers"
+    ],
+    "requirements": [
+      "HBO/WO, of gelijkwaardig vakmanschap",
+      "Ervaring als zakelijk financieringsadviseur, debt broker, accountmanager grootzakelijk bij een bank of leasing-specialist",
+      "Netwerk van kapitaalverstrekkers, leasemaatschappijen, private debt-fondsen en vastgoedfinanciers"
+    ],
+    "skills": [
+      "Debt Advisory",
+      "Equipment Lease",
+      "Vastgoedfinanciering",
+      "Kredietstructurering",
+      "IFRS"
+    ],
+    "rewards": [
+      "Salaris in overleg + bemiddelingscourtage per afgesloten financieringslijn, lease of hypotheek",
+      "100% voorschot binnen 72 uur via Djobba.works factoring rails",
+      "100% remote (Volledige flexibiliteit en remote werkplek)"
+    ]
+  }
+];
+
+  const sectors = ['Alle', 'Financieel', 'Marketing', 'Sales', 'Administratief', 'IT', 'Sociaal Werk'];
+
+  const filteredJobs = activeSector === 'Alle' 
+    ? vacancies 
+    : vacancies.filter((j: any) => j.sector === activeSector);
 
   useEffect(() => {
     const schema = {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      "itemListElement": vacancies.map((job, index) => ({
+      "itemListElement": vacancies.map((job: any, index: number) => ({
         "@type": "ListItem",
         "position": index + 1,
         "item": {
             "@type": "JobPosting",
             "title": job.title,
-            "description": `<p>${job.description}</p><p><strong>Rol:</strong> ${job.role}</p><p><strong>Profiel:</strong> ${job.profile.join(', ')}</p>`,
-            "datePosted": new Date().toISOString().split('T')[0],
+            "description": `<p>${job.description}</p>`,
+            "datePosted": "2026-10-26",
             "hiringOrganization": {
               "@type": "Organization",
-              "name": "Verdienende Vrienden Club",
+              "name": "Verdienende Vrienden Club & Djobba.works",
               "sameAs": "https://www.verdienendevrienden.club/"
             },
             "jobLocation": {
@@ -1277,17 +1821,7 @@ export const CareersPage = ({ onNavigate }: any) => {
                 "addressCountry": "NL"
               }
             },
-            "employmentType": "CONTRACTOR",
-            "baseSalary": {
-                "@type": "MonetaryAmount",
-                "currency": "EUR",
-                "value": {
-                    "@type": "QuantitativeValue",
-                    "minValue": 50000,
-                    "maxValue": 100000,
-                    "unitText": "YEAR"
-                }
-            }
+            "employmentType": job.type.includes('ZZP') ? "CONTRACTOR" : "FULL_TIME"
         }
       }))
     };
@@ -1315,26 +1849,47 @@ export const CareersPage = ({ onNavigate }: any) => {
                     
                     <div className="p-8 md:p-10">
                         <div className="mb-8">
-                            <div className="inline-block px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-xs font-bold uppercase tracking-widest mb-4">Nu Solliciteren</div>
+                            <div className="flex flex-wrap items-center gap-2 mb-4">
+                              <span className="px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-xs font-bold uppercase tracking-widest">
+                                [{selectedJob.code}] {selectedJob.type}
+                              </span>
+                              <span className="px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs font-bold uppercase tracking-widest">
+                                {selectedJob.sector}
+                              </span>
+                              {selectedJob.factoringAvailable && (
+                                <span className="px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-bold uppercase tracking-widest">
+                                  72u Factoring
+                                </span>
+                              )}
+                            </div>
                             <h2 className="text-3xl md:text-4xl font-black text-white mb-2 italic">{selectedJob.title}</h2>
-                            <p className="text-xl text-slate-400">{selectedJob.subtitle}</p>
+                            <p className="text-base text-slate-400 font-mono">{selectedJob.domain} • {selectedJob.location}</p>
                         </div>
 
                         <div className="space-y-8">
                             <div>
-                                <h3 className="text-white font-bold text-lg mb-3 flex items-center"><Target className="w-5 h-5 mr-2 text-pink-500"/> Jouw Route</h3>
+                                <h3 className="text-white font-bold text-lg mb-3 flex items-center"><Target className="w-5 h-5 mr-2 text-pink-500"/> Rolomschrijving</h3>
                                 <p className="text-slate-400 leading-relaxed text-sm">{selectedJob.description}</p>
                             </div>
 
-                             <div>
-                                <h3 className="text-white font-bold text-lg mb-3 flex items-center"><Briefcase className="w-5 h-5 mr-2 text-purple-500"/> Wat ga je doen?</h3>
-                                <p className="text-slate-400 leading-relaxed text-sm">{selectedJob.role}</p>
-                            </div>
+                            {selectedJob.tasks && selectedJob.tasks.length > 0 && (
+                              <div>
+                                  <h3 className="text-white font-bold text-lg mb-3 flex items-center"><Briefcase className="w-5 h-5 mr-2 text-purple-500"/> Belangrijkste Werkzaamheden</h3>
+                                  <ul className="space-y-2">
+                                      {selectedJob.tasks.map((task: string, i: number) => (
+                                          <li key={i} className="text-slate-400 text-sm flex items-start">
+                                              <span className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                              {task}
+                                          </li>
+                                      ))}
+                                  </ul>
+                              </div>
+                            )}
 
                             <div>
                                 <h3 className="text-white font-bold text-lg mb-3 flex items-center"><Users className="w-5 h-5 mr-2 text-yellow-400"/> Wie zoeken wij?</h3>
                                 <ul className="space-y-2">
-                                    {selectedJob.profile.map((item: string, i: number) => (
+                                    {selectedJob.requirements.map((item: string, i: number) => (
                                         <li key={i} className="text-slate-400 text-sm flex items-start">
                                             <span className="w-1.5 h-1.5 bg-white rounded-full mt-2 mr-3 flex-shrink-0"></span>
                                             {item}
@@ -1344,28 +1899,31 @@ export const CareersPage = ({ onNavigate }: any) => {
                             </div>
 
                             <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
-                                <h3 className="text-white font-bold text-lg mb-4 flex items-center"><Euro className="w-5 h-5 mr-2 text-green-400"/> Jouw Beloning</h3>
-                                <ul className="space-y-3">
-                                    {selectedJob.rewards.map((item: string, i: number) => (
-                                        <li key={i} className="text-slate-300 text-sm flex items-start">
-                                            <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 mr-3 flex-shrink-0" />
-                                            {item}
-                                        </li>
-                                    ))}
+                                <h3 className="text-white font-bold text-lg mb-4 flex items-center"><Euro className="w-5 h-5 mr-2 text-green-400"/> Beloning & Condities</h3>
+                                <div className="text-yellow-400 font-black text-lg mb-2">{selectedJob.compensation}</div>
+                                <p className="text-slate-300 text-sm leading-relaxed mb-4">{selectedJob.compensationDetail}</p>
+                                <ul className="space-y-2.5 pt-3 border-t border-white/10">
+                                    <li className="text-slate-400 text-xs flex items-center">
+                                        <CheckCircle className="w-4 h-4 text-green-400 mr-2 flex-shrink-0" />
+                                        <span>Uren: <strong>{selectedJob.duration}</strong></span>
+                                    </li>
+                                    <li className="text-slate-400 text-xs flex items-center">
+                                        <CheckCircle className="w-4 h-4 text-green-400 mr-2 flex-shrink-0" />
+                                        <span>Locatie: <strong>{selectedJob.location}</strong></span>
+                                    </li>
+                                    <li className="text-slate-400 text-xs flex items-center">
+                                        <CheckCircle className="w-4 h-4 text-green-400 mr-2 flex-shrink-0" />
+                                        <span>Factoring SLA: <strong>100% voorschot binnen 72 uur via Djobba.works rails</strong></span>
+                                    </li>
                                 </ul>
                             </div>
 
-                             <div className="pt-6 border-t border-white/10">
-                                <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Waarom VVC?</h4>
-                                <p className="text-slate-400 text-sm mb-4">Bij de Verdienende Vrienden Club (VVC) krijg je geen baan, maar een toekomst.</p>
-                                <ul className="space-y-2 mb-6">
-                                    <li className="text-slate-400 text-sm flex items-start"><span className="text-pink-500 font-bold mr-2">Cultuur:</span> Geen politiek, alleen pure samenwerking.</li>
-                                    <li className="text-slate-400 text-sm flex items-start"><span className="text-pink-500 font-bold mr-2">Ongekende Groei:</span> On-Target Earnings tussen €50.000 en €95.000.</li>
-                                    <li className="text-slate-400 text-sm flex items-start"><span className="text-pink-500 font-bold mr-2">Vrijheid:</span> De rugdekking van een club, de vrijheid van een ondernemer.</li>
-                                </ul>
-                                <p className="text-white font-black italic text-center mb-6">Durf jij de stap aan? Word vriend, word partner.</p>
-                                <a href="#register" onClick={() => setSelectedJob(null)} className="w-full bg-white text-black font-black uppercase tracking-wider py-4 rounded-xl hover:bg-pink-500 hover:text-white transition-all shadow-xl hover:shadow-pink-500/20 block text-center">Direct Solliciteren</a>
-                             </div>
+                            <div className="pt-6 border-t border-white/10">
+                                <h4 className="text-white font-bold mb-4 text-sm uppercase tracking-wider">Ecosysteem Partner Rails</h4>
+                                <p className="text-slate-400 text-sm mb-4">Gecoördineerd via Verdienende Vrienden Club en direct gefactord via Djobba.works.</p>
+                                <p className="text-white font-black italic text-center mb-6">Kwaliteit als hoogste valuta. Geen bazen, maar partners.</p>
+                                <a href="#register" onClick={() => setSelectedJob(null)} className="w-full bg-white text-black font-black uppercase tracking-wider py-4 rounded-xl hover:bg-pink-500 hover:text-white transition-all shadow-xl hover:shadow-pink-500/20 block text-center">Direct Solliciteren op deze Positie</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1373,27 +1931,52 @@ export const CareersPage = ({ onNavigate }: any) => {
         )}
 
       <div className="text-center py-20 px-6 max-w-4xl mx-auto">
-         <div className="inline-flex items-center space-x-2 px-3 py-1 mb-6 rounded-full bg-pink-900/30 border border-pink-500/30 text-pink-400 text-xs font-bold tracking-[0.2em] uppercase"><span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span><span>We are hiring</span></div>
-         <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-6">JOIN THE <span className="text-transparent bg-clip-text pr-[0.2em] -mr-[0.2em] [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-gradient-to-r from-pink-500 to-purple-500">1% CLUB</span></h1>
-         <p className="text-xl text-slate-400 mb-12">Verdien wat je waard bent. Geen plafonds, geen kantoortijden, alleen resultaat.</p>
+         <div className="inline-flex items-center space-x-2 px-3 py-1 mb-6 rounded-full bg-pink-900/30 border border-pink-500/30 text-pink-400 text-xs font-bold tracking-[0.2em] uppercase"><span className="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span><span>13 Actieve Posities in Werving</span></div>
+         <h1 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter mb-6">JOIN THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500 pr-14 pb-2">ECOSYSTEM</span></h1>
+         <p className="text-xl text-slate-400 mb-12">Dezelfde realtime vacatures & gigs als op Djobba.works: 100% remote, directe matching en optie voor 72-uurs instant factoring.</p>
          <div className="relative rounded-3xl overflow-hidden aspect-video border border-white/10 shadow-2xl group">
             <div className="absolute inset-0 bg-pink-500/10 mix-blend-overlay group-hover:bg-pink-500/0 transition-colors duration-500"></div>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="VVC team van sales professionals en ondernemers" className="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" />
+            <img loading="lazy" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="VVC team en Djobba ecosysteem talent" className="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
          </div>
       </div>
       <Ticker />
       <div className="max-w-7xl mx-auto px-6 py-24" id="jobs">
-        <h2 className="text-4xl font-black text-white mb-12 italic">OPENSTAANDE VACATURES</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {vacancies.map((job,i) =>(
-            <div key={i} className="bg-[#0f0f0f] border border-white/10 p-8 rounded-2xl hover:border-pink-500 transition-all group flex flex-col">
-                <div className="mb-auto">
-                    <h3 className="text-2xl font-bold text-white mb-2">{job.title}</h3>
-                    <p className="text-slate-400 text-sm mb-4 min-h-[2.5rem] flex items-center leading-snug break-words">{job.subtitle}</p>
-                    <div className="text-white font-bold mb-6 text-yellow-400">{job.salary}</div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <div className="text-pink-500 font-mono text-xs font-bold uppercase tracking-widest mb-1">Djobba.works Hub Sync</div>
+            <h2 className="text-4xl font-black text-white italic">OPENSTAANDE VACATURES ({filteredJobs.length})</h2>
+          </div>
+          {/* Sector filter tabs */}
+          <div className="flex flex-wrap gap-2">
+            {sectors.map(s => (
+              <button 
+                key={s} 
+                onClick={() => setActiveSector(s)} 
+                className={`px-3 py-1.5 text-xs font-bold rounded-lg border transition-all ${activeSector === s ? 'bg-pink-500 border-pink-500 text-white' : 'bg-black/40 border-white/10 text-slate-400 hover:text-white hover:border-white/20'}`}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredJobs.map((job: any, i: number) => (
+            <div key={job.id || i} className="bg-[#0f0f0f] border border-white/10 p-7 rounded-2xl hover:border-pink-500 transition-all group flex flex-col justify-between">
+                <div>
+                    <div className="flex items-center justify-between mb-3 text-xs font-mono">
+                      <span className="text-pink-400 font-bold">[{job.code}]</span>
+                      <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-400 text-[11px]">{job.sector}</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2 leading-snug group-hover:text-pink-400 transition-colors">{job.title}</h3>
+                    <p className="text-slate-400 text-xs mb-4 leading-relaxed">{job.subtitle}</p>
+                    <div className="p-3 bg-white/5 rounded-xl border border-white/5 mb-6 space-y-1.5">
+                      <div className="text-xs text-slate-400">{job.type} • {job.duration}</div>
+                      <div className="text-yellow-400 font-black text-sm">{job.compensation}</div>
+                    </div>
                 </div>
-                <button onClick={() => setSelectedJob(job)} className="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-pink-500 hover:text-white transition-all shadow-lg hover:shadow-pink-500/20">Bekijk Functie</button>
+                <button onClick={() => setSelectedJob(job)} className="w-full bg-white text-black font-bold py-3 rounded-lg hover:bg-pink-500 hover:text-white transition-all shadow-lg hover:shadow-pink-500/20 text-sm">Bekijk Positie & Details</button>
             </div>
           ))}
         </div>
@@ -1438,7 +2021,7 @@ export const MarketingApp = ({ onLogin }: any) => {
       home: "Verdienende Vrienden Club (VVC) is een exclusief ecosysteem voor sales talent. Verdien €50k-€100k OTE, bouw passief inkomen en werk als partner.",
       about: "VVC is geen traditioneel bedrijf maar een ecosysteem. Wij bieden de rugdekking van een gevestigde club met de vrijheid van ondernemerschap.",
       process: "Van aanvraag tot optimalisatie: wij leveren geen rapporten voor in de lade, maar brandstof voor groei. Ontdek onze 360-graden aanpak.",
-      careers: "Bekijk onze vacatures voor Trainee Senior Consultant, Resourcer en Closer. Verdien wat je waard bent met ongekende doorgroeimogelijkheden.",
+      careers: "Bekijk de 13 actieve vacatures en gigs binnen ons ecosysteem, gesynchroniseerd met Djobba.works. 100% remote, directe matching en 72-uurs factoring.",
       register: "Word onderdeel van de club. Start hier jouw route als Talent of Partner. Geen motivatiebrieven, wij selecteren op professionaliteit."
     };
 
