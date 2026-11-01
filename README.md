@@ -58,7 +58,7 @@ Outputs static assets to `dist/`.
 
 Static hosting is sufficient because routing uses hashes:
 
-- Any static host (GitHub Pages, Netlify, Vercel static export, S3/CloudFront, etc.) can serve `dist/`.
+- Any static host (GitHub Pages, Netlify, S3/CloudFront, etc.) can serve `dist/`.
 - If you add history routing later, configure rewrite rules; with HashRouter this is not required.
 - If you adopt compiled Tailwind, remove the CDN script from `index.html` and add Tailwind/PostCSS build tooling.
 
