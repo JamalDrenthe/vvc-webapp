@@ -87,9 +87,6 @@ export const Hero3D: React.FC<Hero3DProps> = ({ onNavigate }) => {
   const phrase1Ref = useRef<HTMLSpanElement>(null);
   const phrase2Ref = useRef<HTMLSpanElement>(null);
   const underlineRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<SVGLineElement>(null);
-  const sectionLabelRef = useRef<HTMLSpanElement>(null);
-  const hintRef = useRef<HTMLDivElement>(null);
 
   const [webglFailed, setWebglFailed] = useState(false);
 
@@ -326,13 +323,6 @@ export const Hero3D: React.FC<Hero3DProps> = ({ onNavigate }) => {
         card.style.transform = `translate3d(0, ${(-fadeOut * 75).toFixed(1)}px, 0) scale(${(1 - fadeOut * 0.06).toFixed(3)})`;
         card.style.pointerEvents = 1 - fadeOut < 0.15 ? 'none' : 'auto';
       }
-      if (hintRef.current) hintRef.current.style.opacity = String(1 - smoothstep(0.0, 0.06, s));
-
-      // HUD
-      progressRef.current?.setAttribute('x2', (348 + s * 652).toFixed(1));
-      if (sectionLabelRef.current) {
-        sectionLabelRef.current.textContent = s < 0.35 ? '01 // INTRO' : s < 0.75 ? '02 // OVER VVC & DE CLUB' : '03 // WERKWIJZE';
-      }
 
       // logo-compositie
       const isDesktop = window.innerWidth >= 1024;
@@ -556,26 +546,6 @@ export const Hero3D: React.FC<Hero3DProps> = ({ onNavigate }) => {
             </div>
             <div className="w-full flex justify-center mt-3 sm:mt-4">
               <div ref={underlineRef} className="vvc-film-line" style={{ width: 0, opacity: 0 }} />
-            </div>
-          </div>
-        </div>
-
-        {/* Onderste HUD */}
-        <div className="absolute bottom-0 left-0 right-0 z-40 pointer-events-none pb-3 sm:pb-4 pt-6 bg-gradient-to-t from-[#08080b]/95 via-[#08080b]/70 to-transparent">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-            <div ref={hintRef} className="text-center mb-1 font-mono text-[10px] tracking-[0.25em] text-white/60 uppercase">
-              Scroll ↓
-            </div>
-            <div className="relative w-full h-7 flex items-center">
-              <svg className="w-full h-7 overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 28" aria-hidden="true">
-                <path d="M 0,4 L 315,4 L 340,18 L 1000,18" fill="none" stroke={PINK} strokeWidth="1.6" strokeOpacity="0.85" />
-                <line x1="342" y1="14" x2="1000" y2="14" stroke={PINK} strokeWidth="1.2" strokeOpacity="0.4" />
-                <line x1="348" y1="23" x2="1000" y2="23" stroke="rgba(255,255,255,0.15)" strokeWidth="2.5" strokeLinecap="round" />
-                <line ref={progressRef} x1="348" y1="23" x2="348" y2="23" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" />
-              </svg>
-              <span ref={sectionLabelRef} className="absolute left-1 bottom-0 font-mono text-xs font-bold tracking-[0.14em] text-white uppercase">
-                01 // INTRO
-              </span>
             </div>
           </div>
         </div>
