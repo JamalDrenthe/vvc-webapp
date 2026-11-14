@@ -30,7 +30,13 @@ const Chat: React.FC<ChatProps> = ({ user, context }) => {
         setMessages(p => [...p, { role: 'user', text: txt }]);
 
         try {
-            const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+            const apiKey = (import.meta.env.VITE_GEMINI_API_KEY as string | undefined)?.trim();
+            if (!apiKey) {
+                setMessages(p => [...p, { role: 'model', text: "De AI assistent is beveiligd en vereist een geconfigureerde backend proxy of VITE_GEMINI_API_KEY." }]);
+                setLoading(false);
+                return;
+            }
+            const ai = new GoogleGenAI({ apiKey });
             
             // Build a conversation history roughly
             // For simple chat, we just send the new prompt with context. 
