@@ -29,7 +29,7 @@ Create `.env.local` in the project root and set:
 GEMINI_API_KEY=your_key
 ```
 
-The key is injected via `vite.config.ts` (`process.env.GEMINI_API_KEY`).
+The key is consumed strictly server-side by the Cloudflare Pages Function (`functions/api/chat.ts`) and is never exposed to the browser bundle. Set `GEMINI_API_KEY` as an encrypted secret in Cloudflare Pages.
 
 ## Installation
 

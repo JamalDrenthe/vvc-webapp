@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GoogleGenAI } from "@google/genai";
 import { Sparkles, Send } from 'lucide-react';
 import { Card, Button } from './UI';
 import { User } from '../types';
@@ -24,45 +23,38 @@ const Chat: React.FC<ChatProps> = ({ user, context }) => {
     const handleSend = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!input.trim() || loading) return;
-        const txt = input;
+        const txt = input.trim();
+        const historySnapshot = messages.slice(-8);
         setInput('');
         setLoading(true);
         setMessages(p => [...p, { role: 'user', text: txt }]);
 
         try {
-            const apiKey = (import.meta.env.VITE_GEMINI_API_KEY as string | undefined)?.trim();
-            if (!apiKey) {
-                setMessages(p => [...p, { role: 'model', text: "De AI assistent is beveiligd en vereist een geconfigureerde backend proxy of VITE_GEMINI_API_KEY." }]);
-                setLoading(false);
-                return;
-            }
-            const ai = new GoogleGenAI({ apiKey });
-            
-            // Build a conversation history roughly
-            // For simple chat, we just send the new prompt with context. 
-            // In a real app, we would use chat.sendMessage from ai.chats.create
-            
-            const systemInstruction = `Je bent een behulpzame VVC assistent. Je helpt gebruikers met onboarding, sales vragen en platform navigatie. Context: ${context || 'Algemeen dashboard'}.`;
-
-            const response = await ai.models.generateContent({
-                model: 'gemini-2.5-flash-preview-09-2025',
-                contents: [
-                    {
-                        role: 'user',
-                        parts: [{ text: txt }]
-                    }
-                ],
-                config: {
-                    systemInstruction: systemInstruction,
-                }
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    prompt: txt,
+                    context: context || 'Algemeen dashboard',
+                    history: historySnapshot,
+                }),
             });
 
-            const responseText = response.text || "Sorry, ik kon geen antwoord genereren.";
-            setMessages(p => [...p, { role: 'model', text: responseText }]);
+            const data = (await response.json().catch(() => ({}))) as { reply?: string; error?: string };
 
+            if (!response.ok || !data.reply) {
+                setMessages(p => [
+                    ...p,
+                    { role: 'model', text: data.error || 'De AI assistent is tijdelijk niet beschikbaar.' }
+                ]);
+            } else {
+                setMessages(p => [...p, { role: 'model', text: data.reply as string }]);
+            }
         } catch (error) {
             console.error(error);
-            setMessages(p => [...p, { role: 'model', text: "Er is een fout opgetreden bij het verbinden met de assistent." }]);
+            setMessages(p => [...p, { role: 'model', text: 'Er is een fout opgetreden bij het verbinden met de assistent.' }]);
         }
         setLoading(false);
     };
